@@ -3,11 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.ProductDao">
-    <select id="listproducts" parameterType="com.bo.xMarket.model.Product">
+    <select id="listproducts" resultType="com.bo.xMarket.model.Product">
         SELECT name as name,
                price as price,
                description as description,
-               unit as unit,
+               unit as unit
         FROM product
     </select>
 </mapper>

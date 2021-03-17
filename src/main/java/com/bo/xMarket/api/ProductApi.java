@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/{userid}")
 public class ProductApi {
     private ProductBl productBl;
     private TransactionBl transactionBl;
@@ -23,7 +23,7 @@ public class ProductApi {
         this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(value = "/feed",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/product",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Product> products(@PathVariable("userid") Integer id) {
         return productBl.productList(id);
     }
