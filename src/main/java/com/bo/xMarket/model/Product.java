@@ -3,12 +3,10 @@ package com.bo.xMarket.model;
 public class Product {
     private Integer productId;
     private Integer productCategoryId;
-    private Integer offersId;
-    private Integer qrId;
     private String name;
     private Double price;
     private String description;
-    private Integer unit;
+    private Double weight;
     private Integer status;
     private Transaction transaction;
 
@@ -30,22 +28,6 @@ public class Product {
 
     public void setProductCategoryId(Integer productCategoryId) {
         this.productCategoryId = productCategoryId;
-    }
-
-    public Integer getOffersId() {
-        return offersId;
-    }
-
-    public void setOffersId(Integer offersId) {
-        this.offersId = offersId;
-    }
-
-    public Integer getQrId() {
-        return qrId;
-    }
-
-    public void setQrId(Integer qrId) {
-        this.qrId = qrId;
     }
 
     public String getName() {
@@ -72,12 +54,12 @@ public class Product {
         this.description = description;
     }
 
-    public Integer getUnit() {
-        return unit;
+    public Double getWeight() {
+        return weight;
     }
 
-    public void setUnit(Integer unit) {
-        this.unit = unit;
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public Integer getStatus() {

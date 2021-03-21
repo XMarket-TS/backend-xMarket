@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface ProductDao {
     public List<Product> listproducts(Integer id);
+    public void addproduct(Product product);
+    public Product productsdetails(Integer productid);
 }
