@@ -1,0 +1,44 @@
+package com.bo.xMarket.api;
+
+import com.bo.xMarket.bl.BranchOfficeBl;
+import com.bo.xMarket.bl.TransactionBl;
+
+import com.bo.xMarket.dto.BranchOfficeRequest;
+import com.bo.xMarket.dto.ManagerRequest;
+import com.bo.xMarket.model.BranchOffice;
+import com.bo.xMarket.model.Manager;
+import com.bo.xMarket.model.Product;
+import com.bo.xMarket.model.Transaction;
+import com.bo.xMarket.util.TransactionUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/branchOffice")
+public class BranchOfficeApi {
+    private BranchOfficeBl branchOfficeBl;
+    private TransactionBl transactionBl;
+
+    @Autowired
+    public BranchOfficeApi(BranchOfficeBl branchOfficeBl, TransactionBl transactionBl) {
+        this.branchOfficeBl = branchOfficeBl;
+        this.transactionBl = transactionBl;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public BranchOffice addbranchoffice(@RequestBody BranchOfficeRequest branchOfficeRequest, HttpServletRequest request){
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        BranchOffice branchOfficeResponse=branchOfficeBl.addBranchOffice(branchOfficeRequest,transaction);
+        return branchOfficeResponse;
+    }
+    @RequestMapping(value = "/list",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<BranchOffice> branchofficelist() {
+        return branchOfficeBl.branchOfficeList();
+    }
+
+}

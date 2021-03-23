@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.ProductDao">
     <select id="listproducts" resultType="com.bo.xMarket.model.Product">
-        SELECT name as name,
-               price as price,
-               description as description,
-               weight as weight
-        FROM product
+        SELECT a.name as name,
+               a.price as price,
+               a.description as description,
+               a.weight as weight
+        FROM product a, product_branch_office b WHERE a.product_id=b.product_product_id AND b.branch_office_id_branch_office=#{idbranch}
     </select>
     <insert id="addproduct" parameterType="com.bo.xMarket.model.Product">
         INSERT INTO product
@@ -25,5 +25,8 @@
                description as description,
                weight as weight
         FROM product WHERE product_id=#{productid}
+    </select>
+    <select id="getLastInsertId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
     </select>
 </mapper>

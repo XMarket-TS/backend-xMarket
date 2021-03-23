@@ -28,16 +28,16 @@ public class ProductApi {
         this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(value = "/user/{userid}/product",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Product> products(@PathVariable("userid") Integer id) {
-        return productBl.productList(id);
+    @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/product",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Product> products(@PathVariable("userid") Integer id,@PathVariable("branchoffice") Integer idbranch) {
+        return productBl.productList(id,idbranch);
     }
 
-    @RequestMapping(value = "/user/{userid}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Product addproduct(@RequestBody ProductRequest productRequest, HttpServletRequest request){
+    @RequestMapping(value = "/admin/{userid}/branchOffice/{branchoffice}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Product addproduct(@PathVariable("userid") Integer id,@PathVariable("branchoffice") Integer idbranch,@RequestBody ProductRequest productRequest, HttpServletRequest request){
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        Product productResponse=productBl.addProduct(productRequest,transaction);
+        Product productResponse=productBl.addProduct(productRequest,idbranch,transaction);
         return productResponse;
     }
 

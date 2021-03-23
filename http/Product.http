@@ -1,16 +1,16 @@
 ### get product list by userid whith status admin
-GET http://localhost:8080/user/1/product
+GET http://localhost:8080/user/1/branchOffice/1/product
 Accept: application/json
 
 ### adding new product with admin
-POST http://localhost:8080/user/1/product
+POST http://localhost:8080/admin/2/branchOffice/2/product
 Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Zanahoria",
-  "price": "10.00",
-  "description": "Verdura color naranja",
+  "name": "Tomate",
+  "price": "20.00",
+  "description": "Verdura color rojo",
   "unit": "10",
   "category": "verdura"
 }
