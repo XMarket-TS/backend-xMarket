@@ -3,7 +3,7 @@ package com.bo.xMarket.dto;
 public class OfferRequest {
     private Integer productId;
     private String name;
-    private Double price;
+    private Double price;//con el descuento
     private String description;
     private String startDate;
     private String endDate;

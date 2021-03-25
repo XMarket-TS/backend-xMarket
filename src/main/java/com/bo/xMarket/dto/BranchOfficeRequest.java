@@ -3,7 +3,8 @@ package com.bo.xMarket.dto;
 import com.bo.xMarket.model.Transaction;
 
 public class BranchOfficeRequest {
-    private Integer managerId;
+    //private Integer branchId; *
+    private Integer managerId; //nombre del manager no Id *
     private String name;
     private Integer phone;
     private String zone;

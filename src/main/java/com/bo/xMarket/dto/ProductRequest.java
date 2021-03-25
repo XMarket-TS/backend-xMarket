@@ -9,6 +9,7 @@ public class ProductRequest {
     private String description;
     private List<String> imagesUrl;
     private Integer unit;
+    //private Integer branchId; *
     private String category;
     //    FRONTEND WEB
     private Double discount;
