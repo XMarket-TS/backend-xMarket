@@ -3,38 +3,20 @@ package com.bo.xMarket.dto;
 import java.util.List;
 
 public class ProductRequest {
-    private Integer productId;
+    //private Integer productId;
     private String name;
     private Double price;
     private String description;
-    private List<String> imagesUrl;
     private Integer unit;
-    //private Integer branchId; *
     private String category;
+    private OfferRequest offer;
+    private List<MediaRequest> imagesUrl;
+    //private Integer branchId; *
     //    FRONTEND WEB
-    private Double discount;
+    //    private Double discount;
 
 
     public ProductRequest() {}
-
-    public ProductRequest(Integer productId, String name, Double price, String description, List<String> imagesUrl, Integer unit, String category) {
-        this.productId = productId;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.imagesUrl = imagesUrl;
-        this.unit = unit;
-        this.category = category;
-
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
 
     public String getName() {
         return name;
@@ -60,14 +42,6 @@ public class ProductRequest {
         this.description = description;
     }
 
-    public List<String> getImagesUrl() {
-        return imagesUrl;
-    }
-
-    public void setImagesUrl(List<String> imagesUrl) {
-        this.imagesUrl = imagesUrl;
-    }
-
     public Integer getUnit() {
         return unit;
     }
@@ -84,25 +58,19 @@ public class ProductRequest {
         this.category = category;
     }
 
-    public Double getDiscount() {
-        return discount;
+    public OfferRequest getOffer() {
+        return offer;
     }
 
-    public void setDiscount(Double discount) {
-        this.discount = discount;
+    public void setOffer(OfferRequest offer) {
+        this.offer = offer;
     }
 
-    @Override
-    public String toString() {
-        return "ProductRequest{" +
-                "productId=" + productId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", imagesUrl=" + imagesUrl +
-                ", unit=" + unit +
-                ", category='" + category + '\'' +
-                ", discount=" + discount +
-                '}';
+    public List<MediaRequest> getImagesUrl() {
+        return imagesUrl;
+    }
+
+    public void setImagesUrl(List<MediaRequest> imagesUrl) {
+        this.imagesUrl = imagesUrl;
     }
 }

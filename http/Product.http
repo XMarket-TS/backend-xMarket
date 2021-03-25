@@ -1,8 +1,8 @@
-### get product list by userid whith status admin
+### get product list by userid and branch office id
 GET http://localhost:8080/user/1/branchOffice/1/product
 Accept: application/json
 
-### adding new product with admin
+### adding new product with adminid and branch office id
 POST http://localhost:8080/admin/2/branchOffice/2/product
 Accept: application/json
 Content-Type: application/json
@@ -12,9 +12,21 @@ Content-Type: application/json
   "price": "20.00",
   "description": "Verdura color rojo",
   "unit": "10",
-  "category": "verdura"
+  "category": "verdura",
+  "offer": {
+    "productId": null,
+    "name": "offer 1",
+    "percentage": 10,
+    "startDate": "19-02-2020",
+    "endDate": "19-04-2020",
+    "imageUrl": "url"
+  },
+  "images": [
+    {"productId": null, "photo": "Url 1"},
+    {"productId": null, "photo": "Url 2"}
+  ]
 }
 
 ### get product details
-GET http://localhost:8080/product/1
+GET http://localhost:8080/product/2
 Accept: application/json

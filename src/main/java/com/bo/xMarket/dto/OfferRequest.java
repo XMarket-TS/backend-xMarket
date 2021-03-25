@@ -3,14 +3,14 @@ package com.bo.xMarket.dto;
 public class OfferRequest {
     private Integer productId;
     private String name;
-    private Double price;//con el descuento
-    private String description;
+    private Double percentage;//con el descuento
+//    private String description;
     private String startDate;
     private String endDate;
     private String imageUrl;
-    private Integer unit;
-    private Integer categoryId;
-    private Integer branchId;
+//    private Integer unit;
+//    private Integer categoryId;
+//    private Integer branchId;
 
     public OfferRequest() {
     }
@@ -23,20 +23,20 @@ public class OfferRequest {
         this.productId = productId;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getName() {
+        return name;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public Double getPercentage() {
+        return percentage;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPercentage(Double percentage) {
+        this.percentage = percentage;
     }
 
     public String getStartDate() {
@@ -61,37 +61,5 @@ public class OfferRequest {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public Integer getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Integer unit) {
-        this.unit = unit;
-    }
-
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Integer getBranchId() {
-        return branchId;
-    }
-
-    public void setBranchId(Integer branchId) {
-        this.branchId = branchId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

@@ -3,7 +3,10 @@ package com.bo.xMarket.bl;
 import com.bo.xMarket.dao.CategoryDao;
 import com.bo.xMarket.dao.ProductBranchDao;
 import com.bo.xMarket.dao.ProductDao;
+import com.bo.xMarket.dto.MediaRequest;
+import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.dto.ProductRequest;
+import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Category;
 import com.bo.xMarket.model.ProductBranch;
@@ -28,7 +31,7 @@ public class ProductBl {
         this.productBranchDao = productBranchDao;
     }
 
-    public List<Product> productList(Integer id, Integer idbranch){
+    public List<ProductResponse> productList(Integer id, Integer idbranch){
         return productDao.listproducts(id,idbranch);
     }
 
@@ -39,7 +42,7 @@ public class ProductBl {
         product.setName(productRequest.getName());
         product.setPrice(productRequest.getPrice());
         product.setDescription(productRequest.getDescription());
-        product.setWeight(productRequest.getWeight());
+//        product.setWeight(productRequest.getWeight());
         product.setStatus(1);
         product.setTransaction(transaction);
         category.setName(productRequest.getCategory());
@@ -51,7 +54,14 @@ public class ProductBl {
         productDao.addproduct(product);
         Integer lastProductId =productDao.getLastInsertId();
 
+        if(productRequest.getOffer()!=null){
+            addOffer(productRequest.getOffer());
+        }
+        if(productRequest.getImagesUrl().size()>0){
+            addMedia(productRequest.getImagesUrl());
+        }
         addProductBranch(lastProductId,idbranch);
+
         return product;
     }
     public void addProductBranch(Integer lastProductId,Integer idbranch){
@@ -59,6 +69,12 @@ public class ProductBl {
         productBranch.setProductId(lastProductId);
         productBranch.setBranchOfficeId(idbranch);
         productBranchDao.addProductBranch(productBranch);
+    }
+    public void addOffer(OfferRequest offerRequest){
+
+    }
+    public void addMedia(List<MediaRequest> listMedia){
+
     }
 
     public Product productInfo(Integer productid){

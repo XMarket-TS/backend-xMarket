@@ -4,6 +4,7 @@ import com.bo.xMarket.bl.ProductBl;
 import com.bo.xMarket.bl.TransactionBl;
 
 import com.bo.xMarket.dto.ProductRequest;
+import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.model.Product;
 
 import com.bo.xMarket.model.Transaction;
@@ -29,7 +30,7 @@ public class ProductApi {
     }
 
     @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/product",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Product> products(@PathVariable("userid") Integer id,@PathVariable("branchoffice") Integer idbranch) {
+    public List<ProductResponse> products(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch) {
         return productBl.productList(id,idbranch);
     }
 

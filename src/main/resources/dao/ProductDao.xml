@@ -3,12 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.ProductDao">
-    <select id="listproducts" resultType="com.bo.xMarket.model.Product">
-        SELECT a.name as name,
+    <select id="listproducts" resultType="com.bo.xMarket.dto.ProductResponse">
+        SELECT a.product_id as productId,
+               a.name as name ,
                a.price as price,
+               (SELECT c.percentage FROM offers_register c WHERE a.product_id=c.product_product_id) as percentage,
                a.description as description,
-               a.weight as weight
-        FROM product a, product_branch_office b WHERE a.product_id=b.product_product_id AND b.branch_office_id_branch_office=#{idbranch}
+               (SELECT d.name FROM product_category d WHERE d.id=a.product_id) as category,
+               (SELECT e.photo FROM media_product e WHERE a.product_id=e.product_product_id ORDER BY e.media_id DESC LIMIT 1) as firstImage
+
+        FROM  product a join product_branch_office b on a.product_id = b.product_product_id
+        WHERE b.branch_office_id_branch_office=#{idbranch}
+
     </select>
     <insert id="addproduct" parameterType="com.bo.xMarket.model.Product">
         INSERT INTO product
