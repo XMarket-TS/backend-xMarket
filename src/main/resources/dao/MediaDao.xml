@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bo.xMarket.dao.MediaDao">
+    <select id="listmedia" resultType="com.bo.xMarket.dto.MediaRequest">
+            SELECT product_product_id as productId,
+                   photo as photo
+            FROM media_product
+            WHERE product_product_id=#{productid}
+    </select>
+
+</mapper>

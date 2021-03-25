@@ -13,4 +13,10 @@
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </select>
+    <select id="listcategory" resultType="com.bo.xMarket.dto.CategoryRequest">
+        SELECT id as categoryId,
+               name as category
+        FROM product_category
+        WHERE status=1
+    </select>
 </mapper>

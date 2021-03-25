@@ -5,13 +5,10 @@ public class CategoryRequest {
     private String category;
     private String imageUrl;
     // PARA PRUEBAS
-    private Integer sucursalId;
+//    private Integer sucursalId;
 
-    public CategoryRequest(Integer categoryId, String category, String imageUrl) {
-        this.categoryId = categoryId;
-        this.category = category;
-        this.imageUrl = imageUrl;
-        setSucursalId(-1);
+
+    public CategoryRequest() {
     }
 
     public Integer getCategoryId() {
@@ -38,21 +35,13 @@ public class CategoryRequest {
         this.imageUrl = imageUrl;
     }
 
-    public Integer getSucursalId() {
-        return sucursalId;
-    }
+//    public Integer getSucursalId() {
+//        return sucursalId;
+//    }
+//
+//    public void setSucursalId(Integer sucursalId) {
+//        this.sucursalId = sucursalId;
+//    }
 
-    public void setSucursalId(Integer sucursalId) {
-        this.sucursalId = sucursalId;
-    }
 
-    @Override
-    public String toString() {
-        return "CategoryRequest{" +
-                "categoryId=" + categoryId +
-                ", category='" + category + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", sucursalId=" + sucursalId +
-                '}';
-    }
 }
