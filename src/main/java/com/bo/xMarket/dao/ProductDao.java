@@ -9,7 +9,13 @@ import java.util.List;
 @Mapper
 public interface ProductDao {
     public List<ProductResponse> listproducts(Integer id, Integer idbranch);
+
     public void addproduct(Product product);
+
     public Product productsdetails(Integer productid);
+
     public Integer getLastInsertId();
+
+    //Delete the product logically
+    void deleteProduct(Integer productId);
 }

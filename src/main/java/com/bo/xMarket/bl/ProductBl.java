@@ -57,9 +57,9 @@ public class ProductBl {
         if(productRequest.getOffer()!=null){
             addOffer(productRequest.getOffer());
         }
-        if(productRequest.getImagesUrl().size()>0){
-            addMedia(productRequest.getImagesUrl());
-        }
+//        if(productRequest.getImagesUrl().size()>0){
+//            addMedia(productRequest.getImagesUrl());
+//        }
         addProductBranch(lastProductId,idbranch);
 
         return product;
@@ -79,5 +79,9 @@ public class ProductBl {
 
     public Product productInfo(Integer productid){
         return productDao.productsdetails(productid);
+    }
+
+    public void productDelete(Integer productId) {
+        productDao.deleteProduct(productId);
     }
 }

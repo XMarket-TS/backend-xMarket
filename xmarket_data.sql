@@ -115,7 +115,7 @@ INSERT INTO `media_product`
 
 INSERT INTO `media_product`
     (`product_product_id`, `photo`, `status`, `tx_host`, `tx_user_id`, `tx_date`) VALUES
-    ('2', '"https://www.ketal.com.bo/image/cache/catalog/product/5055050-550x550.jpg', '1', '127.0.0.1', '0', '2021-03-20 18:07:21');
+    ('2', 'https://www.ketal.com.bo/image/cache/catalog/product/5055050-550x550.jpg', '1', '127.0.0.1', '0', '2021-03-20 18:07:21');
 
 INSERT INTO `media_product`
     (`product_product_id`, `photo`, `status`, `tx_host`, `tx_user_id`, `tx_date`) VALUES
