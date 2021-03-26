@@ -17,5 +17,5 @@ public interface ProductDao {
     public Integer getLastInsertId();
 
     //Delete the product logically
-    void deleteProduct(Integer productId);
+    public void deleteProduct(Integer productId);
 }

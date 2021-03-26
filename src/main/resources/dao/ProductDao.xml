@@ -37,10 +37,10 @@
         WHERE product_id = #{productid}
     </select>
 
-    <update id="deleteGame">
+    <update id="deleteProduct">
         UPDATE product
         SET status=0
-        WHERE product_id = #{productId}
+        WHERE (product_id = #{productId})
     </update>
 
     <select id="getLastInsertId" resultType="java.lang.Integer">
