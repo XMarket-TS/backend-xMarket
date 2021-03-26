@@ -18,7 +18,7 @@
 
         FROM product a
                  join product_branch_office b on a.product_id = b.product_product_id
-        WHERE b.branch_office_id_branch_office = #{idbranch}
+        WHERE b.branch_office_id_branch_office = #{idbranch} AND a.status=1
 
     </select>
     <insert id="addproduct" parameterType="com.bo.xMarket.model.Product">

@@ -4,7 +4,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "managerId": 2,
+  "managerId": 3,
   "name": "Sucursal 2",
   "phone": 75631326,
   "zone": "Av. Avaro",

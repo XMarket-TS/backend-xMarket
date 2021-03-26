@@ -19,4 +19,5 @@ public class MediaBl {
     public List<MediaRequest> mediaList(Integer idproduct){
         return mediaDao.listmedia(idproduct);
     }
+
 }

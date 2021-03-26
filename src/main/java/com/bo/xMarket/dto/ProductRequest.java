@@ -1,6 +1,9 @@
 package com.bo.xMarket.dto;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class ProductRequest {
     //private Integer productId;
@@ -11,12 +14,14 @@ public class ProductRequest {
     private String category;
     private OfferRequest offer;
     private List<MediaRequest> imagesUrl;
-    //private Integer branchId; *
+
     //    FRONTEND WEB
     //    private Double discount;
 
 
-    public ProductRequest() {}
+    public ProductRequest() {
+
+    }
 
     public String getName() {
         return name;

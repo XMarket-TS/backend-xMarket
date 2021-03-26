@@ -1,17 +1,18 @@
 package com.bo.xMarket.bl;
 
 import com.bo.xMarket.dao.CategoryDao;
+import com.bo.xMarket.dao.MediaDao;
 import com.bo.xMarket.dao.ProductBranchDao;
 import com.bo.xMarket.dao.ProductDao;
 import com.bo.xMarket.dto.MediaRequest;
 import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.dto.ProductRequest;
 import com.bo.xMarket.dto.ProductResponse;
-import com.bo.xMarket.model.Product;
-import com.bo.xMarket.model.Category;
-import com.bo.xMarket.model.ProductBranch;
-import com.bo.xMarket.model.Transaction;
+import com.bo.xMarket.model.*;
 import io.swagger.models.auth.In;
+import jdk.nashorn.internal.runtime.options.LoggingOption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +23,15 @@ public class ProductBl {
     private ProductDao productDao;
     private CategoryDao categoryDao;
     private ProductBranchDao productBranchDao;
-
+    private MediaDao mediaDao;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductBl.class);
 
     @Autowired
-    public ProductBl(ProductDao productDao, CategoryDao categoryDao, ProductBranchDao productBranchDao) {
+    public ProductBl(ProductDao productDao, CategoryDao categoryDao, ProductBranchDao productBranchDao,MediaDao mediaDao) {
         this.productDao = productDao;
         this.categoryDao = categoryDao;
         this.productBranchDao = productBranchDao;
+        this.mediaDao = mediaDao;
     }
 
     public List<ProductResponse> productList(Integer id, Integer idbranch){
@@ -57,9 +60,10 @@ public class ProductBl {
         if(productRequest.getOffer()!=null){
             addOffer(productRequest.getOffer());
         }
-//        if(productRequest.getImagesUrl().size()>0){
-//            addMedia(productRequest.getImagesUrl());
-//        }
+        if(productRequest.getImagesUrl().size()>0){
+
+            addMedia(productRequest.getImagesUrl(),lastProductId,transaction);
+        }
         addProductBranch(lastProductId,idbranch);
 
         return product;
@@ -73,8 +77,15 @@ public class ProductBl {
     public void addOffer(OfferRequest offerRequest){
 
     }
-    public void addMedia(List<MediaRequest> listMedia){
-
+    public void addMedia(List<MediaRequest> listMedia,Integer productId,Transaction transaction){
+        listMedia.forEach(mediaRequest -> {
+            Media media= new Media();
+            media.setPhoto(mediaRequest.getPhoto());
+            media.setProductId(productId);
+            media.setStatus(0);
+            media.setTransaction(transaction);
+            mediaDao.addMedia(media);
+        });
     }
 
     public Product productInfo(Integer productid){
