@@ -9,8 +9,6 @@ import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.dto.ProductRequest;
 import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.model.*;
-import io.swagger.models.auth.In;
-import jdk.nashorn.internal.runtime.options.LoggingOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
