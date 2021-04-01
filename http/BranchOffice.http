@@ -1,0 +1,16 @@
+### adding new branch office
+POST http://localhost:8080/branchOffice
+Accept: application/json
+Content-Type: application/json
+
+{
+  "managerId": 3,
+  "name": "Sucursal 2",
+  "phone": 75631326,
+  "zone": "Av. Avaro",
+  "address": "Calle 8"
+}
+
+### get branch office list
+GET http://localhost:8080/branchOffice/list
+Accept: application/json

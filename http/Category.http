@@ -1,0 +1,4 @@
+### get branch office list
+GET http://localhost:8080/category/list
+Accept: application/json
+
