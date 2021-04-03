@@ -18,7 +18,8 @@
 
         FROM product a
                  join product_branch_office b on a.product_id = b.product_product_id
-        WHERE b.branch_office_id_branch_office = #{idbranch} AND a.status=1
+        WHERE b.branch_office_id_branch_office = #{idbranch}
+          AND a.status = 1
 
     </select>
     <insert id="addproduct" parameterType="com.bo.xMarket.model.Product">
@@ -28,13 +29,17 @@
                 #{status}, #{transaction.txHost},
                 #{transaction.txUserId}, #{transaction.txDate}, null)
     </insert>
-    <select id="productsdetails" resultType="com.bo.xMarket.model.Product">
-        SELECT name        as name,
-               price       as price,
-               description as description,
-               weight      as weight
+    <select id="productsDetails" resultType="com.bo.xMarket.model.Product">
+        SELECT product_id          as productId,
+               product_category_id as productCategoryId,
+               name                as name,
+               price               as price,
+               description         as description,
+               weight              as weight,
+               status              as status
         FROM product
         WHERE product_id = #{productid}
+
     </select>
 
     <update id="deleteProduct">

@@ -12,7 +12,7 @@ public interface ProductDao {
 
     public void addproduct(Product product);
 
-    public Product productsdetails(Integer productid);
+    public Product productsDetails(Integer productid);
 
     public Integer getLastInsertId();
 

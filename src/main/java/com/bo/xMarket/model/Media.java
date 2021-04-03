@@ -1,13 +1,29 @@
 package com.bo.xMarket.model;
 
-public class Media {
+public class Media extends Transaction {
     private Integer mediaId;
     private Integer productId;
     private String photo;
     private Integer status;
-    private Transaction transaction;
+
+    public Media(Integer mediaId, Integer productId, String photo, Integer status) {
+        this.mediaId = mediaId;
+        this.productId = productId;
+        this.photo = photo;
+        this.status = status;
+    }
 
     public Media() {
+    }
+
+    @Override
+    public String toString() {
+        return "Media{" +
+                "mediaId=" + mediaId +
+                ", productId=" + productId +
+                ", photo='" + photo + '\'' +
+                ", status=" + status +
+                '}';
     }
 
     public Integer getMediaId() {
@@ -42,11 +58,4 @@ public class Media {
         this.status = status;
     }
 
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
-    }
 }

@@ -1,6 +1,6 @@
 package com.bo.xMarket.model;
 
-public class Person {
+public class Person extends Transaction {
     private Integer personId;
     private String name;
     private String surname;
@@ -8,10 +8,31 @@ public class Person {
     private String description;
     private Integer cellphone;
     private Integer status;
-    private Transaction transaction;
+
+    public Person(Integer personId, String name, String surname, String email, String description, Integer cellphone, Integer status) {
+        this.personId = personId;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.description = description;
+        this.cellphone = cellphone;
+        this.status = status;
+    }
 
     public Person() {
-        transaction=new Transaction();
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "personId=" + personId +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", description='" + description + '\'' +
+                ", cellphone=" + cellphone +
+                ", status=" + status +
+                '}';
     }
 
     public Integer getPersonId() {
@@ -69,12 +90,5 @@ public class Person {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
-    }
 }
+

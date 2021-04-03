@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bo.xMarket.dao.OfferRegisterDao">
+    <select id="getActualOffer" resultType="com.bo.xMarket.model.OfferRegister">
+        SELECT start_date as startDate,
+               end_date   as endDate,
+               percentage as percentage
+        FROM offers_register
+        WHERE product_product_id = #{productId}
+          AND status = 1
+        LIMIT 1;
+    </select>
+</mapper>

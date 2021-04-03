@@ -2,16 +2,33 @@ package com.bo.xMarket.model;
 
 import java.util.Date;
 
-public class Offer {
+public class OfferRegister extends Transaction {
     private Integer offerId;
     private Date startDate;
     private Date endDate;
     private Integer percentage;
     private Integer status;
-    private Transaction transaction;
 
-    public Offer() {
-        transaction=new Transaction();
+    public OfferRegister(Integer offerId, Date startDate, Date endDate, Integer percentage, Integer status) {
+        this.offerId = offerId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.percentage = percentage;
+        this.status = status;
+    }
+
+    public OfferRegister() {
+    }
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "offerId=" + offerId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", percentage=" + percentage +
+                ", status=" + status +
+                '}';
     }
 
     public Integer getOfferId() {
@@ -54,11 +71,4 @@ public class Offer {
         this.status = status;
     }
 
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
-    }
 }

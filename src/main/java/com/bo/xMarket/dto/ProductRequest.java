@@ -1,9 +1,6 @@
 package com.bo.xMarket.dto;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class ProductRequest {
     //private Integer productId;
@@ -13,14 +10,37 @@ public class ProductRequest {
     private Integer unit;
     private String category;
     private OfferRequest offer;
-    private List<MediaRequest> imagesUrl;
+    private List<String> imagesUrl;
 
     //    FRONTEND WEB
     //    private Double discount;
 
 
+    public ProductRequest(String name, Double price, String description, Integer unit, String category, OfferRequest offer, List<String> imagesUrl) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.unit = unit;
+        this.category = category;
+        this.offer = offer;
+        this.imagesUrl = imagesUrl;
+    }
+
     public ProductRequest() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "ProductRequest{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", unit=" + unit +
+                ", category='" + category + '\'' +
+                ", offer=" + offer +
+                ", imagesUrl=" + imagesUrl +
+                '}';
     }
 
     public String getName() {
@@ -63,6 +83,7 @@ public class ProductRequest {
         this.category = category;
     }
 
+
     public OfferRequest getOffer() {
         return offer;
     }
@@ -71,11 +92,11 @@ public class ProductRequest {
         this.offer = offer;
     }
 
-    public List<MediaRequest> getImagesUrl() {
+    public List<String> getImagesUrl() {
         return imagesUrl;
     }
 
-    public void setImagesUrl(List<MediaRequest> imagesUrl) {
+    public void setImagesUrl(List<String> imagesUrl) {
         this.imagesUrl = imagesUrl;
     }
 }
