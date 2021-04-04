@@ -64,8 +64,9 @@ public class ProductBl {
         LOGGER.error(productResult.toString());
         return productResult;
     }
-    public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch,Integer idcategory) {
-        return productDao.listproductsbycategory(id, idbranch,idcategory);
+
+    public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch, Integer idcategory) {
+        return productDao.listproductsbycategory(id, idbranch, idcategory);
     }
 
     public Product addProduct(ProductRequest productRequest, Integer idbranch, Transaction transaction) {
@@ -128,9 +129,14 @@ public class ProductBl {
         List<String> photos = new ArrayList<>();
         media.forEach(media1 -> photos.add(media1.getPhoto()));
         Stock stock = stockDao.getStockById(product.getProductId());
-        OfferRegister offerRegister = offerRegisterDao.getActualOffer(productid);
-        OfferRequest offerRequest = new OfferRequest(offerRegister.getPercentage(), new SimpleDateFormat("dd-MM-yyyy").format(offerRegister.getStartDate()), new SimpleDateFormat("dd-MM-yyyy").format(offerRegister.getEndDate()));
-        return new ProductRequest(product.getName(), product.getPrice(), product.getDescription(), stock.getInStock(), category.getName(), offerRequest, photos);
+        try {
+            OfferRegister offerRegister = offerRegisterDao.getActualOffer(productid);
+            OfferRequest offerRequest = new OfferRequest(offerRegister.getPercentage(), new SimpleDateFormat("dd-MM-yyyy").format(offerRegister.getStartDate()), new SimpleDateFormat("dd-MM-yyyy").format(offerRegister.getEndDate()));
+            return new ProductRequest(product.getName(), product.getPrice(), product.getDescription(), stock.getInStock(), category.getName(), offerRequest, photos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ProductRequest(product.getName(), product.getPrice(), product.getDescription(), stock.getInStock(), category.getName(), null, photos);
+        }
     }
 
     public void productDelete(Integer productId) {

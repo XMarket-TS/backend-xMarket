@@ -1,9 +1,9 @@
 ### get product list by userid and branch office id
-GET http://localhost:8080/user/1/branchOffice/6/product
+GET http://localhost:8080/user/1/products
 Accept: application/json
 
 ### get product list by userid and branch office id and category id
-GET http://localhost:8080/user/1/branchOffice/6/category/19
+GET http://localhost:8080/user/2/branchOffice/1/category/4
 Accept: application/json
 
 ### adding new product with adminid and branch office id
@@ -31,9 +31,9 @@ Content-Type: application/json
 }
 
 ### get product details
-GET http://localhost:8080/product/10
+GET http://localhost:8080/product/3
 Accept: application/json
 
-### get product details
+### delete product
 DELETE http://localhost:8080/product/10
 Accept: application/json
