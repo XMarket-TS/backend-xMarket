@@ -64,6 +64,9 @@ public class ProductBl {
         LOGGER.error(productResult.toString());
         return productResult;
     }
+    public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch,Integer idcategory) {
+        return productDao.listproductsbycategory(id, idbranch,idcategory);
+    }
 
     public Product addProduct(ProductRequest productRequest, Integer idbranch, Transaction transaction) {
         Product product = new Product();

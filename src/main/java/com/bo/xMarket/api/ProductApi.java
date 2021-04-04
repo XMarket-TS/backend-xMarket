@@ -35,6 +35,11 @@ public class ProductApi {
         return productBl.productList(id);
     }
 
+    @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/category/{categoryid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch,@PathVariable("categoryid") Integer idcategory) {
+        return productBl.productListbyCategory(id, idbranch,idcategory);
+    }
+
     @RequestMapping(value = "/admin/{userid}/branchOffice/{branchoffice}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Product addproduct(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @RequestBody ProductRequest productRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);

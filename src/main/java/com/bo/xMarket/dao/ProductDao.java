@@ -8,6 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface ProductDao {
+    public List<ProductResponse> listproductsbycategory(Integer id, Integer idbranch,Integer idcategory);
     public List<Product> listProductsByBranch(Integer idbranch);
 
     public void addproduct(Product product);
