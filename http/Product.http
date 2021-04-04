@@ -1,5 +1,5 @@
 ### get product list by userid and branch office id
-GET http://localhost:8080/user/1/branchOffice/1/product
+GET http://localhost:8080/user/1/branchOffice/6/product
 Accept: application/json
 
 ### adding new product with adminid and branch office id
