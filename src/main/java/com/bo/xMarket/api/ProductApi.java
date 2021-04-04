@@ -44,7 +44,7 @@ public class ProductApi {
     }
 
     @RequestMapping(value = "/product/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Product productinfo(@PathVariable("productid") Integer id) {
+    public ProductRequest productinfo(@PathVariable("productid") Integer id) {
         return productBl.productInfo(id);
     }
 

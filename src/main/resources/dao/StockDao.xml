@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bo.xMarket.dao.StockDao">
+    <select id="getStockById" resultType="com.bo.xMarket.model.Stock">
+        SELECT stock_id           as stockId,
+               product_product_id as productId,
+               in_stock           as inStock,
+               last_update        as lastUpdate
+        FROM stock
+        WHERE stock_id = #{productId}
+    </select>
+</mapper>

@@ -1,16 +1,35 @@
 package com.bo.xMarket.model;
 
-public class Manager {
+public class Manager extends Transaction{
     private Integer managerId;
     private Integer personId;
     private String username;
     private String photo;
     private String password;
     private Integer status;
-    private Transaction transaction;
+
+    public Manager(Integer managerId, Integer personId, String username, String photo, String password, Integer status) {
+        this.managerId = managerId;
+        this.personId = personId;
+        this.username = username;
+        this.photo = photo;
+        this.password = password;
+        this.status = status;
+    }
 
     public Manager() {
-        transaction= new Transaction();
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "managerId=" + managerId +
+                ", personId=" + personId +
+                ", username='" + username + '\'' +
+                ", photo='" + photo + '\'' +
+                ", password='" + password + '\'' +
+                ", status=" + status +
+                '}';
     }
 
     public Integer getManagerId() {
@@ -59,13 +78,5 @@ public class Manager {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
     }
 }

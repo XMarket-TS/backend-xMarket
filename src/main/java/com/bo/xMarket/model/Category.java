@@ -1,12 +1,27 @@
 package com.bo.xMarket.model;
 
-public class Category {
+public class Category extends Transaction{
     private Integer idCategory;
     private String name;
     private Integer status;
-    private Transaction transaction;
 
-    public Category() {transaction = new Transaction();}
+    public Category(Integer idCategory, String name, Integer status) {
+        this.idCategory = idCategory;
+        this.name = name;
+        this.status = status;
+    }
+
+    public Category() {
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "idCategory=" + idCategory +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                '}';
+    }
 
     public Integer getIdCategory() {
         return idCategory;
@@ -32,11 +47,4 @@ public class Category {
         this.status = status;
     }
 
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
-    }
 }

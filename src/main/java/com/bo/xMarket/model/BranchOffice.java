@@ -1,6 +1,6 @@
 package com.bo.xMarket.model;
 
-public class BranchOffice {
+public class BranchOffice extends Transaction {
     private Integer branchOfficeId;
     private Integer managerId;
     private String name;
@@ -8,10 +8,31 @@ public class BranchOffice {
     private String zone;
     private String address;
     private Integer status;
-    private Transaction transaction;
+
+    public BranchOffice(Integer branchOfficeId, Integer managerId, String name, Integer phone, String zone, String address, Integer status) {
+        this.branchOfficeId = branchOfficeId;
+        this.managerId = managerId;
+        this.name = name;
+        this.phone = phone;
+        this.zone = zone;
+        this.address = address;
+        this.status = status;
+    }
 
     public BranchOffice() {
-        transaction= new Transaction();
+    }
+
+    @Override
+    public String toString() {
+        return "BranchOffice{" +
+                "branchOfficeId=" + branchOfficeId +
+                ", managerId=" + managerId +
+                ", name='" + name + '\'' +
+                ", phone=" + phone +
+                ", zone='" + zone + '\'' +
+                ", address='" + address + '\'' +
+                ", status=" + status +
+                '}';
     }
 
     public Integer getBranchOfficeId() {
@@ -68,13 +89,5 @@ public class BranchOffice {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
     }
 }

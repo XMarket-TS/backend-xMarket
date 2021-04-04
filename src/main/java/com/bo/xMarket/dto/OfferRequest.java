@@ -1,41 +1,43 @@
 package com.bo.xMarket.dto;
 
 public class OfferRequest {
-    private Integer productId;
-    private String name;
-    private Double percentage;//con el descuento
-//    private String description;
+    private Integer percentage;//con el descuento
     private String startDate;
     private String endDate;
     private String imageUrl;
-//    private Integer unit;
-//    private Integer categoryId;
-//    private Integer branchId;
+
+    public OfferRequest(Integer percentage, String startDate, String endDate, String imageUrl) {
+        this.percentage = percentage;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.imageUrl = imageUrl;
+    }
+
+    public OfferRequest(Integer percentage, String startDate, String endDate) {
+        this.percentage = percentage;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     public OfferRequest() {
     }
 
-    public Integer getProductId() {
-        return productId;
+    @Override
+    public String toString() {
+        return "OfferRequest{" +
+                "percentage=" + percentage +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPercentage() {
+    public Integer getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(Double percentage) {
+    public void setPercentage(Integer percentage) {
         this.percentage = percentage;
     }
 

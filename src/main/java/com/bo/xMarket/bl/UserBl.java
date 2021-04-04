@@ -26,7 +26,7 @@ public class UserBl {
         person.setSurname(userRequest.getSurname());
         person.setEmail(userRequest.getEmail());
         person.setStatus(1);
-        person.setTransaction(transaction);
+        person.setTxDate(transaction.getTxDate());
         personDao.addPerson(person);
         Integer lastPersonId= personDao.getLastPersonId();
         User user = new User();

@@ -8,6 +8,13 @@ public class Transaction {
     private Integer txUserId;
     private Date txDate;
 
+    public Transaction(Integer txId, String txHost, Integer txUserId, Date txDate) {
+        this.txId = txId;
+        this.txHost = txHost;
+        this.txUserId = txUserId;
+        this.txDate = txDate;
+    }
+
     public Transaction() {
     }
 
@@ -19,6 +26,13 @@ public class Transaction {
                 ", txUserId=" + txUserId +
                 ", txDate=" + txDate +
                 '}';
+    }
+
+    public void setTransaction(Transaction transaction){
+        setTxId(transaction.getTxId());
+        setTxHost(transaction.getTxHost());
+        setTxId(transaction.getTxUserId());
+        setTxDate(transaction.getTxDate());
     }
 
     public Integer getTxId() {

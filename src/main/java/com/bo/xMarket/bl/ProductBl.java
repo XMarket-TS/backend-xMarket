@@ -1,19 +1,16 @@
 package com.bo.xMarket.bl;
 
-import com.bo.xMarket.dao.CategoryDao;
-import com.bo.xMarket.dao.MediaDao;
-import com.bo.xMarket.dao.ProductBranchDao;
-import com.bo.xMarket.dao.ProductDao;
-import com.bo.xMarket.dto.MediaRequest;
-import com.bo.xMarket.dto.OfferRequest;
-import com.bo.xMarket.dto.ProductRequest;
-import com.bo.xMarket.dto.ProductResponse;
+import com.bo.xMarket.dao.*;
+import com.bo.xMarket.dto.*;
 import com.bo.xMarket.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,23 +19,27 @@ public class ProductBl {
     private CategoryDao categoryDao;
     private ProductBranchDao productBranchDao;
     private MediaDao mediaDao;
+    private StockDao stockDao;
+    private OfferRegisterDao offerRegisterDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductBl.class);
 
     @Autowired
-    public ProductBl(ProductDao productDao, CategoryDao categoryDao, ProductBranchDao productBranchDao,MediaDao mediaDao) {
+    public ProductBl(ProductDao productDao, CategoryDao categoryDao, ProductBranchDao productBranchDao, MediaDao mediaDao, StockDao stockDao, OfferRegisterDao offerRegisterDao) {
         this.productDao = productDao;
         this.categoryDao = categoryDao;
         this.productBranchDao = productBranchDao;
         this.mediaDao = mediaDao;
+        this.stockDao = stockDao;
+        this.offerRegisterDao = offerRegisterDao;
     }
 
-    public List<ProductResponse> productList(Integer id, Integer idbranch){
-        return productDao.listproducts(id,idbranch);
+    public List<ProductResponse> productList(Integer id, Integer idbranch) {
+        return productDao.listproducts(id, idbranch);
     }
 
-    public Product addProduct(ProductRequest productRequest,Integer idbranch, Transaction transaction){
-        Product product= new Product();
-        Category category=new Category();
+    public Product addProduct(ProductRequest productRequest, Integer idbranch, Transaction transaction) {
+        Product product = new Product();
+        Category category = new Category();
 
         product.setName(productRequest.getName());
         product.setPrice(productRequest.getPrice());
@@ -53,31 +54,34 @@ public class ProductBl {
         Integer lastIdCategory = categoryDao.getLastInsertId();
         product.setProductCategoryId(lastIdCategory);
         productDao.addproduct(product);
-        Integer lastProductId =productDao.getLastInsertId();
+        Integer lastProductId = productDao.getLastInsertId();
 
-        if(productRequest.getOffer()!=null){
-            addOffer(productRequest.getOffer());
-        }
-        if(productRequest.getImagesUrl().size()>0){
-
-            addMedia(productRequest.getImagesUrl(),lastProductId,transaction);
-        }
-        addProductBranch(lastProductId,idbranch);
+//        if (productRequest.getOffer() != null) {
+//            addOffer(productRequest.getOffer());
+//        }
+//        if (productRequest.getImagesUrl().size() > 0) {
+//
+//            addMedia(productRequest.getImagesUrl(), lastProductId, transaction);
+//        }
+        addProductBranch(lastProductId, idbranch);
 
         return product;
     }
-    public void addProductBranch(Integer lastProductId,Integer idbranch){
+
+    public void addProductBranch(Integer lastProductId, Integer idbranch) {
         ProductBranch productBranch = new ProductBranch();
         productBranch.setProductId(lastProductId);
         productBranch.setBranchOfficeId(idbranch);
         productBranchDao.addProductBranch(productBranch);
     }
-    public void addOffer(OfferRequest offerRequest){
+
+    public void addOffer(ProductOfferRequest offerRequest) {
 
     }
-    public void addMedia(List<MediaRequest> listMedia,Integer productId,Transaction transaction){
+
+    public void addMedia(List<MediaRequest> listMedia, Integer productId, Transaction transaction) {
         listMedia.forEach(mediaRequest -> {
-            Media media= new Media();
+            Media media = new Media();
             media.setPhoto(mediaRequest.getPhoto());
             media.setProductId(productId);
             media.setStatus(0);
@@ -86,8 +90,16 @@ public class ProductBl {
         });
     }
 
-    public Product productInfo(Integer productid){
-        return productDao.productsdetails(productid);
+    public ProductRequest productInfo(Integer productid) {
+        Product product = productDao.productsDetails(productid);
+        Category category = categoryDao.getCategoryById(productid);
+        List<Media> media = mediaDao.getPhotosById(productid);
+        List<String> photos = new ArrayList<>();
+        media.forEach(media1 -> photos.add(media1.getPhoto()));
+        Stock stock = stockDao.getStockById(product.getProductId());
+        OfferRegister offerRegister = offerRegisterDao.getActualOffer(productid);
+        OfferRequest offerRequest = new OfferRequest(offerRegister.getPercentage(), new SimpleDateFormat("dd-MM-yyyy").format(offerRegister.getStartDate()), new SimpleDateFormat("dd-MM-yyyy").format(offerRegister.getEndDate()));
+        return new ProductRequest(product.getName(), product.getPrice(), product.getDescription(), stock.getInStock(), category.getName(), offerRequest, photos);
     }
 
     public void productDelete(Integer productId) {
