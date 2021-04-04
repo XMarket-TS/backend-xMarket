@@ -21,20 +21,48 @@ public class ProductBl {
     private MediaDao mediaDao;
     private StockDao stockDao;
     private OfferRegisterDao offerRegisterDao;
+    private BranchOfficeDao branchOfficeDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductBl.class);
 
     @Autowired
-    public ProductBl(ProductDao productDao, CategoryDao categoryDao, ProductBranchDao productBranchDao, MediaDao mediaDao, StockDao stockDao, OfferRegisterDao offerRegisterDao) {
+    public ProductBl(ProductDao productDao, CategoryDao categoryDao, ProductBranchDao productBranchDao, MediaDao mediaDao, StockDao stockDao, OfferRegisterDao offerRegisterDao, BranchOfficeDao branchOfficeDao) {
         this.productDao = productDao;
         this.categoryDao = categoryDao;
         this.productBranchDao = productBranchDao;
         this.mediaDao = mediaDao;
         this.stockDao = stockDao;
         this.offerRegisterDao = offerRegisterDao;
+        this.branchOfficeDao = branchOfficeDao;
     }
 
-    public List<ProductResponse> productList(Integer id, Integer idbranch) {
-        return productDao.listproducts(id, idbranch);
+    public List<ProductResponse> productList(Integer idManager) {
+        BranchOffice branchOffice = branchOfficeDao.getBranchOfficerByManagerId(idManager);
+        List<Product> productResponse = productDao.listProductsByBranch(branchOffice.getBranchOfficeId());
+        List<ProductResponse> productResult = new ArrayList<>();
+        for (Product response : productResponse) {
+            Category category = categoryDao.getCategoryById(response.getProductCategoryId());
+            ProductResponse resp = new ProductResponse();
+            resp.setProductId(response.getProductId());
+            resp.setName(response.getName());
+            resp.setPrice(response.getPrice());
+
+            try {
+                OfferRegister offerRegister = offerRegisterDao.getActualOffer(response.getProductId());
+                resp.setPercentage(offerRegister.getPercentage());
+            } catch (Exception e) {
+                e.printStackTrace();
+//                LOGGER.warn();
+                resp.setPercentage(0);
+            }
+            resp.setDescription(response.getDescription());
+            resp.setCategory(category.getName());
+            List<Media> media = mediaDao.getPhotosById(response.getProductId());
+            resp.setFirstImage(media.size() > 0 ? media.get(0).getPhoto() : null);
+            productResult.add(resp);
+
+        }
+        LOGGER.error(productResult.toString());
+        return productResult;
     }
 
     public Product addProduct(ProductRequest productRequest, Integer idbranch, Transaction transaction) {

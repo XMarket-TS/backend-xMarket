@@ -30,9 +30,9 @@ public class ProductApi {
         this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/product", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> products(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch) {
-        return productBl.productList(id, idbranch);
+    @RequestMapping(value = "/user/{userid}/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> ListProducts(@PathVariable("userid") Integer id) {
+        return productBl.productList(id);
     }
 
     @RequestMapping(value = "/admin/{userid}/branchOffice/{branchoffice}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -44,7 +44,7 @@ public class ProductApi {
     }
 
     @RequestMapping(value = "/product/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductRequest productinfo(@PathVariable("productid") Integer id) {
+    public ProductRequest productInfo(@PathVariable("productid") Integer id) {
         return productBl.productInfo(id);
     }
 

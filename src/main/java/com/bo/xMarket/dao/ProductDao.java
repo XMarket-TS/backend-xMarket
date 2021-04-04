@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface ProductDao {
-    public List<ProductResponse> listproducts(Integer id, Integer idbranch);
+    public List<Product> listProductsByBranch(Integer idbranch);
 
     public void addproduct(Product product);
 
@@ -18,4 +18,7 @@ public interface ProductDao {
 
     //Delete the product logically
     public void deleteProduct(Integer productId);
+
+    //  Get First Image
+    public String getFirstImageByProductId(Integer productId);
 }

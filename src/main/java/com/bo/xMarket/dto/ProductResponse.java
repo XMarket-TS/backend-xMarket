@@ -9,7 +9,32 @@ public class ProductResponse {
     private String category;
     private String firstImage;
     //private Integer branchId;
+
+
+    public ProductResponse(Integer productId, String name, Double price, Integer percentage, String description, String category, String firstImage) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        this.percentage = percentage;
+        this.description = description;
+        this.category = category;
+        this.firstImage = firstImage;
+    }
+
     public ProductResponse() {
+    }
+
+    @Override
+    public String toString() {
+        return "ProductResponse{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", percentage=" + percentage +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", firstImage='" + firstImage + '\'' +
+                '}';
     }
 
     public Integer getProductId() {
