@@ -3,7 +3,7 @@ GET http://localhost:8080/user/1/branchOffice/6/product
 Accept: application/json
 
 ### adding new product with adminid and branch office id
-POST http://localhost:8080/admin/3/branchOffice/6/product
+POST http://localhost:8080/admin/1/branchOffice/1/product
 Accept: application/json
 Content-Type: application/json
 
@@ -27,5 +27,9 @@ Content-Type: application/json
 }
 
 ### get product details
-GET http://localhost:8080/product/2
+GET http://localhost:8080/product/10
+Accept: application/json
+
+### get product details
+DELETE http://localhost:8080/product/10
 Accept: application/json
