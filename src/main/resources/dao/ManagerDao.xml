@@ -5,10 +5,25 @@
 <mapper namespace="com.bo.xMarket.dao.ManagerDao">
     <insert id="addManager" parameterType="com.bo.xMarket.model.Manager">
         INSERT INTO manager
-        VALUES(
-                  null,#{personId},#{username},#{photo},
-                  #{password},#{status},
-                  #{transaction.txHost},#{transaction.txUserId},#{transaction.txDate}
-              )
+        VALUES (null, #{personId}, #{username}, #{photo},
+                #{password}, #{status},
+                #{transaction.txHost}, #{transaction.txUserId}, #{transaction.txDate})
     </insert>
+
+    <select id="findManagerByLogin" resultType="com.bo.xMarket.model.Person">
+        SELECT a.person_id   as personId,
+               a.name        as name,
+               a.surname     as surname,
+               a.email       as email,
+               a.description as description,
+               a.gender      as gender,
+               a.photo       as photo,
+               a.cellphone   as cellphone
+        FROM person a,
+             manager m
+        WHERE a.person_id = m.person_person_id
+          AND m.username = #{username}
+          AND m.password = #{password}
+          AND a.status = 1
+    </select>
 </mapper>

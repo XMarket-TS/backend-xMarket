@@ -11,7 +11,7 @@ spring:
     platform: mysql
     url: jdbc:mysql://localhost:3306/xMarket_database
     username: root
-    password: ABCabc123
+    password: root
 
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
@@ -34,3 +34,4 @@ mybatis:
 server:
   error:
     include-message: always
+spring.jackson.default-property-inclusion: NON_NULL
