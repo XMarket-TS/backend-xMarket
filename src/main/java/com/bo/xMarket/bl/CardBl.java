@@ -51,4 +51,7 @@ public class CardBl {
         cardDao.addCard(card2);
         return card2;
     }
+    public void cardDelete(Integer cardId) {
+        cardDao.deleteCard(cardId);
+    }
 }

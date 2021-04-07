@@ -3,16 +3,16 @@ package com.bo.xMarket.api;
 import com.bo.xMarket.bl.CardBl;
 import com.bo.xMarket.bl.TransactionBl;
 
+import com.bo.xMarket.dto.CardRequest;
 import com.bo.xMarket.dto.CardResponse;
+import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.model.Card;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -38,6 +38,18 @@ public class CardApi {
         //LOGGER.error(transaction.getTxId().toString());
         Card createcard=cardBl.addCard(card,transaction);
         return createcard;
+    }
+    @RequestMapping(value = "/user/{userid}/listCards/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CardRequest> listCardsByUser(@PathVariable("userid") Integer id) {
+        return cardBl.listCardsByUser(id);
+    }
+    @RequestMapping(value = "/card/{cardId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void productDelete(@PathVariable("cardId") Integer cardId, HttpServletRequest request) {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        cardBl.cardDelete(cardId);
+//        productBl.productDelete(productid);
     }
 
 }
