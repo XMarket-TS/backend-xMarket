@@ -17,9 +17,9 @@
         FROM product_category
         WHERE status = 1
     </select>
-    <select id="getCategoryById" resultType="com.bo.xMarket.model.Category">
-        SELECT id     as idCategory,
-               name   as name,
+    <select id="getCategoryById" resultType="com.bo.xMarket.dto.CategoryRequest">
+        SELECT id     as categoryId,
+               name   as category
         FROM product_category
         WHERE id = #{categoryId} AND status=1
 

@@ -13,7 +13,7 @@ public class ProductSpecificResponse {
     private String description;
     private Integer unit;
     private List<MediaRequest> imagesUrl;
-    private Category category;
+    private CategoryRequest category;
     private Integer branchId;
 
     public ProductSpecificResponse() {
@@ -75,11 +75,11 @@ public class ProductSpecificResponse {
         this.imagesUrl = imagesUrl;
     }
 
-    public Category getCategory() {
+    public CategoryRequest getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryRequest category) {
         this.category = category;
     }
 

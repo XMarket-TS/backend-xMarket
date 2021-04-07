@@ -5,10 +5,15 @@
 <mapper namespace="com.bo.xMarket.dao.StockDao">
     <select id="getStockById" resultType="com.bo.xMarket.model.Stock">
         SELECT stock_id           as stockId,
-               product_product_id as productId,
                in_stock           as inStock,
                last_update        as lastUpdate
         FROM stock
-        WHERE stock_id = #{productId}
+        WHERE product_product_id = #{productId}
     </select>
+    <insert id="addStock" parameterType="com.bo.xMarket.model.Stock">
+        INSERT INTO stock
+        VALUES (
+                null,#{productId},#{inStock},#{lastUpdate}
+               )
+    </insert>
 </mapper>
