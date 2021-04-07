@@ -41,8 +41,8 @@
         INSERT INTO product
         VALUES (null, #{productCategoryId},
                 #{name}, #{price}, #{description}, #{weight},
-                #{status}, #{transaction.txHost},
-                #{transaction.txUserId}, #{transaction.txDate}, null)
+                #{status}, #{txHost},
+                #{txUserId}, #{txDate}, null)
     </insert>
     <select id="productsDetails" resultType="com.bo.xMarket.model.Product">
         SELECT product_id          as productId,

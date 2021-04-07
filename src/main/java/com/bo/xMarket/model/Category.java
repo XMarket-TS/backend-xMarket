@@ -1,14 +1,14 @@
 package com.bo.xMarket.model;
 
+import java.util.Date;
+
 public class Category extends Transaction{
     private Integer idCategory;
     private String name;
     private Integer status;
 
-    public Category(Integer idCategory, String name, Integer status) {
-        this.idCategory = idCategory;
-        this.name = name;
-        this.status = status;
+    public Category(Integer txId, String txHost, Integer txUserId, Date txDate) {
+        super(txId, txHost, txUserId, txDate);
     }
 
     public Category() {
