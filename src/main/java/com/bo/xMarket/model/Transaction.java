@@ -31,7 +31,7 @@ public class Transaction {
     public void setTransaction(Transaction transaction){
         setTxId(transaction.getTxId());
         setTxHost(transaction.getTxHost());
-        setTxId(transaction.getTxUserId());
+        setTxUserId(transaction.getTxUserId() != null? transaction.getTxUserId(): 0);
         setTxDate(transaction.getTxDate());
     }
 

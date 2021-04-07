@@ -1,9 +1,9 @@
 package com.bo.xMarket.bl;
 
+
 import com.bo.xMarket.dao.BranchOfficeDao;
 import com.bo.xMarket.dto.BranchOfficeRequest;
 import com.bo.xMarket.model.BranchOffice;
-import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

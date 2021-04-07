@@ -60,8 +60,7 @@ CREATE TABLE card
     expiration_month int          NOT NULL,
     CVC              int          NOT NULL,
     creation_date    date         NOT NULL,
-    status           int          NOT NULL COMMENT '0: DELETED
-1: ACTIVE',
+    status           int          NOT NULL COMMENT '0: DELETED 1: ACTIVE',
     tx_host          varchar(100) NOT NULL,
     tx_user_id       int          NOT NULL,
     tx_date          timestamp    NOT NULL,
@@ -127,8 +126,7 @@ CREATE TABLE h_card
     expiration_month int          NOT NULL,
     CVC              int          NOT NULL,
     creation_date    date         NOT NULL,
-    status           int          NOT NULL COMMENT '0: DELETED
-1: ACTIVE',
+    status           int          NOT NULL COMMENT '0: DELETED 1: ACTIVE',
     tx_host          varchar(100) NOT NULL,
     tx_user_id       int          NOT NULL,
     tx_date          timestamp    NOT NULL,
@@ -160,8 +158,7 @@ CREATE TABLE h_person
     gender      varchar(20)  NOT NULL,
     photo       varchar(300) NULL,
     cellphone   varchar(20)  NULL,
-    status      int          NOT NULL COMMENT '0: INACTIVE
-1: ACTIVE',
+    status      int          NOT NULL COMMENT '0: INACTIVE 1: ACTIVE',
     tx_host     varchar(100) NOT NULL,
     tx_user_id  int          NOT NULL,
     tx_date     timestamp    NOT NULL,
@@ -208,8 +205,7 @@ CREATE TABLE h_purchase
     buy_date        date         NOT NULL,
     billing_address varchar(50)  NOT NULL,
     city            varchar(20)  NOT NULL,
-    status          int          NOT NULL COMMENT '0: DELETED
-1: ACTIVE',
+    status          int          NOT NULL COMMENT '0: DELETED 1: ACTIVE',
     tx_host         varchar(100) NOT NULL,
     tx_user_id      int          NOT NULL,
     tx_date         timestamp    NOT NULL,
@@ -293,8 +289,7 @@ CREATE TABLE person
     gender      varchar(20)  NOT NULL,
     photo       varchar(300) NULL,
     cellphone   varchar(20)  NULL,
-    status      int          NOT NULL COMMENT '0: INACTIVE
-1: ACTIVE',
+    status      int          NOT NULL COMMENT '0: INACTIVE 1: ACTIVE',
     tx_host     varchar(100) NOT NULL,
     tx_user_id  int          NOT NULL,
     tx_date     timestamp    NOT NULL,
@@ -371,8 +366,7 @@ CREATE TABLE purchase
     buy_date        date         NOT NULL,
     billing_address varchar(50)  NOT NULL,
     city            varchar(20)  NOT NULL,
-    status          int          NOT NULL COMMENT '0: DELETED
-1: ACTIVE',
+    status          int          NOT NULL COMMENT '0: DELETED 1: ACTIVE',
     tx_host         varchar(100) NOT NULL,
     tx_user_id      int          NOT NULL,
     tx_date         timestamp    NOT NULL,

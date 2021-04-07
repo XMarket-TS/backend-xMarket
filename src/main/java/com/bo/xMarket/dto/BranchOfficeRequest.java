@@ -13,6 +13,26 @@ public class BranchOfficeRequest {
     public BranchOfficeRequest() {
     }
 
+    public BranchOfficeRequest(Integer managerId, String name, Integer phone, String zone, String address) {
+        this.managerId = managerId;
+        this.name = name;
+        this.phone = phone;
+        this.zone = zone;
+        this.address = address;
+    }
+
+
+    @Override
+    public String toString() {
+        return "BranchOfficeRequest{" +
+                "managerId=" + managerId +
+                ", name='" + name + '\'' +
+                ", phone=" + phone +
+                ", zone='" + zone + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
     public Integer getManagerId() {
         return managerId;
     }

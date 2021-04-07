@@ -5,8 +5,8 @@
 <mapper namespace="com.bo.xMarket.dao.CategoryDao">
     <insert id="addcategory" parameterType="com.bo.xMarket.model.Category">
         INSERT INTO product_category
-        VALUES (null, #{name}, #{status}, #{transaction.txHost},
-                #{transaction.txUserId}, #{transaction.txDate})
+        VALUES (null, #{name},null, #{status}, #{txHost},
+                #{txUserId}, #{txDate})
     </insert>
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()

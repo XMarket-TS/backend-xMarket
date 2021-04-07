@@ -1,5 +1,7 @@
 package com.bo.xMarket.model;
 
+import java.util.Date;
+
 public class Product extends Transaction {
     private Integer productId;
     private Integer productCategoryId;
@@ -9,14 +11,8 @@ public class Product extends Transaction {
     private Double weight;
     private Integer status;
 
-    public Product(Integer productId, Integer productCategoryId, String name, Double price, String description, Double weight, Integer status) {
-        this.productId = productId;
-        this.productCategoryId = productCategoryId;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.weight = weight;
-        this.status = status;
+    public Product(Integer txId, String txHost, Integer txUserId, Date txDate) {
+        super(txId, txHost, txUserId, txDate);
     }
 
     public Product() {
