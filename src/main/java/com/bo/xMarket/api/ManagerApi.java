@@ -26,12 +26,11 @@ public class ManagerApi {
         this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Manager addManager(@RequestBody ManagerRequest managerRequest, HttpServletRequest request) {
+    @RequestMapping(value = "/register/new", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ManagerRequest addManager(@RequestBody ManagerRequest managerRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        Manager managerResponse = managerBl.addManager(managerRequest, transaction);
-        return managerResponse;
+        return managerBl.addManager(managerRequest, transaction);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

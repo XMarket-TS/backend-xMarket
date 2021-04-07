@@ -1,5 +1,5 @@
 ### adding new manager
-POST http://localhost:8080/manager/signup
+POST http://localhost:8080/manager/register/new
 Accept: application/json
 Content-Type: application/json
 
@@ -7,7 +7,11 @@ Content-Type: application/json
   "name": "Joel",
   "surname": "Guzman",
   "username": "Joel",
+  "userPhoto": "https://res.cloudinary.com/fulano/image/upload/v1617116017/profileimage_kptkl6.jpg",
+  "gender": "Male",
   "email": "joelguz@gmail.com",
+  "description": "Multiple congenital anomalies, so described",
+  "cellphone": "7845139010",
   "password": "12345678"
 }
 

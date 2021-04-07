@@ -4,10 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.ManagerDao">
     <insert id="addManager" parameterType="com.bo.xMarket.model.Manager">
-        INSERT INTO manager
-        VALUES (null, #{personId}, #{username}, #{photo},
-                #{password}, #{status},
-                #{transaction.txHost}, #{transaction.txUserId}, #{transaction.txDate})
+        INSERT INTO `manager`
+        (`person_person_id`, `username`, `password`, `status`, `tx_host`, `tx_user_id`, `tx_date`) VALUES
+            (#{personId}, #{username}, #{password}, #{status}, #{txHost}, #{txUserId}, #{txDate})
     </insert>
     <select id="findManagerByLogin" resultType="com.bo.xMarket.model.Person">
         SELECT a.person_id   as personId,

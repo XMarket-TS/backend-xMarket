@@ -26,15 +26,17 @@ public class ManagerBl {
         this.personDao = personDao;
     }
 
-    public Manager addManager(ManagerRequest managerRequest, Transaction transaction) {
+    public ManagerRequest addManager(ManagerRequest managerRequest, Transaction transaction) {
         Person person = new Person();
         person.setName(managerRequest.getName());
         person.setSurname(managerRequest.getSurname());
         person.setEmail(managerRequest.getEmail());
+        person.setGender(managerRequest.getGender());
         person.setStatus(1);
         person.setTransaction(transaction);
         personDao.addPerson(person);
         Integer lastPersonId = personDao.getLastPersonId();
+        managerRequest.setPersonId(lastPersonId);
         Manager manager = new Manager();
         manager.setUsername(managerRequest.getUsername());
         manager.setPassword(managerRequest.getPassword());
@@ -42,7 +44,7 @@ public class ManagerBl {
         manager.setStatus(1);
         manager.setTransaction(transaction);
         managerDao.addManager(manager);
-        return manager;
+        return managerRequest;
     }
 
     public ManagerRequest managerLogin(LoginRequest loginRequest) {
