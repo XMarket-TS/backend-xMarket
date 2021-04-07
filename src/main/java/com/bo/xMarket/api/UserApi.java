@@ -35,9 +35,5 @@ public class UserApi {
         return userResponse;
     }
 
-    @RequestMapping(value = "/manager/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
-    public ManagerRequest userSignUp(@RequestBody LoginRequest LoginRequest) {
-        return userBl.managerLogin(LoginRequest);
-    }
+
 }

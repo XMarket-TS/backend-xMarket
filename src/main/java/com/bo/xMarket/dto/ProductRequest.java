@@ -12,22 +12,7 @@ public class ProductRequest {
     private OfferRequest offer;
     private List<String> imagesUrl;
 
-    //    FRONTEND WEB
-    //    private Double discount;
-
-
-    public ProductRequest(String name, Double price, String description, Integer unit, String category, OfferRequest offer, List<String> imagesUrl) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.unit = unit;
-        this.category = category;
-        this.offer = offer;
-        this.imagesUrl = imagesUrl;
-    }
-
     public ProductRequest() {
-
     }
 
     @Override

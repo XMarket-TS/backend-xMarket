@@ -1,6 +1,7 @@
 package com.bo.xMarket.dao;
 
 import com.bo.xMarket.dto.ProductResponse;
+import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Product;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,11 +10,12 @@ import java.util.List;
 @Mapper
 public interface ProductDao {
     public List<ProductResponse> listproductsbycategory(Integer id, Integer idbranch,Integer idcategory);
-    public List<Product> listProductsByBranch(Integer idbranch);
+    public List<Product> listProductsByBranch(Integer idbranch); //(Frontend web)
+    public List<ProductResponse> listProductsByBranchId(Integer idbranch);//(Frontend movil)
 
     public void addproduct(Product product);
 
-    public Product productsDetails(Integer productid);
+    public ProductSpecificResponse productsDetails(Integer productid);
 
     public Integer getLastInsertId();
 

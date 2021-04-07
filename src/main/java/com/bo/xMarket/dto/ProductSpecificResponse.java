@@ -1,30 +1,22 @@
 package com.bo.xMarket.dto;
 
-public class ProductResponse {
+
+import com.bo.xMarket.model.Category;
+
+import java.util.List;
+
+public class ProductSpecificResponse {
     private Integer productId;
     private String name;
     private Double price;
     private Integer percentage;
     private String description;
-    private String category;
-    private String firstImage;
     private Integer unit;
+    private List<MediaRequest> imagesUrl;
+    private Category category;
+    private Integer branchId;
 
-
-    public ProductResponse() {
-    }
-
-    @Override
-    public String toString() {
-        return "ProductResponse{" +
-                "productId=" + productId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", percentage=" + percentage +
-                ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
-                ", firstImage='" + firstImage + '\'' +
-                '}';
+    public ProductSpecificResponse() {
     }
 
     public Integer getProductId() {
@@ -67,27 +59,35 @@ public class ProductResponse {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getFirstImage() {
-        return firstImage;
-    }
-
-    public void setFirstImage(String firstImage) {
-        this.firstImage = firstImage;
-    }
-
     public Integer getUnit() {
         return unit;
     }
 
     public void setUnit(Integer unit) {
         this.unit = unit;
+    }
+
+    public List<MediaRequest> getImagesUrl() {
+        return imagesUrl;
+    }
+
+    public void setImagesUrl(List<MediaRequest> imagesUrl) {
+        this.imagesUrl = imagesUrl;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
     }
 }

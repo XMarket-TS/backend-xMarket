@@ -8,14 +8,14 @@ public class Transaction {
     private Integer txUserId;
     private Date txDate;
 
+    public Transaction() {
+    }
+
     public Transaction(Integer txId, String txHost, Integer txUserId, Date txDate) {
         this.txId = txId;
         this.txHost = txHost;
         this.txUserId = txUserId;
         this.txDate = txDate;
-    }
-
-    public Transaction() {
     }
 
     @Override
@@ -34,6 +34,7 @@ public class Transaction {
         setTxUserId(transaction.getTxUserId() != null? transaction.getTxUserId(): 0);
         setTxDate(transaction.getTxDate());
     }
+
 
     public Integer getTxId() {
         return txId;

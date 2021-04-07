@@ -5,6 +5,7 @@ import com.bo.xMarket.bl.TransactionBl;
 
 import com.bo.xMarket.dto.ProductRequest;
 import com.bo.xMarket.dto.ProductResponse;
+import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Product;
 
 import com.bo.xMarket.model.Transaction;
@@ -30,7 +31,7 @@ public class ProductApi {
         this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(value = "/user/{userid}/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/admin/{userid}/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductResponse> ListProducts(@PathVariable("userid") Integer id) {
         return productBl.productList(id);
     }
@@ -38,6 +39,11 @@ public class ProductApi {
     @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/category/{categoryid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch,@PathVariable("categoryid") Integer idcategory) {
         return productBl.productListbyCategory(id, idbranch,idcategory);
+    }
+
+    @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch) {
+        return productBl.productListbyBranchId(id, idbranch);
     }
 
     @RequestMapping(value = "/admin/{userid}/branchOffice/{branchoffice}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -49,7 +55,7 @@ public class ProductApi {
     }
 
     @RequestMapping(value = "/product/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProductRequest productInfo(@PathVariable("productid") Integer id) {
+    public ProductSpecificResponse productInfo(@PathVariable("productid") Integer id) {
         return productBl.productInfo(id);
     }
 

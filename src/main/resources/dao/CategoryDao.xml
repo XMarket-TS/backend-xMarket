@@ -20,9 +20,8 @@
     <select id="getCategoryById" resultType="com.bo.xMarket.model.Category">
         SELECT id     as idCategory,
                name   as name,
-               status as status
         FROM product_category
-        WHERE id = #{categoryId}
+        WHERE id = #{categoryId} AND status=1
 
     </select>
 

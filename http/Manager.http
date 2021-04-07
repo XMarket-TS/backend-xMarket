@@ -1,0 +1,22 @@
+### adding new manager
+POST http://localhost:8080/manager/signup
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Joel",
+  "surname": "Guzman",
+  "username": "Joel",
+  "email": "joelguz@gmail.com",
+  "password": "12345678"
+}
+
+### Login manager
+POST http://localhost:8080/manager/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "jscatchard1",
+  "password": "yokcVYP4"
+}

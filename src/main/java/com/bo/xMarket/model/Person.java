@@ -13,31 +13,6 @@ public class Person extends Transaction {
     private String cellphone;
     private Integer status;
 
-    public Person(Integer txId, String txHost, Integer txUserId, Date txDate, Integer personId, String name, String surname, String email, String description, String gender, String photo, String cellphone, Integer status) {
-        super(txId, txHost, txUserId, txDate);
-        this.personId = personId;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.description = description;
-        this.gender = gender;
-        this.photo = photo;
-        this.cellphone = cellphone;
-        this.status = status;
-    }
-
-    public Person(Integer personId, String name, String surname, String email, String description, String gender, String photo, String cellphone, Integer status) {
-        this.personId = personId;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.description = description;
-        this.gender = gender;
-        this.photo = photo;
-        this.cellphone = cellphone;
-        this.status = status;
-    }
-
     public Person() {
     }
 

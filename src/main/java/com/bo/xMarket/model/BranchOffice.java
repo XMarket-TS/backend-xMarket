@@ -1,7 +1,5 @@
 package com.bo.xMarket.model;
 
-import java.util.Date;
-
 public class BranchOffice extends Transaction {
     private Integer branchOfficeId;
     private Integer managerId;
@@ -12,28 +10,6 @@ public class BranchOffice extends Transaction {
     private String image;
     private Integer status;
 
-    public BranchOffice(Integer txId, String txHost, Integer txUserId, Date txDate, Integer branchOfficeId, Integer managerId, String name, Integer phone, String zone, String address, String image, Integer status) {
-        super(txId, txHost, txUserId, txDate);
-        this.branchOfficeId = branchOfficeId;
-        this.managerId = managerId;
-        this.name = name;
-        this.phone = phone;
-        this.zone = zone;
-        this.address = address;
-        this.image = image;
-        this.status = status;
-    }
-
-    public BranchOffice(Integer branchOfficeId, Integer managerId, String name, Integer phone, String zone, String address, String image, Integer status) {
-        this.branchOfficeId = branchOfficeId;
-        this.managerId = managerId;
-        this.name = name;
-        this.phone = phone;
-        this.zone = zone;
-        this.address = address;
-        this.image = image;
-        this.status = status;
-    }
 
     public BranchOffice() {
     }
@@ -98,6 +74,14 @@ public class BranchOffice extends Transaction {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Integer getStatus() {

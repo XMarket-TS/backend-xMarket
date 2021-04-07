@@ -1,6 +1,6 @@
 package com.bo.xMarket.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Card {
     private Integer cardId;
@@ -13,20 +13,9 @@ public class Card {
     private Date creationDate;
     private Integer status;
     private Transaction transaction;
-//    public Transaction(Integer txId, String txHost, Integer txUserId, java.util.Date txDate) {
-//        this.txId = txId;
-//        this.txHost = txHost;
-//        this.txUserId = txUserId;
-//        this.txDate = txDate;
-//    }
 
-//    public Card(Integer cardId,Integer userId,String cardName,Integer cardNumber, Integer expirationYear,Integer expirationMonth,
-//                Integer cvc,Date creationDate,Integer status) {
-//        this.idCategory = idCategory;
-//        this.name = name;
-//        this.status = status;
-//    }
-    public Card(){    }
+    public Card() {
+    }
 
     public Transaction getTransaction() {
         return transaction;
@@ -108,26 +97,4 @@ public class Card {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-
-//    public Card() {
-//    }
-
-    @Override
-    public String toString() {
-        return "Card{" +
-                "cardId=" + cardId +'\'' +
-                ", userId=" + userId +'\'' +
-                ", cardName='" + cardName + '\'' +
-                ", cardNumber='" + cardNumber + '\'' +
-                ", expirationYear='" + expirationYear + '\'' +
-                ", expirationMonth='" + expirationMonth + '\'' +
-                ", cvc='" + cvc + '\'' +
-                ", creationDate=" + creationDate +'\'' +
-                ", status=" + status +
-                '}';
-    }
-
-
-
 }

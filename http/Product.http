@@ -1,32 +1,36 @@
-### get product list by userid and branch office id
-GET http://localhost:8080/user/1/products
+### get product list by managerid (Frontend web)
+GET http://localhost:8080/admin/1/products
 Accept: application/json
 
-### get product list by userid and branch office id and category id
-GET http://localhost:8080/user/2/branchOffice/1/category/4
+### get product list by branchId (Frontend movil)
+GET http://localhost:8080/user/1/branchOffice/1
+Accept: application/json
+
+### get product list by userid and branch office id and category id (Frontend movil)
+GET http://localhost:8080/user/2/branchOffice/1/category/2
 Accept: application/json
 
 ### adding new product with adminid and branch office id
-POST http://localhost:8080/admin/1/branchOffice/1/product
+POST http://localhost:8080/admin/3/branchOffice/1/product
 Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Tomate",
-  "price": "20.00",
-  "description": "Verdura color rojo",
+  "name": "Piña",
+  "price": "30.00",
+  "description": "Fruta color amarillo",
   "unit": "10",
-  "category": "verdura",
+  "category": "Fruta",
   "offer": {
     "name": "offer 1",
-    "percentage": 10,
-    "startDate": "19-02-2020",
-    "endDate": "19-04-2020",
+    "percentage": 50,
+    "startDate": "2021-11-02T02:50:12.208Z",
+    "endDate": "2021-11-02T02:50:12.208Z",
     "imageUrl": "url"
   },
   "imagesUrl": [
-    {"photo": "Url 1"},
-    {"photo": "Url 2"}
+    "Url 3",
+    "Url 4"
   ]
 }
 

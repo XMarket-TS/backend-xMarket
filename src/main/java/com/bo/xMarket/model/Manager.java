@@ -8,15 +8,6 @@ public class Manager extends Transaction{
     private String password;
     private Integer status;
 
-    public Manager(Integer managerId, Integer personId, String username, String photo, String password, Integer status) {
-        this.managerId = managerId;
-        this.personId = personId;
-        this.username = username;
-        this.photo = photo;
-        this.password = password;
-        this.status = status;
-    }
-
     public Manager() {
     }
 

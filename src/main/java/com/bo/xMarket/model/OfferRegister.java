@@ -4,17 +4,15 @@ import java.util.Date;
 
 public class OfferRegister extends Transaction {
     private Integer offerId;
+    private Integer productId;
     private Date startDate;
     private Date endDate;
     private Integer percentage;
     private Integer status;
 
-    public OfferRegister(Integer offerId, Date startDate, Date endDate, Integer percentage, Integer status) {
-        this.offerId = offerId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.percentage = percentage;
-        this.status = status;
+
+    public OfferRegister(Integer txId, String txHost, Integer txUserId, Date txDate) {
+        super(txId, txHost, txUserId, txDate);
     }
 
     public OfferRegister() {
@@ -37,6 +35,14 @@ public class OfferRegister extends Transaction {
 
     public void setOfferId(Integer offerId) {
         this.offerId = offerId;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Date getStartDate() {

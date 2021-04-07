@@ -58,7 +58,7 @@ public class ProductBl {
             }
             resp.setDescription(response.getDescription());
             resp.setCategory(category.getName());
-            List<Media> media = mediaDao.getPhotosById(response.getProductId());
+            List<MediaRequest> media = mediaDao.listmedia(response.getProductId());
             resp.setFirstImage(media.size() > 0 ? media.get(0).getPhoto() : null);
             productResult.add(resp);
 
@@ -69,6 +69,10 @@ public class ProductBl {
 
     public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch, Integer idcategory) {
         return productDao.listproductsbycategory(id, idbranch, idcategory);
+    }
+
+    public List<ProductResponse> productListbyBranchId(Integer id, Integer idbranch) {
+        return productDao.listProductsByBranchId(idbranch);
     }
 
     public Product addProduct(ProductRequest productRequest, Integer idbranch, Transaction transaction) {
@@ -90,13 +94,13 @@ public class ProductBl {
         productDao.addproduct(product);
         Integer lastProductId = productDao.getLastInsertId();
 
-//        if (productRequest.getOffer() != null) {
-//            addOffer(productRequest.getOffer());
-//        }
-//        if (productRequest.getImagesUrl().size() > 0) {
-//
-//            addMedia(productRequest.getImagesUrl(), lastProductId, transaction);
-//        }
+        if (productRequest.getOffer() != null) {
+            addOffer(productRequest.getOffer(),transaction,lastProductId);
+        }
+        if (productRequest.getImagesUrl().size() > 0) {
+
+            addMedia(productRequest.getImagesUrl(), lastProductId, transaction);
+        }
         addProductBranch(lastProductId, idbranch);
 
         return product;
@@ -109,36 +113,41 @@ public class ProductBl {
         productBranchDao.addProductBranch(productBranch);
     }
 
-    public void addOffer(ProductOfferRequest offerRequest) {
-
+    public void addOffer(OfferRequest offerRequest,Transaction transaction,Integer productId) {
+        OfferRegister offerRegister= new OfferRegister();
+        offerRegister.setEndDate(offerRequest.getEndDate());
+        offerRegister.setStartDate(offerRequest.getStartDate());
+        offerRegister.setPercentage(offerRequest.getPercentage());
+        offerRegister.setProductId(productId);
+        Date date= new Date();
+        LOGGER.info(String.valueOf(date));
+        offerRegister.setStatus(1);
+        offerRegister.setTransaction(transaction);
+        offerRegisterDao.addOfferRegister(offerRegister);
     }
 
-    public void addMedia(List<MediaRequest> listMedia, Integer productId, Transaction transaction) {
+    public void addMedia(List<String> listMedia, Integer productId, Transaction transaction) {
         listMedia.forEach(mediaRequest -> {
             Media media = new Media();
-            media.setPhoto(mediaRequest.getPhoto());
+            media.setPhoto(mediaRequest);
             media.setProductId(productId);
-            media.setStatus(0);
+            media.setStatus(1);
             media.setTransaction(transaction);
             mediaDao.addMedia(media);
         });
     }
 
-    public ProductRequest productInfo(Integer productid) {
-        Product product = productDao.productsDetails(productid);
+    public ProductSpecificResponse productInfo(Integer productid) {
+        ProductSpecificResponse product= productDao.productsDetails(productid);
         Category category = categoryDao.getCategoryById(productid);
-        List<Media> media = mediaDao.getPhotosById(productid);
-        List<String> photos = new ArrayList<>();
-        media.forEach(media1 -> photos.add(media1.getPhoto()));
+        List<MediaRequest> media = mediaDao.listmedia(productid);
         Stock stock = stockDao.getStockById(product.getProductId());
-        try {
-            OfferRegister offerRegister = offerRegisterDao.getActualOffer(productid);
-            OfferRequest offerRequest = new OfferRequest(offerRegister.getPercentage(), new SimpleDateFormat("dd-MM-yyyy").format(offerRegister.getStartDate()), new SimpleDateFormat("dd-MM-yyyy").format(offerRegister.getEndDate()));
-            return new ProductRequest(product.getName(), product.getPrice(), product.getDescription(), stock.getInStock(), category.getName(), offerRequest, photos);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ProductRequest(product.getName(), product.getPrice(), product.getDescription(), stock.getInStock(), category.getName(), null, photos);
-        }
+
+        product.setCategory(category);
+        product.setImagesUrl(media);
+        product.setUnit(stock.getInStock());
+
+        return product;
     }
 
     public void productDelete(Integer productId) {

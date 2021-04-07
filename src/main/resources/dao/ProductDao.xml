@@ -18,11 +18,33 @@
           AND c.id_branch_office = #{idbranch}
 
     </select>
+    <select id="listProductsByBranchId" resultType="com.bo.xMarket.dto.ProductResponse">
+        SELECT a.product_id                                                                           as productId,
+               a.name                                                                                 as name,
+               a.price                                                                                as price,
+               (SELECT c.percentage FROM offers_register c
+               WHERE a.product_id = c.product_product_id AND c.status=1
+               ORDER BY c.id_offers DESC LIMIT 1)                                                      as percentage,
+               a.description                                                                          as description,
+               (SELECT d.name FROM product_category d WHERE d.id = a.product_id)                      as category,
+               (SELECT e.photo
+                FROM media_product e
+                WHERE a.product_id = e.product_product_id
+                ORDER BY e.media_id DESC LIMIT 1)                                                      as firstImage
+
+        FROM product a
+            join product_branch_office b on a.product_id = b.product_product_id
+        WHERE b.branch_office_id_branch_office = #{idbranch}
+          AND a.status = 1
+
+    </select>
     <select id="listproductsbycategory" resultType="com.bo.xMarket.dto.ProductResponse">
         SELECT a.product_id                                                                           as productId,
                a.name                                                                                 as name,
                a.price                                                                                as price,
-               (SELECT c.percentage FROM offers_register c WHERE a.product_id = c.product_product_id) as percentage,
+               (SELECT c.percentage FROM offers_register c
+                WHERE a.product_id = c.product_product_id AND c.status=1
+                ORDER BY c.id_offers DESC LIMIT 1)                                                     as percentage,
                a.description                                                                          as description,
                (SELECT d.name FROM product_category d WHERE d.id = a.product_id)                      as category,
                (SELECT e.photo
@@ -44,14 +66,15 @@
                 #{status}, #{txHost},
                 #{txUserId}, #{txDate}, null)
     </insert>
-    <select id="productsDetails" resultType="com.bo.xMarket.model.Product">
+    <select id="productsDetails" resultType="com.bo.xMarket.dto.ProductSpecificResponse">
         SELECT product_id          as productId,
-               product_category_id as productCategoryId,
                name                as name,
                price               as price,
+               (SELECT c.percentage FROM offers_register c
+                WHERE c.product_product_id=#{productid} AND c.status=1
+                ORDER BY c.id_offers DESC LIMIT 1)  as percentage,
                description         as description,
-               weight              as weight,
-               status              as status
+                (SELECT a.id.product_branchoffice FROM product_branch_office a WHERE a.product_product_id=#{productid}) as branchId
         FROM product
         WHERE product_id = #{productid}
 

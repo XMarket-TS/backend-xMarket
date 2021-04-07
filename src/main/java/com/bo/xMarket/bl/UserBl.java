@@ -34,7 +34,7 @@ public class UserBl {
         person.setSurname(userRequest.getSurname());
         person.setEmail(userRequest.getEmail());
         person.setStatus(1);
-        person.setTxDate(transaction.getTxDate());
+        person.setTransaction(transaction);
         personDao.addPerson(person);
         Integer lastPersonId = personDao.getLastPersonId();
         User user = new User();
@@ -47,26 +47,5 @@ public class UserBl {
         return user;
     }
 
-    public ManagerRequest managerLogin(LoginRequest loginRequest) {
-        if (loginRequest.getUsername() == null || loginRequest.getPassword() == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
-        }
-        Person person = managerDao.findManagerByLogin(loginRequest);
-        if (person == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
-        }
 
-        ManagerRequest managerRequest = new ManagerRequest();
-        managerRequest.setPersonId(person.getPersonId());
-        managerRequest.setName(person.getName());
-        managerRequest.setSurname(person.getSurname());
-        managerRequest.setEmail(person.getEmail());
-        managerRequest.setUserPhoto(person.getPhoto());
-        managerRequest.setDescription(person.getDescription());
-        managerRequest.setCellphone(person.getCellphone());
-        managerRequest.setGender(person.getGender());
-        managerRequest.setUsername(loginRequest.getUsername());
-        managerRequest.setPassword("");
-        return managerRequest;
-    }
 }
