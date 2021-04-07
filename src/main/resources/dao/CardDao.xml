@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bo.xMarket.dao.CardDao">
+    <select id="listCardsByUser" resultMap="cardMap">
+        SELECT a.card_id    as cardId,
+               a.user_id    as userId,
+               a.card_name  as cardName,
+               a.card_number    as cardNumber,
+               a.cvc        as cvc,
+               a.status     as status
+        FROM card a,
+             person b,
+             user c
+        WHERE a.user_id=#{iduser}
+          AND c.user_id = a.user_id
+          AND c.person_user_id = b.person_id
+          AND a.status=1
+          AND b.status=1
+          AND c.status=1
+
+    </select>
+    <select id="cardDetails" resultType="com.bo.xMarket.model.Card">
+        SELECT a.card_id    as cardId,
+               a.user_id    as userId,
+               a.card_name  as cardName,
+               a.card_number    as cardNumber,
+               a.expiration_year    as expirationYear,
+               a.expiration_month   as expirationMonth,
+               a.cvc        as cvc,
+               a.creation_date    as creationDate,
+               a.status     as status
+
+        FROM card a
+        WHERE a.card_id = #{idcard}
+          AND a.status = 1
+    </select>
+    <insert id="addCard" parameterType="com.bo.xMarket.model.Card">
+        INSERT INTO card
+        VALUES (null, #{userId},
+                #{cardName}, #{cardNumber}, #{expirationYear}, #{expirationMonth},
+                #{cvc},#{creationDate},
+                #{status}, #{transaction.txHost},
+                #{transaction.txUserId}, #{transaction.txDate})
+    </insert>
+
+
+    <update id="deleteCard">
+        UPDATE card
+        SET status=0
+        WHERE (card_id = #{idcard})
+    </update>
+
+    <select id="getLastInsertId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    </select>
+    <resultMap id="cardMap" type="com.bo.xMarket.dto.CardRequest" >
+        <result column="cardId" property="cardId"/>
+        <result column="userId" property="userId"/>
+        <result column="cardName" property="cardName"/>
+        <result column="cardNumber" property="cardNumber"/>
+        <result column="cvc" property="cvc"/>
+        <result column="status" property="status"/>
+    </resultMap>
+</mapper>

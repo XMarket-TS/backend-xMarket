@@ -1,0 +1,19 @@
+### adding new branch office
+POST http://localhost:8080/addcard
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "cardName": "Banco Sol",
+  "cardNumber": 55554444,
+  "expirationYear": 2024,
+  "expirationMonth": 4,
+  "cvc": 3333,
+  "creationDate": "2021-12-31T16:00:00Z",
+  "status": 1
+}
+
+### get branch office list
+GET http://localhost:8080/branchOffice/list
+Accept: application/json

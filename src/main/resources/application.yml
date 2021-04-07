@@ -9,9 +9,12 @@ spring:
 #    password: 8f19507c
     name: xMarket_database
     platform: mysql
-    url: jdbc:mysql://localhost:3306/xMarket_database
+#    url: jdbc:mysql://localhost:3306/xMarket_database
+#    username: root
+#    password: ABCabc123
+    url: jdbc:mysql://localhost:3306/xmarket_bd
     username: root
-    password: ABCabc123
+    password: ""
 
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
