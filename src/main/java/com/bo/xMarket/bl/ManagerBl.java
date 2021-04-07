@@ -26,7 +26,7 @@ public class ManagerBl {
         this.personDao = personDao;
     }
 
-    public Manager addManager(ManagerRequest managerRequest, Transaction transaction){
+    public Manager addManager(ManagerRequest managerRequest, Transaction transaction) {
         Person person = new Person();
         person.setName(managerRequest.getName());
         person.setSurname(managerRequest.getSurname());
@@ -34,7 +34,7 @@ public class ManagerBl {
         person.setStatus(1);
         person.setTransaction(transaction);
         personDao.addPerson(person);
-        Integer lastPersonId= personDao.getLastPersonId();
+        Integer lastPersonId = personDao.getLastPersonId();
         Manager manager = new Manager();
         manager.setUsername(managerRequest.getUsername());
         manager.setPassword(managerRequest.getPassword());
@@ -44,6 +44,7 @@ public class ManagerBl {
         managerDao.addManager(manager);
         return manager;
     }
+
     public ManagerRequest managerLogin(LoginRequest loginRequest) {
         if (loginRequest.getUsername() == null || loginRequest.getPassword() == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
@@ -52,8 +53,23 @@ public class ManagerBl {
         if (person == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
         }
-
         ManagerRequest managerRequest = new ManagerRequest();
+        setPerson(managerRequest, person);
+        managerRequest.setUsername(loginRequest.getUsername());
+        managerRequest.setPassword("");
+        return managerRequest;
+    }
+
+    public ManagerRequest infoManager(Integer id) {
+        ManagerRequest managerRequest = new ManagerRequest();
+        Person person = personDao.getPersonById(id);
+        managerRequest.setPersonId(id);
+        setPerson(managerRequest, person);
+        managerRequest.setUsername("Username");
+        return managerRequest;
+    }
+
+    private void setPerson(ManagerRequest managerRequest, Person person) {
         managerRequest.setPersonId(person.getPersonId());
         managerRequest.setName(person.getName());
         managerRequest.setSurname(person.getSurname());
@@ -62,8 +78,5 @@ public class ManagerBl {
         managerRequest.setDescription(person.getDescription());
         managerRequest.setCellphone(person.getCellphone());
         managerRequest.setGender(person.getGender());
-        managerRequest.setUsername(loginRequest.getUsername());
-        managerRequest.setPassword("");
-        return managerRequest;
     }
 }

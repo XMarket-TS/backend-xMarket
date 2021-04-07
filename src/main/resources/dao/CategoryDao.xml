@@ -19,7 +19,7 @@
     </select>
     <select id="getCategoryById" resultType="com.bo.xMarket.model.Category">
         SELECT id     as idCategory,
-               name   as name,
+               name   as name
         FROM product_category
         WHERE id = #{categoryId} AND status=1
 

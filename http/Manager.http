@@ -20,3 +20,8 @@ Content-Type: application/json
   "username": "jscatchard1",
   "password": "yokcVYP4"
 }
+
+### Auth (Only testing)
+GET http://localhost:8080/manager/login/530
+Accept: application/json
+Content-Type: application/json

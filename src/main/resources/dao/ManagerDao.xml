@@ -9,7 +9,6 @@
                 #{password}, #{status},
                 #{transaction.txHost}, #{transaction.txUserId}, #{transaction.txDate})
     </insert>
-
     <select id="findManagerByLogin" resultType="com.bo.xMarket.model.Person">
         SELECT a.person_id   as personId,
                a.name        as name,
