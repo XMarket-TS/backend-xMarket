@@ -31,8 +31,8 @@ public class ProductApi {
         this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(value = "/admin/{userid}/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> ListProducts(@PathVariable("userid") Integer id) {
+    @RequestMapping(value = "/manager/{personId}/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> ListProducts(@PathVariable("personId") Integer id) {
         return productBl.productList(id);
     }
 

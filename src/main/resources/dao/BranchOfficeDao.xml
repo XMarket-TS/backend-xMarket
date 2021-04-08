@@ -20,13 +20,15 @@
         FROM branch_office
         WHERE status = 1
     </select>
-    <select id="getBranchOfficerByManagerId" resultType="com.bo.xMarket.model.BranchOffice">
-        SELECT id_branch_office as branchOfficeId,
-               name             as name,
-               phone            as phone,
-               zone             as zone,
-               address          as address
-        FROM branch_office
-        WHERE manager_manager_id = #{managerId}
+    <select id="getBranchByPersonManagerId" resultType="com.bo.xMarket.model.BranchOffice">
+        SELECT a.id_branch_office as branchOfficeId,
+               a.name             as name,
+               a.phone            as phone,
+               a.zone             as zone,
+               a.address          as address
+        FROM branch_office a,
+             manager b
+        WHERE b.person_person_id = #{personId}
+          AND a.manager_manager_id = b.manager_id
     </select>
 </mapper>

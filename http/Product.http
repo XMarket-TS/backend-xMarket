@@ -1,5 +1,5 @@
 ### get product list by managerid (Frontend web)
-GET http://localhost:8080/admin/1/products
+GET http://localhost:8080/manager/530/products
 Accept: application/json
 
 ### get product list by branchId (Frontend movil)
@@ -20,7 +20,7 @@ Content-Type: application/json
   "price": "30.00",
   "description": "Fruta color amarillo",
   "unit": "10",
-  "category": "Fruta",
+  "category": "Abarrotes",
   "offer": {
     "name": "offer 1",
     "percentage": 50,

@@ -8,7 +8,9 @@ import com.bo.xMarket.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,12 +39,15 @@ public class ProductBl {
         this.branchOfficeDao = branchOfficeDao;
     }
 
-    public List<ProductResponse> productList(Integer idManager) {
-        BranchOffice branchOffice = branchOfficeDao.getBranchOfficerByManagerId(idManager);
+    public List<ProductResponse> productList(Integer idPerson) {
+        BranchOffice branchOffice = branchOfficeDao.getBranchByPersonManagerId(idPerson);
+        if (branchOffice.getBranchOfficeId() == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find branch");
+        }
         List<Product> productResponse = productDao.listProductsByBranch(branchOffice.getBranchOfficeId());
         List<ProductResponse> productResult = new ArrayList<>();
         for (Product response : productResponse) {
-            CategoryRequest category = categoryDao.getCategoryById(response.getProductCategoryId());
+            Category category = categoryDao.getCategoryById(response.getProductCategoryId());
             ProductResponse resp = new ProductResponse();
             resp.setProductId(response.getProductId());
             resp.setName(response.getName());
@@ -57,7 +62,7 @@ public class ProductBl {
                 resp.setPercentage(0);
             }
             resp.setDescription(response.getDescription());
-            resp.setCategory(category.getCategory());
+            resp.setCategory(category.getName());
             List<MediaRequest> media = mediaDao.listmedia(response.getProductId());
             resp.setFirstImage(media.size() > 0 ? media.get(0).getPhoto() : null);
             productResult.add(resp);
@@ -93,13 +98,13 @@ public class ProductBl {
         product.setProductCategoryId(lastIdCategory);
         productDao.addproduct(product);
         Integer lastProductId = productDao.getLastInsertId();
-        Stock stock=new Stock();
+        Stock stock = new Stock();
         stock.setInStock(productRequest.getUnit());
         stock.setProductId(lastProductId);
         stock.setLastUpdate(new Date());
         stockDao.addStock(stock);
         if (productRequest.getOffer() != null) {
-            addOffer(productRequest.getOffer(),transaction,lastProductId);
+            addOffer(productRequest.getOffer(), transaction, lastProductId);
         }
         if (productRequest.getImagesUrl().size() > 0) {
 
@@ -117,13 +122,13 @@ public class ProductBl {
         productBranchDao.addProductBranch(productBranch);
     }
 
-    public void addOffer(OfferRequest offerRequest,Transaction transaction,Integer productId) {
-        OfferRegister offerRegister= new OfferRegister();
+    public void addOffer(OfferRequest offerRequest, Transaction transaction, Integer productId) {
+        OfferRegister offerRegister = new OfferRegister();
         offerRegister.setEndDate(offerRequest.getEndDate());
         offerRegister.setStartDate(offerRequest.getStartDate());
         offerRegister.setPercentage(offerRequest.getPercentage());
         offerRegister.setProductId(productId);
-        Date date= new Date();
+        Date date = new Date();
         LOGGER.info(String.valueOf(date));
         offerRegister.setStatus(1);
         offerRegister.setTransaction(transaction);
@@ -142,12 +147,12 @@ public class ProductBl {
     }
 
     public ProductSpecificResponse productInfo(Integer productid) {
-        ProductSpecificResponse product= productDao.productsDetails(productid);
-        CategoryRequest category = categoryDao.getCategoryById(productid);
+        ProductSpecificResponse product = productDao.productsDetails(productid);
+        Category category = categoryDao.getCategoryById(productid);
         List<MediaRequest> media = mediaDao.listmedia(productid);
         Stock stock = stockDao.getStockById(productid);
         LOGGER.warn(stock.getInStock().toString());
-        product.setCategory(category);
+        product.setCategory(new CategoryRequest(category.getIdCategory(), category.getName(), category.getImage()));
         product.setImagesUrl(media);
         product.setUnit(stock.getInStock());
 

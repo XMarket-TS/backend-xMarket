@@ -11,5 +11,5 @@ public interface BranchOfficeDao {
 
     public List<BranchOffice> listBranchOffice();
 
-    public BranchOffice getBranchOfficerByManagerId(Integer managerId);
+    public BranchOffice getBranchByPersonManagerId(Integer personId);
 }

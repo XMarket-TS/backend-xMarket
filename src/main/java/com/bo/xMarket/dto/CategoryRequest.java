@@ -11,6 +11,12 @@ public class CategoryRequest {
     public CategoryRequest() {
     }
 
+    public CategoryRequest(Integer categoryId, String category, String imageUrl) {
+        this.categoryId = categoryId;
+        this.category = category;
+        this.imageUrl = imageUrl;
+    }
+
     public Integer getCategoryId() {
         return categoryId;
     }
