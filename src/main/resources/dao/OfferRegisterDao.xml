@@ -5,10 +5,8 @@
 <mapper namespace="com.bo.xMarket.dao.OfferRegisterDao">
     <insert id="addOfferRegister" parameterType="com.bo.xMarket.model.OfferRegister">
         INSERT INTO offers_register
-        VALUES (
-                null,#{productId},#{startDate},#{endDate},#{percentage},#{status},
-                #{txHost},#{txUserId},#{txDate}
-               )
+        VALUES (null, #{productId}, #{startDate}, #{endDate}, #{percentage}, #{status},
+                #{txHost}, #{txUserId}, #{txDate})
     </insert>
     <select id="getActualOffer" resultType="com.bo.xMarket.model.OfferRegister">
         SELECT start_date as startDate,

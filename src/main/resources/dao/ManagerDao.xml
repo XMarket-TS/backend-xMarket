@@ -5,8 +5,8 @@
 <mapper namespace="com.bo.xMarket.dao.ManagerDao">
     <insert id="addManager" parameterType="com.bo.xMarket.model.Manager">
         INSERT INTO `manager`
-        (`person_person_id`, `username`, `password`, `status`, `tx_host`, `tx_user_id`, `tx_date`) VALUES
-            (#{personId}, #{username}, #{password}, #{status}, #{txHost}, #{txUserId}, #{txDate})
+        (`person_person_id`, `username`, `password`, `status`, `tx_host`, `tx_user_id`, `tx_date`)
+        VALUES (#{personId}, #{username}, #{password}, #{status}, #{txHost}, #{txUserId}, #{txDate})
     </insert>
     <select id="findManagerByLogin" resultType="com.bo.xMarket.model.Person">
         SELECT a.person_id   as personId,

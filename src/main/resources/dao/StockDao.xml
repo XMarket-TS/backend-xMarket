@@ -4,16 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.StockDao">
     <select id="getStockById" resultType="com.bo.xMarket.model.Stock">
-        SELECT stock_id           as stockId,
-               in_stock           as inStock,
-               last_update        as lastUpdate
+        SELECT stock_id    as stockId,
+               in_stock    as inStock,
+               last_update as lastUpdate
         FROM stock
         WHERE product_product_id = #{productId}
     </select>
     <insert id="addStock" parameterType="com.bo.xMarket.model.Stock">
         INSERT INTO stock
-        VALUES (
-                null,#{productId},#{inStock},#{lastUpdate}
-               )
+        VALUES (null, #{productId}, #{inStock}, #{lastUpdate})
     </insert>
 </mapper>

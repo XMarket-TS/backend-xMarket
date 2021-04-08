@@ -19,12 +19,12 @@
         WHERE status = 1
     </select>
     <select id="getCategoryById" resultType="com.bo.xMarket.model.Category">
-        SELECT id   as idCategory,
-               name as name
+        SELECT id    as idCategory,
+               name  as name,
+               image as image
         FROM product_category
         WHERE id = #{categoryId}
           AND status = 1
-
     </select>
 
 </mapper>
