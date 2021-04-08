@@ -9,18 +9,19 @@ public class BranchOfficeRequest {
     private Integer phone;
     private String zone;
     private String address;
+    private String image;
 
     public BranchOfficeRequest() {
     }
 
-    public BranchOfficeRequest(Integer managerId, String name, Integer phone, String zone, String address) {
+    public BranchOfficeRequest(Integer managerId, String name, Integer phone, String zone, String address, String image) {
         this.managerId = managerId;
         this.name = name;
         this.phone = phone;
         this.zone = zone;
         this.address = address;
+        this.image = image;
     }
-
 
     @Override
     public String toString() {
@@ -30,6 +31,7 @@ public class BranchOfficeRequest {
                 ", phone=" + phone +
                 ", zone='" + zone + '\'' +
                 ", address='" + address + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 
@@ -71,5 +73,13 @@ public class BranchOfficeRequest {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -5,9 +5,12 @@
 <mapper namespace="com.bo.xMarket.dao.BranchOfficeDao">
     <insert id="addBranchOffice" parameterType="com.bo.xMarket.model.BranchOffice">
         INSERT INTO branch_office
-        VALUES (null, #{managerId}, #{name}, #{phone},
-                #{zone}, #{address}, #{status},
-                #{transaction.txHost}, #{transaction.txUserId}, #{transaction.txDate})
+        (`manager_manager_id`, `name`, `phone`, `zone`,
+         `address`, `image`, `status`, `tx_host`,
+         `tx_user_id`, `tx_date`)
+        VALUES (#{managerId}, #{name}, #{phone}, #{zone},
+                #{address}, #{image}, #{status}, #{txHost},
+                #{txUserId}, #{txDate})
     </insert>
     <select id="listBranchOffice" resultType="com.bo.xMarket.model.BranchOffice">
         SELECT id_branch_office as branchOfficeId,
