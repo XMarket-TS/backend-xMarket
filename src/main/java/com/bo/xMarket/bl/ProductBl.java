@@ -3,8 +3,6 @@ package com.bo.xMarket.bl;
 import com.bo.xMarket.dao.*;
 import com.bo.xMarket.dto.*;
 import com.bo.xMarket.model.*;
-//import io.swagger.models.auth.In;
-//import jdk.nashorn.internal.runtime.options.LoggingOption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+//import io.swagger.models.auth.In;
+//import jdk.nashorn.internal.runtime.options.LoggingOption;
 
 @Service
 public class ProductBl {
@@ -49,10 +49,11 @@ public class ProductBl {
         for (Product response : productResponse) {
             Category category = categoryDao.getCategoryById(response.getProductCategoryId());
             ProductResponse resp = new ProductResponse();
+            Stock stock = productDao.getStock(response.getProductId());
             resp.setProductId(response.getProductId());
             resp.setName(response.getName());
             resp.setPrice(response.getPrice());
-
+            resp.setUnit(stock.getInStock());
             try {
                 OfferRegister offerRegister = offerRegisterDao.getActualOffer(response.getProductId());
                 resp.setPercentage(offerRegister.getPercentage());
@@ -73,11 +74,51 @@ public class ProductBl {
     }
 
     public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch, Integer idcategory) {
-        return productDao.listproductsbycategory(id, idbranch, idcategory);
+        List<ProductResponse> productList = productDao.listProductsByCategory(id, idbranch, idcategory);
+        List<ProductResponse> productResult = new ArrayList<>();
+        Category category = categoryDao.getCategoryById(idcategory);
+        for (ProductResponse response : productList) {
+            ProductResponse result = new ProductResponse();
+            Stock stock = productDao.getStock(response.getProductId());
+
+            result.setProductId(response.getProductId());
+            result.setName(response.getName());
+            result.setPrice(response.getPrice());
+            result.setDescription(response.getDescription());
+            result.setCategory(category.getName());
+            result.setFirstImage(response.getFirstImage());
+            result.setUnit(stock.getInStock());
+
+            OfferRegister offerRegister = offerRegisterDao.getActualOffer(response.getProductId());
+            result.setPercentage(offerRegister != null ? offerRegister.getPercentage() : 0);
+
+            productResult.add(result);
+        }
+        return productResult;
     }
 
     public List<ProductResponse> productListbyBranchId(Integer id, Integer idbranch) {
-        return productDao.listProductsByBranchId(idbranch);
+        List<Product> productList = productDao.listProductsByBranch(idbranch);
+        List<ProductResponse> productResult = new ArrayList<>();
+
+        for (Product response : productList) {
+            Category category = categoryDao.getCategoryById(response.getProductCategoryId());
+            ProductResponse result = new ProductResponse();
+            Stock stock = productDao.getStock(response.getProductId());
+            result.setProductId(response.getProductId());
+            result.setName(response.getName());
+            result.setPrice(response.getPrice());
+            result.setUnit(stock.getInStock());
+            OfferRegister offerRegister = offerRegisterDao.getActualOffer(response.getProductId());
+            result.setPercentage(offerRegister != null ? offerRegister.getPercentage() : 0);
+            result.setDescription(response.getDescription());
+            result.setCategory(category.getName());
+            List<MediaRequest> media = mediaDao.listmedia(response.getProductId());
+            result.setFirstImage(media.size() > 0 ? media.get(0).getPhoto() : null);
+            productResult.add(result);
+        }
+
+        return productResult;
     }
 
     public Product addProduct(ProductRequest productRequest, Integer idbranch, Transaction transaction) {

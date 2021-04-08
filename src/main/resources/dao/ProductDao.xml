@@ -3,8 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.ProductDao">
+    <select id="getLastInsertId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    </select>
     <select id="listProductsByBranch" resultType="com.bo.xMarket.model.Product">
-        SELECT a.product_id  as productId,
+        SELECT a.product_id          as productId,
                a.product_category_id as productCategoryId,
                a.name                as name,
                a.price               as price,
@@ -19,44 +22,51 @@
 
     </select>
     <select id="listProductsByBranchId" resultType="com.bo.xMarket.dto.ProductResponse">
-        SELECT a.product_id                                                                           as productId,
-               a.name                                                                                 as name,
-               a.price                                                                                as price,
-               (SELECT c.percentage FROM offers_register c
-               WHERE a.product_id = c.product_product_id AND c.status=1
-               ORDER BY c.id_offers DESC LIMIT 1)                                                      as percentage,
-               a.description                                                                          as description,
-               (SELECT d.name FROM product_category d WHERE d.id = a.product_id)                      as category,
-               (SELECT e.photo
-                FROM media_product e
-                WHERE a.product_id = e.product_product_id
-                ORDER BY e.media_id DESC LIMIT 1)                                                      as firstImage
-
-        FROM product a
-            join product_branch_office b on a.product_id = b.product_product_id
-        WHERE b.branch_office_id_branch_office = #{idbranch}
-          AND a.status = 1
-
-    </select>
-    <select id="listproductsbycategory" resultType="com.bo.xMarket.dto.ProductResponse">
-        SELECT a.product_id                                                                           as productId,
-               a.name                                                                                 as name,
-               a.price                                                                                as price,
-               (SELECT c.percentage FROM offers_register c
-                WHERE a.product_id = c.product_product_id AND c.status=1
-                ORDER BY c.id_offers DESC LIMIT 1)                                                     as percentage,
-               a.description                                                                          as description,
-               (SELECT d.name FROM product_category d WHERE d.id = a.product_id)                      as category,
+        SELECT a.product_id                                                      as productId,
+               a.name                                                            as name,
+               a.price                                                           as price,
+               (SELECT c.percentage
+                FROM offers_register c
+                WHERE a.product_id = c.product_product_id
+                  AND c.status = 1
+                ORDER BY c.id_offers DESC
+                LIMIT 1)                                                         as percentage,
+               a.description                                                     as description,
+               (SELECT d.name FROM product_category d WHERE d.id = a.product_id) as category,
                (SELECT e.photo
                 FROM media_product e
                 WHERE a.product_id = e.product_product_id
                 ORDER BY e.media_id DESC
-                LIMIT 1)                                                                              as firstImage
+                LIMIT 1)                                                         as firstImage
 
         FROM product a
-            join product_branch_office b on a.product_id = b.product_product_id
+                 join product_branch_office b on a.product_id = b.product_product_id
         WHERE b.branch_office_id_branch_office = #{idbranch}
-          AND a.status = 1 AND a.product_category_id = #{idcategory}
+          AND a.status = 1
+
+    </select>
+    <select id="listProductsByCategory" resultType="com.bo.xMarket.dto.ProductResponse">
+        SELECT a.product_id                                                      as productId,
+               a.name                                                            as name,
+               a.price                                                           as price,
+               (SELECT c.percentage
+                FROM offers_register c
+                WHERE a.product_id = c.product_product_id
+                  AND c.status = 1
+                ORDER BY c.id_offers DESC
+                LIMIT 1)                                                         as percentage,
+               a.description                                                     as description,
+               (SELECT e.photo
+                FROM media_product e
+                WHERE a.product_id = e.product_product_id
+                ORDER BY e.media_id DESC
+                LIMIT 1)                                                         as firstImage
+
+        FROM product a
+                 join product_branch_office b on a.product_id = b.product_product_id
+        WHERE b.branch_office_id_branch_office = #{idbranch}
+          AND a.status = 1
+          AND a.product_category_id = #{idcategory}
 
     </select>
     <insert id="addproduct" parameterType="com.bo.xMarket.model.Product">
@@ -67,14 +77,19 @@
                 #{txUserId}, #{txDate}, null)
     </insert>
     <select id="productsDetails" resultType="com.bo.xMarket.dto.ProductSpecificResponse">
-        SELECT product_id          as productId,
-               name                as name,
-               price               as price,
-               (SELECT c.percentage FROM offers_register c
-                WHERE c.product_product_id=#{productid} AND c.status=1
-                ORDER BY c.id_offers DESC LIMIT 1)  as percentage,
-               description         as description,
-                (SELECT a.id_product_branch_office FROM product_branch_office a WHERE a.product_product_id=#{productid}) as branchId
+        SELECT product_id                                  as productId,
+               name                                        as name,
+               price                                       as price,
+               (SELECT c.percentage
+                FROM offers_register c
+                WHERE c.product_product_id = #{productid}
+                  AND c.status = 1
+                ORDER BY c.id_offers DESC
+                LIMIT 1)                                   as percentage,
+               description                                 as description,
+               (SELECT a.id_product_branch_office
+                FROM product_branch_office a
+                WHERE a.product_product_id = #{productid}) as branchId
         FROM product
         WHERE product_id = #{productid}
 
@@ -86,7 +101,11 @@
         WHERE (product_id = #{productId})
     </update>
 
-    <select id="getLastInsertId" resultType="java.lang.Integer">
-        SELECT LAST_INSERT_ID()
+    <select id="getStock" resultType="com.bo.xMarket.model.Stock">
+        SELECT stock_id    as stockId,
+               in_stock    as inStock,
+               last_update as lastUpdate
+        FROM stock
+        WHERE product_product_id = #{productId};
     </select>
 </mapper>

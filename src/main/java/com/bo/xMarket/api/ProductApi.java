@@ -47,11 +47,10 @@ public class ProductApi {
     }
 
     @RequestMapping(value = "/admin/{userid}/branchOffice/{branchoffice}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Product addproduct(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @RequestBody ProductRequest productRequest, HttpServletRequest request) {
+    public Product addProduct(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @RequestBody ProductRequest productRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        Product productResponse = productBl.addProduct(productRequest, idbranch, transaction);
-        return productResponse;
+        return productBl.addProduct(productRequest, idbranch, transaction);
     }
 
     @RequestMapping(value = "/product/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

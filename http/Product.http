@@ -29,8 +29,9 @@ Content-Type: application/json
     "imageUrl": "url"
   },
   "imagesUrl": [
-    "Url 3",
-    "Url 4"
+    "https://res.cloudinary.com/fulano/image/upload/v1617490236/img_default_ywgnfs.jpg",
+    "https://res.cloudinary.com/fulano/image/upload/v1617490323/img_default1_cuuu1t.jpg",
+    "https://res.cloudinary.com/fulano/image/upload/v1617490329/img_default3_lrczpl.jpg"
   ]
 }
 
