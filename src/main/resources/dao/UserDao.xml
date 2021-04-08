@@ -5,10 +5,7 @@
 <mapper namespace="com.bo.xMarket.dao.UserDao">
     <insert id="addUser" parameterType="com.bo.xMarket.model.User">
         INSERT INTO user
-        VALUES(
-                null,#{personId},#{username},#{password},
-                #{status},#{userPhoto},
-                #{transaction.txHost},#{transaction.txUserId},#{transaction.txDate}
-              )
+        (`person_user_id`, `username`, `password`, `status`, `tx_host`, `tx_user_id`, `tx_date`)
+        VALUES (#{personId}, #{username}, #{password}, #{status}, #{txHost}, #{txUserId}, #{txDate})
     </insert>
 </mapper>

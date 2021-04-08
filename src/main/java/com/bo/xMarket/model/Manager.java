@@ -1,10 +1,9 @@
 package com.bo.xMarket.model;
 
-public class Manager extends Transaction{
+public class Manager extends Transaction {
     private Integer managerId;
     private Integer personId;
     private String username;
-    private String photo;
     private String password;
     private Integer status;
 
@@ -17,7 +16,6 @@ public class Manager extends Transaction{
                 "managerId=" + managerId +
                 ", personId=" + personId +
                 ", username='" + username + '\'' +
-                ", photo='" + photo + '\'' +
                 ", password='" + password + '\'' +
                 ", status=" + status +
                 '}';
@@ -45,14 +43,6 @@ public class Manager extends Transaction{
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public String getPassword() {

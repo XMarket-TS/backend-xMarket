@@ -19,13 +19,11 @@ import org.springframework.web.server.ResponseStatusException;
 public class UserBl {
     private UserDao userDao;
     private PersonDao personDao;
-    private ManagerDao managerDao;
 
     @Autowired
-    public UserBl(UserDao userDao, PersonDao personDao, ManagerDao managerDao) {
+    public UserBl(UserDao userDao, PersonDao personDao) {
         this.userDao = userDao;
         this.personDao = personDao;
-        this.managerDao = managerDao;
     }
 
     public User addUser(UserRequest userRequest, Transaction transaction) {
@@ -33,6 +31,8 @@ public class UserBl {
         person.setName(userRequest.getName());
         person.setSurname(userRequest.getSurname());
         person.setEmail(userRequest.getEmail());
+        person.setGender(userRequest.getGender());
+        person.setPhoto(userRequest.getUserPhoto());
         person.setStatus(1);
         person.setTransaction(transaction);
         personDao.addPerson(person);

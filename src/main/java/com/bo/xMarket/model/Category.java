@@ -2,9 +2,10 @@ package com.bo.xMarket.model;
 
 import java.util.Date;
 
-public class Category extends Transaction{
+public class Category extends Transaction {
     private Integer idCategory;
     private String name;
+    private String image;
     private Integer status;
 
     public Category(Integer txId, String txHost, Integer txUserId, Date txDate) {
@@ -21,6 +22,14 @@ public class Category extends Transaction{
                 ", name='" + name + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Integer getIdCategory() {

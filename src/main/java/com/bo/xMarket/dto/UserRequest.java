@@ -5,9 +5,40 @@ public class UserRequest {
     private String surname;
     private String username;
     private String email;
+    private String gender;
+    private String userPhoto;
     private String password;
 
     public UserRequest() {
+    }
+
+    @Override
+    public String toString() {
+        return "UserRequest{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
+                ", userPhoto='" + userPhoto + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    public String getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getName() {
