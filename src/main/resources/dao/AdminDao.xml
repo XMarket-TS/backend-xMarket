@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bo.xMarket.dao.AdminDao">
+    <insert id="addBranchOffice" parameterType="com.bo.xMarket.model.BranchOffice">
+        INSERT INTO branch_office
+        (`manager_manager_id`, `name`, `phone`, `zone`,
+         `address`, `image`, `status`, `tx_host`,
+         `tx_user_id`, `tx_date`)
+        VALUES (#{managerId}, #{name}, #{phone}, #{zone},
+                #{address}, #{image}, #{status}, #{txHost},
+                #{txUserId}, #{txDate})
+    </insert>
+    <select id="findAdminByLogin" resultType="com.bo.xMarket.model.Person">
+        SELECT a.person_id   as personId,
+               a.name        as name,
+               a.surname     as surname,
+               a.email       as email,
+               a.description as description,
+               a.gender      as gender,
+               a.photo       as photo,
+               a.cellphone   as cellphone
+        FROM person a,
+             admin m
+        WHERE a.person_id = m.person_person_id
+          AND m.username = #{username}
+          AND m.password = #{password}
+          AND a.status = 1
+    </select>
+</mapper>
