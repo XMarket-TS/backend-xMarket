@@ -15,5 +15,5 @@ public interface CategoryDao {
 
     public List<CategoryRequest> listcategory();
 
-    public Category getCategoryById(Integer categoryId);
+    public CategoryRequest getCategoryById(Integer categoryId);
 }
