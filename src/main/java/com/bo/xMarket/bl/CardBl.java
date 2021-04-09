@@ -2,10 +2,10 @@ package com.bo.xMarket.bl;
 
 import com.bo.xMarket.dao.CardDao;
 import com.bo.xMarket.dao.CategoryDao;
-import com.bo.xMarket.dto.CardRequest;
-import com.bo.xMarket.dto.CardResponse;
-import com.bo.xMarket.dto.CategoryRequest;
+import com.bo.xMarket.dto.*;
 import com.bo.xMarket.model.Card;
+import com.bo.xMarket.model.Category;
+import com.bo.xMarket.model.Stock;
 import com.bo.xMarket.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +50,10 @@ public class CardBl {
 //        LOGGER.info(card2.getTxHost());
         cardDao.addCard(card2);
         return card2;
+    }
+    public CardResponse cardDetails(Integer cardid) {
+        CardResponse cardResponse=cardDao.cardDetails(cardid);
+        return cardResponse;
     }
     public void cardDelete(Integer cardId) {
         cardDao.deleteCard(cardId);

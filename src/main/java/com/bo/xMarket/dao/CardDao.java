@@ -1,6 +1,7 @@
 package com.bo.xMarket.dao;
 
 import com.bo.xMarket.dto.CardRequest;
+import com.bo.xMarket.dto.CardResponse;
 import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.model.Card;
 import com.bo.xMarket.model.Product;
@@ -14,7 +15,7 @@ public interface CardDao {
     public Integer addCard(Card card);
     public Integer getLastInsertId();
     public List<CardRequest> listCardsByUser(Integer iduser);
-    public Card cardDetails(Integer idcard);
+    public CardResponse cardDetails(Integer idcard);
 
     //Delete the product logically
     public void deleteCard(Integer idcard);

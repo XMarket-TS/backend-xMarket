@@ -21,7 +21,7 @@
           AND c.status = 1
 
     </select>
-    <select id="cardDetails" resultType="com.bo.xMarket.model.Card">
+    <select id="cardDetails" resultType="com.bo.xMarket.dto.CardResponse">
         SELECT a.card_id          as cardId,
                a.user_id          as userId,
                a.card_name        as cardName,
@@ -33,7 +33,7 @@
                a.status           as status
 
         FROM card a
-        WHERE a.card_id = #{idcard}
+        WHERE a.card_id = #{cardid}
           AND a.status = 1
     </select>
     <insert id="addCard" parameterType="com.bo.xMarket.model.Card">

@@ -18,6 +18,12 @@ Content-Type: application/json
 GET http://localhost:8080/user/1/listCards
 Accept: application/json
 
+### get card list by user
+GET http://localhost:8080/card/1
+Accept: application/json
+
+
+
 ### delete card
 DELETE http://localhost:8080/card/5
 Accept: application/json
