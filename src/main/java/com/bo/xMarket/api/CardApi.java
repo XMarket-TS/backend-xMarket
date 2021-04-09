@@ -39,7 +39,7 @@ public class CardApi {
         Card createcard=cardBl.addCard(card,transaction);
         return createcard;
     }
-    @RequestMapping(value = "/user/{userid}/listCards/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/user/{userid}/listCards", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CardRequest> listCardsByUser(@PathVariable("userid") Integer id) {
         return cardBl.listCardsByUser(id);
     }
