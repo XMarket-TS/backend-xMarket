@@ -13,10 +13,13 @@
                 #{txUserId}, #{txDate})
     </insert>
     <select id="listBranchOffice" resultType="com.bo.xMarket.model.BranchOffice">
-        SELECT id_branch_office as branchOfficeId,
-               name             as name,
-               phone            as phone,
-               zone             as zone
+        SELECT id_branch_office   as branchOfficeId,
+               manager_manager_id as managerId,
+               name               as name,
+               phone              as phone,
+               zone               as zone,
+               address            as address,
+               image              as image
         FROM branch_office
         WHERE status = 1
     </select>
