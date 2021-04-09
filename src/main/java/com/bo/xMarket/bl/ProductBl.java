@@ -192,9 +192,11 @@ public class ProductBl {
         Category category = categoryDao.getCategoryById(productid);
         List<MediaRequest> media = mediaDao.listmedia(productid);
         Stock stock = stockDao.getStockById(productid);
-        LOGGER.warn(stock.getInStock().toString());
         product.setCategory(new CategoryRequest(category.getIdCategory(), category.getName(), category.getImage()));
         product.setImagesUrl(media);
+        if (product.getPercentage() == null) {
+            product.setPercentage(0);
+        }
         product.setUnit(stock.getInStock());
 
         return product;
