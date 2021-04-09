@@ -51,6 +51,7 @@
         SET status=0
         WHERE (card_id = #{idcard})
     </update>
+
     <update id="updateCard">
         UPDATE card
         SET status=1
