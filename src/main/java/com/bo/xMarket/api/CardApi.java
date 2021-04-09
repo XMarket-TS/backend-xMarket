@@ -6,6 +6,7 @@ import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.dto.CardRequest;
 import com.bo.xMarket.dto.CardResponse;
 import com.bo.xMarket.dto.ProductResponse;
+import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Card;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
@@ -51,5 +52,9 @@ public class CardApi {
         cardBl.cardDelete(cardId);
 //        productBl.productDelete(productid);
     }
-
+    @RequestMapping(value = "/card/{cardid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public CardResponse cardDetails(@PathVariable("cardid") Integer id) {
+        return cardBl.cardDetails(id);
+//        return productBl.productInfo(id);
+    }
 }
