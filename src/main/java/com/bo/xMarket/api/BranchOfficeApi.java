@@ -4,10 +4,6 @@ import com.bo.xMarket.bl.BranchOfficeBl;
 import com.bo.xMarket.bl.TransactionBl;
 
 import com.bo.xMarket.dto.BranchOfficeRequest;
-import com.bo.xMarket.dto.ManagerRequest;
-import com.bo.xMarket.model.BranchOffice;
-import com.bo.xMarket.model.Manager;
-import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +33,7 @@ public class BranchOfficeApi {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BranchOffice> branchofficelist() {
+    public List<BranchOfficeRequest> branchofficelist() {
         return branchOfficeBl.branchOfficeList();
     }
 

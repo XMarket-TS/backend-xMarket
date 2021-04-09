@@ -9,6 +9,7 @@ import com.bo.xMarket.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,7 +37,21 @@ public class BranchOfficeBl {
         return branchOfficeRequest;
     }
 
-    public List<BranchOffice> branchOfficeList() {
-        return branchOfficeDao.listBranchOffice();
+    public List<BranchOfficeRequest> branchOfficeList() {
+        List<BranchOfficeRequest> branchOfficeRequests = new ArrayList<>();
+        List<BranchOffice> branchOffices = branchOfficeDao.listBranchOffice();
+        for (BranchOffice branchOffice : branchOffices) {
+            BranchOfficeRequest result = new BranchOfficeRequest();
+            result.setBranchOfficeId(branchOffice.getBranchOfficeId());
+            result.setManagerId(branchOffice.getManagerId());
+            result.setName(branchOffice.getName());
+            result.setPhone(branchOffice.getPhone());
+            result.setZone(branchOffice.getZone());
+            result.setAddress(branchOffice.getAddress());
+            result.setImage(branchOffice.getImage());
+            branchOfficeRequests.add(result);
+        }
+        return branchOfficeRequests;
+
     }
 }

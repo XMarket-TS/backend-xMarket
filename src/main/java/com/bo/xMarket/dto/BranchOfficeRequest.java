@@ -3,7 +3,7 @@ package com.bo.xMarket.dto;
 import com.bo.xMarket.model.Transaction;
 
 public class BranchOfficeRequest {
-    //private Integer branchId; *
+    private Integer branchOfficeId;
     private Integer managerId; //nombre del manager no Id *
     private String name;
     private Integer phone;
@@ -11,10 +11,8 @@ public class BranchOfficeRequest {
     private String address;
     private String image;
 
-    public BranchOfficeRequest() {
-    }
-
-    public BranchOfficeRequest(Integer managerId, String name, Integer phone, String zone, String address, String image) {
+    public BranchOfficeRequest(Integer branchOfficeId, Integer managerId, String name, Integer phone, String zone, String address, String image) {
+        this.branchOfficeId = branchOfficeId;
         this.managerId = managerId;
         this.name = name;
         this.phone = phone;
@@ -23,16 +21,28 @@ public class BranchOfficeRequest {
         this.image = image;
     }
 
+    public BranchOfficeRequest() {
+    }
+
     @Override
     public String toString() {
         return "BranchOfficeRequest{" +
-                "managerId=" + managerId +
+                "branchOfficeId=" + branchOfficeId +
+                ", managerId=" + managerId +
                 ", name='" + name + '\'' +
                 ", phone=" + phone +
                 ", zone='" + zone + '\'' +
                 ", address='" + address + '\'' +
                 ", image='" + image + '\'' +
                 '}';
+    }
+
+    public Integer getBranchOfficeId() {
+        return branchOfficeId;
+    }
+
+    public void setBranchOfficeId(Integer branchOfficeId) {
+        this.branchOfficeId = branchOfficeId;
     }
 
     public Integer getManagerId() {

@@ -19,5 +19,5 @@ GET http://localhost:8080/user/1/listCards
 Accept: application/json
 
 ### delete card
-DELETE http://localhost:8080//card/5
+DELETE http://localhost:8080/card/5
 Accept: application/json

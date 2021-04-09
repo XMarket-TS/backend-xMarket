@@ -36,7 +36,7 @@ Content-Type: application/json
 }
 
 ### get product details
-GET http://localhost:8080/product/2
+GET http://localhost:8080/product/4
 Accept: application/json
 
 ### delete product
