@@ -10,6 +10,8 @@ import com.bo.xMarket.model.Manager;
 import com.bo.xMarket.model.Person;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class ManagerBl {
     private ManagerDao managerDao;
     private PersonDao personDao;
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductBl.class);
     @Autowired
     public ManagerBl(ManagerDao managerDao, PersonDao personDao) {
         this.managerDao = managerDao;
@@ -52,6 +54,7 @@ public class ManagerBl {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
         }
         Person person = managerDao.findManagerByLogin(loginRequest);
+
         if (person == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
         }

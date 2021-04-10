@@ -1,12 +1,25 @@
 package com.bo.xMarket.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class UserRequest {
+    @NotBlank(message = "Name is mandatory")
     private String name;
+    @NotBlank(message = "Name is mandatory")
     private String surname;
+    @NotBlank(message = "Name is mandatory")
     private String username;
+    @NotBlank(message = "Email is mandatory")
+    @Email
     private String email;
+    @NotBlank(message = "Gender is mandatory")
     private String gender;
     private String userPhoto;
+    @NotBlank(message = "Password is mandatory")
+    @Size(min = 8, max = 20, message
+            = "About Me must be between 8 and 20 characters")
     private String password;
 
     public UserRequest() {

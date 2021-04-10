@@ -4,7 +4,6 @@ import com.bo.xMarket.bl.ManagerBl;
 import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.dto.LoginRequest;
 import com.bo.xMarket.dto.ManagerRequest;
-import com.bo.xMarket.model.Manager;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping(value = "/manager")
@@ -27,7 +28,7 @@ public class ManagerApi {
     }
 
     @RequestMapping(value = "/register/new", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ManagerRequest addManager(@RequestBody ManagerRequest managerRequest, HttpServletRequest request) {
+    public ManagerRequest addManager(@Valid @RequestBody ManagerRequest managerRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         return managerBl.addManager(managerRequest, transaction);

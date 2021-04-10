@@ -1,29 +1,28 @@
 package com.bo.xMarket.dto;
 
+import javax.validation.constraints.*;
+
 public class ManagerRequest {
     private Integer personId;
+    @NotBlank(message = "Name is mandatory")
     private String name;
+    @NotBlank(message = "Surname is mandatory")
     private String surname;
+    @NotBlank(message = "Username is mandatory")
     private String username;
+    @NotBlank(message = "Email is mandatory")
+    @Email
     private String email;
     private String userPhoto;
     private String description;
     private String cellphone;
+    @NotBlank(message = "Gender is mandatory")
     private String gender;
+    @NotBlank(message = "Password is mandatory")
+    @Size(min = 8, max = 20, message
+            = "About Me must be between 8 and 20 characters")
     private String password;
 
-    public ManagerRequest(Integer personId, String name, String surname, String username, String email, String userPhoto, String description, String cellphone, String gender, String password) {
-        this.personId = personId;
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.email = email;
-        this.userPhoto = userPhoto;
-        this.description = description;
-        this.cellphone = cellphone;
-        this.gender = gender;
-        this.password = password;
-    }
 
     public ManagerRequest() {
     }
