@@ -7,17 +7,9 @@ public class BranchOffice extends Transaction {
     private Integer phone;
     private String zone;
     private String address;
+    private String image;
     private Integer status;
 
-    public BranchOffice(Integer branchOfficeId, Integer managerId, String name, Integer phone, String zone, String address, Integer status) {
-        this.branchOfficeId = branchOfficeId;
-        this.managerId = managerId;
-        this.name = name;
-        this.phone = phone;
-        this.zone = zone;
-        this.address = address;
-        this.status = status;
-    }
 
     public BranchOffice() {
     }
@@ -31,6 +23,7 @@ public class BranchOffice extends Transaction {
                 ", phone=" + phone +
                 ", zone='" + zone + '\'' +
                 ", address='" + address + '\'' +
+                ", image='" + image + '\'' +
                 ", status=" + status +
                 '}';
     }
@@ -81,6 +74,14 @@ public class BranchOffice extends Transaction {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Integer getStatus() {

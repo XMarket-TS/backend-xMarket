@@ -2,13 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bo.xMarket.dao.ManagerDao">
-    <insert id="addManager" parameterType="com.bo.xMarket.model.Manager">
-        INSERT INTO `manager`
-        (`person_person_id`, `username`, `password`, `status`, `tx_host`, `tx_user_id`, `tx_date`)
-        VALUES (#{personId}, #{username}, #{password}, #{status}, #{txHost}, #{txUserId}, #{txDate})
+<mapper namespace="com.bo.xMarket.dao.AdminDao">
+    <insert id="addBranchOffice" parameterType="com.bo.xMarket.model.BranchOffice">
+        INSERT INTO branch_office
+        (`manager_manager_id`, `name`, `phone`, `zone`,
+         `address`, `image`, `status`, `tx_host`,
+         `tx_user_id`, `tx_date`)
+        VALUES (#{managerId}, #{name}, #{phone}, #{zone},
+                #{address}, #{image}, #{status}, #{txHost},
+                #{txUserId}, #{txDate})
     </insert>
-    <select id="findManagerByLogin" resultType="com.bo.xMarket.model.Person">
+    <select id="findAdminByLogin" resultType="com.bo.xMarket.model.Person">
         SELECT a.person_id   as personId,
                a.name        as name,
                a.surname     as surname,
@@ -18,7 +22,7 @@
                a.photo       as photo,
                a.cellphone   as cellphone
         FROM person a,
-             manager m
+             admin m
         WHERE a.person_id = m.person_person_id
           AND m.username = #{username}
           AND m.password = #{password}

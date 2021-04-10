@@ -5,12 +5,10 @@
 <mapper namespace="com.bo.xMarket.dao.TransactionDao">
     <insert id="create" parameterType="com.bo.xMarket.model.Transaction">
         INSERT INTO transaction
-        VALUES (
-            null,
-            #{txHost},
-            #{txUserId},
-            #{txDate}
-        )
+        VALUES (null,
+                #{txHost},
+                #{txUserId},
+                #{txDate})
     </insert>
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()

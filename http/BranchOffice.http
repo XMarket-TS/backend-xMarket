@@ -8,6 +8,7 @@ Content-Type: application/json
   "name": "Sucursal 2",
   "phone": 75631326,
   "zone": "Av. Avaro",
+  "image": "https://res.cloudinary.com/fulano/image/upload/v1617116017/profileimage_kptkl6.jpg",
   "address": "Calle 8"
 }
 

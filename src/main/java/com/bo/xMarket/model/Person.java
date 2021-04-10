@@ -1,23 +1,17 @@
 package com.bo.xMarket.model;
 
+import java.util.Date;
+
 public class Person extends Transaction {
     private Integer personId;
     private String name;
     private String surname;
     private String email;
     private String description;
-    private Integer cellphone;
+    private String gender;
+    private String photo;
+    private String cellphone;
     private Integer status;
-
-    public Person(Integer personId, String name, String surname, String email, String description, Integer cellphone, Integer status) {
-        this.personId = personId;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.description = description;
-        this.cellphone = cellphone;
-        this.status = status;
-    }
 
     public Person() {
     }
@@ -75,11 +69,11 @@ public class Person extends Transaction {
         this.description = description;
     }
 
-    public Integer getCellphone() {
+    public String getCellphone() {
         return cellphone;
     }
 
-    public void setCellphone(Integer cellphone) {
+    public void setCellphone(String cellphone) {
         this.cellphone = cellphone;
     }
 
@@ -89,6 +83,22 @@ public class Person extends Transaction {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
 

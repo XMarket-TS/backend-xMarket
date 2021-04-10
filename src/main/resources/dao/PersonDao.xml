@@ -5,13 +5,27 @@
 <mapper namespace="com.bo.xMarket.dao.PersonDao">
     <insert id="addPerson" parameterType="com.bo.xMarket.model.Person">
         INSERT INTO person
-        VALUES(
-                  null,#{name},#{surname},#{email},
-                  #{description},#{cellphone},#{status},
-                  #{transaction.txHost},#{transaction.txUserId},#{transaction.txDate}
-              )
+        (`name`, `surname`, `email`, `description`,
+         `gender`, `photo`, `cellphone`, `status`,
+         `tx_host`, `tx_user_id`, `tx_date`)
+        VALUES (#{name}, #{surname}, #{email}, #{description},
+                #{gender}, #{photo}, #{cellphone}, #{status},
+                #{txHost}, #{txUserId}, #{txDate})
     </insert>
     <select id="getLastPersonId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </select>
+    <select id="getPersonById" resultType="com.bo.xMarket.model.Person">
+        SELECT person_id   as personId,
+               name        as name,
+               surname     as surname,
+               email       as email,
+               description as description,
+               gender      as gender,
+               photo       as photo,
+               cellphone   as cellphone
+        FROM person
+        WHERE person_id = #{personId}
+    </select>
+
 </mapper>

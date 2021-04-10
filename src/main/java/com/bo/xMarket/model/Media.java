@@ -1,16 +1,15 @@
 package com.bo.xMarket.model;
 
+import java.util.Date;
+
 public class Media extends Transaction {
     private Integer mediaId;
     private Integer productId;
     private String photo;
     private Integer status;
 
-    public Media(Integer mediaId, Integer productId, String photo, Integer status) {
-        this.mediaId = mediaId;
-        this.productId = productId;
-        this.photo = photo;
-        this.status = status;
+    public Media(Integer txId, String txHost, Integer txUserId, Date txDate) {
+        super(txId, txHost, txUserId, txDate);
     }
 
     public Media() {

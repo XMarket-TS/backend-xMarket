@@ -5,17 +5,33 @@
 <mapper namespace="com.bo.xMarket.dao.BranchOfficeDao">
     <insert id="addBranchOffice" parameterType="com.bo.xMarket.model.BranchOffice">
         INSERT INTO branch_office
-        VALUES(
-                  null,#{managerId},#{name},#{phone},
-                  #{zone},#{address},#{status},
-                  #{transaction.txHost},#{transaction.txUserId},#{transaction.txDate}
-              )
+        (`manager_manager_id`, `name`, `phone`, `zone`,
+         `address`, `image`, `status`, `tx_host`,
+         `tx_user_id`, `tx_date`)
+        VALUES (#{managerId}, #{name}, #{phone}, #{zone},
+                #{address}, #{image}, #{status}, #{txHost},
+                #{txUserId}, #{txDate})
     </insert>
     <select id="listBranchOffice" resultType="com.bo.xMarket.model.BranchOffice">
-        SELECT id_branch_office as branchOfficeId,
-               name as name,
-               phone as phone,
-               zone as zone
-        FROM branch_office WHERE status=1
+        SELECT id_branch_office   as branchOfficeId,
+               manager_manager_id as managerId,
+               name               as name,
+               phone              as phone,
+               zone               as zone,
+               address            as address,
+               image              as image
+        FROM branch_office
+        WHERE status = 1
+    </select>
+    <select id="getBranchByPersonManagerId" resultType="com.bo.xMarket.model.BranchOffice">
+        SELECT a.id_branch_office as branchOfficeId,
+               a.name             as name,
+               a.phone            as phone,
+               a.zone             as zone,
+               a.address          as address
+        FROM branch_office a,
+             manager b
+        WHERE b.person_person_id = #{personId}
+          AND a.manager_manager_id = b.manager_id
     </select>
 </mapper>

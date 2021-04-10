@@ -11,7 +11,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MediaDao {
     public List<MediaRequest> listmedia(Integer idproduct);
 
-    public List<Media> getPhotosById(Integer productId);
-
     public void addMedia(Media media);
 }

@@ -9,16 +9,10 @@
         FROM media_product
         WHERE product_product_id = #{productid}
     </select>
-    <select id="getPhotosById" resultType="com.bo.xMarket.model.Media">
-        SELECT product_product_id as productId,
-               photo              as photo
-        FROM media_product
-        WHERE product_product_id = #{productid}
-          AND status = 1
-    </select>
+
     <insert id="addMedia" parameterType="com.bo.xMarket.model.Media">
         INSERT INTO media_product
         VALUES (null, #{productId}, #{photo}, #{status},
-                #{transaction.txHost}, #{transaction.txUserId}, #{transaction.txDate})
+                #{txHost}, #{txUserId}, #{txDate})
     </insert>
 </mapper>

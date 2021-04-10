@@ -1,14 +1,15 @@
 package com.bo.xMarket.model;
 
-public class Category extends Transaction{
+import java.util.Date;
+
+public class Category extends Transaction {
     private Integer idCategory;
     private String name;
+    private String image;
     private Integer status;
 
-    public Category(Integer idCategory, String name, Integer status) {
-        this.idCategory = idCategory;
-        this.name = name;
-        this.status = status;
+    public Category(Integer txId, String txHost, Integer txUserId, Date txDate) {
+        super(txId, txHost, txUserId, txDate);
     }
 
     public Category() {
@@ -21,6 +22,14 @@ public class Category extends Transaction{
                 ", name='" + name + '\'' +
                 ", status=" + status +
                 '}';
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Integer getIdCategory() {

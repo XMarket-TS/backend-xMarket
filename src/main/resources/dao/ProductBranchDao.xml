@@ -5,9 +5,7 @@
 <mapper namespace="com.bo.xMarket.dao.ProductBranchDao">
     <insert id="addProductBranch" parameterType="com.bo.xMarket.model.ProductBranch">
         INSERT INTO product_branch_office
-        VALUES(
-                  null,#{productId},#{branchOfficeId}
-              )
+        VALUES (null, #{productId}, #{branchOfficeId})
     </insert>
 
 </mapper>

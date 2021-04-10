@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.OfferRegisterDao">
+    <insert id="addOfferRegister" parameterType="com.bo.xMarket.model.OfferRegister">
+        INSERT INTO offers_register
+        VALUES (null, #{productId}, #{startDate}, #{endDate}, #{percentage}, #{status},
+                #{txHost}, #{txUserId}, #{txDate})
+    </insert>
     <select id="getActualOffer" resultType="com.bo.xMarket.model.OfferRegister">
         SELECT start_date as startDate,
                end_date   as endDate,

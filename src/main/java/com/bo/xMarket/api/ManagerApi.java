@@ -2,20 +2,18 @@ package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.ManagerBl;
 import com.bo.xMarket.bl.TransactionBl;
+import com.bo.xMarket.dto.LoginRequest;
 import com.bo.xMarket.dto.ManagerRequest;
-import com.bo.xMarket.dto.UserRequest;
-import com.bo.xMarket.model.Manager;
 import com.bo.xMarket.model.Transaction;
-import com.bo.xMarket.model.User;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping(value = "/manager")
@@ -28,11 +26,22 @@ public class ManagerApi {
         this.managerBl = managerBl;
         this.transactionBl = transactionBl;
     }
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Manager addManager(@RequestBody ManagerRequest managerRequest, HttpServletRequest request){
+
+    @RequestMapping(value = "/register/new", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ManagerRequest addManager(@Valid @RequestBody ManagerRequest managerRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        Manager managerResponse=managerBl.addManager(managerRequest,transaction);
-        return managerResponse;
+        return managerBl.addManager(managerRequest, transaction);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public ManagerRequest userSignUp(@RequestBody LoginRequest LoginRequest) {
+        return managerBl.managerLogin(LoginRequest);
+    }
+
+    @RequestMapping(value = "/login/{personId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ManagerRequest getInfoManager(@PathVariable("personId") Integer id) {
+        return managerBl.infoManager(id);
     }
 }

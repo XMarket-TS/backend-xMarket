@@ -6,15 +6,13 @@ public class User extends Transaction {
     private String username;
     private String password;
     private Integer status;
-    private String userPhoto;
 
-    public User(Integer userId, Integer personId, String username, String password, Integer status, String userPhoto) {
+    public User(Integer userId, Integer personId, String username, String password, Integer status) {
         this.userId = userId;
         this.personId = personId;
         this.username = username;
         this.password = password;
         this.status = status;
-        this.userPhoto = userPhoto;
     }
 
     public User() {
@@ -28,7 +26,6 @@ public class User extends Transaction {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", status=" + status +
-                ", userPhoto='" + userPhoto + '\'' +
                 '}';
     }
 
@@ -72,11 +69,4 @@ public class User extends Transaction {
         this.status = status;
     }
 
-    public String getUserPhoto() {
-        return userPhoto;
-    }
-
-    public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
-    }
 }

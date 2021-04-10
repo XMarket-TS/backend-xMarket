@@ -1,0 +1,29 @@
+### adding new card
+POST http://localhost:8080/addcard
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "cardName": "Banco Sol",
+  "cardNumber": 44444444,
+  "expirationYear": 2024,
+  "expirationMonth": 4,
+  "cvc": 2222,
+  "creationDate": "2021-12-31T16:00:00Z",
+  "status": 1
+}
+
+### get card list by user
+GET http://localhost:8080/user/1/listCards
+Accept: application/json
+
+### get card list by user
+GET http://localhost:8080/card/1
+Accept: application/json
+
+
+
+### delete card
+DELETE http://localhost:8080/card/5
+Accept: application/json
