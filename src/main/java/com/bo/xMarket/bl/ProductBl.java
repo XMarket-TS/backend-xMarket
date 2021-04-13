@@ -196,7 +196,11 @@ public class ProductBl {
         Stock stock = stockDao.getStockById(productId);
         LOGGER.warn(stock.toString());
         product.setCategory(category);
-        product.setImagesUrl(media);
+        List<String> mediaResult = new ArrayList<>();
+        media.forEach(mediaRequest -> {
+            mediaResult.add(mediaRequest.getPhoto());
+        });
+        product.setImagesUrl(mediaResult);
         if (product.getPercentage() == null) {
             product.setPercentage(0);
         }

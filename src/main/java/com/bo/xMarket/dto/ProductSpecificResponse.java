@@ -9,7 +9,7 @@ public class ProductSpecificResponse {
     private Integer percentage;
     private String description;
     private Integer unit;
-    private List<MediaRequest> imagesUrl;
+    private List<String> imagesUrl;
     private CategoryRequest category;
     private Integer branchId;
 
@@ -79,11 +79,11 @@ public class ProductSpecificResponse {
         this.unit = unit;
     }
 
-    public List<MediaRequest> getImagesUrl() {
+    public List<String> getImagesUrl() {
         return imagesUrl;
     }
 
-    public void setImagesUrl(List<MediaRequest> imagesUrl) {
+    public void setImagesUrl(List<String> imagesUrl) {
         this.imagesUrl = imagesUrl;
     }
 
