@@ -1,7 +1,6 @@
 package com.bo.xMarket.dao;
 
 import com.bo.xMarket.dto.LoginRequest;
-import com.bo.xMarket.dto.ManagerRequest;
 import com.bo.xMarket.model.Manager;
 import com.bo.xMarket.model.Person;
 import org.apache.ibatis.annotations.Mapper;

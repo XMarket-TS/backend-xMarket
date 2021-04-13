@@ -1,6 +1,5 @@
 package com.bo.xMarket.dao;
 
-import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.model.OfferRegister;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,8 +1,5 @@
 package com.bo.xMarket.dto;
 
-
-import com.bo.xMarket.model.Category;
-
 import java.util.List;
 
 public class ProductSpecificResponse {

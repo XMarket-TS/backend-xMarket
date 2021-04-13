@@ -2,14 +2,11 @@ package com.bo.xMarket.bl;
 
 import com.bo.xMarket.dao.ManagerDao;
 import com.bo.xMarket.dao.PersonDao;
-import com.bo.xMarket.dao.UserDao;
 import com.bo.xMarket.dto.LoginRequest;
 import com.bo.xMarket.dto.ManagerRequest;
-import com.bo.xMarket.dto.UserRequest;
 import com.bo.xMarket.model.Manager;
 import com.bo.xMarket.model.Person;
 import com.bo.xMarket.model.Transaction;
-import com.bo.xMarket.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +53,7 @@ public class ManagerBl {
         Person person = managerDao.findManagerByLogin(loginRequest);
 
         if (person == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not available");
         }
         ManagerRequest managerRequest = new ManagerRequest();
         setPerson(managerRequest, person);

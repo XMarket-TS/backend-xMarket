@@ -1,8 +1,5 @@
 package com.bo.xMarket.dto;
 
-import java.sql.Date;
-import java.util.List;
-
 public class CardRequest {
     private Integer cardId;
     private Integer userId;

@@ -3,17 +3,14 @@ package com.bo.xMarket.api;
 import com.bo.xMarket.bl.MediaBl;
 import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.dto.MediaRequest;
-import com.bo.xMarket.dto.ProductRequest;
-import com.bo.xMarket.model.Product;
-import com.bo.xMarket.model.Transaction;
-import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 @RestController

@@ -1,7 +1,5 @@
 package com.bo.xMarket.model;
 
-import java.util.Date;
-
 public class Person extends Transaction {
     private Integer personId;
     private String name;

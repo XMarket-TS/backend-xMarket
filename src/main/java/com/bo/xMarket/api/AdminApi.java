@@ -3,7 +3,6 @@ package com.bo.xMarket.api;
 import com.bo.xMarket.bl.AdminBl;
 import com.bo.xMarket.dto.AdminRequest;
 import com.bo.xMarket.dto.LoginRequest;
-import com.bo.xMarket.dto.ManagerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
