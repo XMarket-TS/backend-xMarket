@@ -19,6 +19,7 @@
         WHERE c.id_branch_office = b.branch_office_id_branch_office
           AND b.product_product_id = a.product_id
           AND c.id_branch_office = #{idbranch}
+          AND a.status = 1
 
     </select>
     <select id="listProductsByBranchId" resultType="com.bo.xMarket.dto.ProductResponse">
@@ -77,21 +78,21 @@
                 #{txUserId}, #{txDate}, null)
     </insert>
     <select id="productsDetails" resultType="com.bo.xMarket.dto.ProductSpecificResponse">
-        SELECT product_id                                  as productId,
-               name                                        as name,
-               price                                       as price,
-               (SELECT c.percentage
-                FROM offers_register c
-                WHERE c.product_product_id = #{productid}
-                  AND c.status = 1
-                ORDER BY c.id_offers DESC
+        SELECT b.product_id                                as productId,
+               b.name                                      as name,
+               b.price                                     as price,
+               (SELECT a.percentage
+                FROM offers_register a
+                WHERE a.product_product_id = #{productId}
+                  AND a.status = 1
+                ORDER BY a.id_offers DESC
                 LIMIT 1)                                   as percentage,
-               description                                 as description,
-               (SELECT a.id_product_branch_office
-                FROM product_branch_office a
-                WHERE a.product_product_id = #{productid}) as branchId
-        FROM product
-        WHERE product_id = #{productid}
+               b.description                               as description,
+               (SELECT c.id_product_branch_office
+                FROM product_branch_office c
+                WHERE c.product_product_id = #{productId}) as branchId
+        FROM product b
+        WHERE product_id = #{productId}
 
     </select>
 

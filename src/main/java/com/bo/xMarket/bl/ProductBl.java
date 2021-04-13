@@ -187,12 +187,15 @@ public class ProductBl {
         });
     }
 
-    public ProductSpecificResponse productInfo(Integer productid) {
-        ProductSpecificResponse product = productDao.productsDetails(productid);
-        Category category = categoryDao.getCategoryById(productid);
-        List<MediaRequest> media = mediaDao.listmedia(productid);
-        Stock stock = stockDao.getStockById(productid);
-        product.setCategory(new CategoryRequest(category.getIdCategory(), category.getName(), category.getImage()));
+    public ProductSpecificResponse productInfo(Integer productId) {
+        ProductSpecificResponse product = productDao.productsDetails(productId);
+        LOGGER.warn(product.toString());
+        CategoryRequest category = categoryDao.getCategoryByProductId(productId);
+        List<MediaRequest> media = mediaDao.listmedia(productId);
+        LOGGER.warn(media.toString());
+        Stock stock = stockDao.getStockById(productId);
+        LOGGER.warn(stock.toString());
+        product.setCategory(category);
         product.setImagesUrl(media);
         if (product.getPercentage() == null) {
             product.setPercentage(0);

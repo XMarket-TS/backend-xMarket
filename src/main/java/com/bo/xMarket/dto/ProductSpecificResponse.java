@@ -16,6 +16,21 @@ public class ProductSpecificResponse {
     public ProductSpecificResponse() {
     }
 
+    @Override
+    public String toString() {
+        return "ProductSpecificResponse{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", percentage=" + percentage +
+                ", description='" + description + '\'' +
+                ", unit=" + unit +
+                ", imagesUrl=" + imagesUrl +
+                ", category=" + category +
+                ", branchId=" + branchId +
+                '}';
+    }
+
     public Integer getProductId() {
         return productId;
     }

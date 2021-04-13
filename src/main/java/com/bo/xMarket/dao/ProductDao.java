@@ -18,7 +18,7 @@ public interface ProductDao {
 
     public void addproduct(Product product);
 
-    public ProductSpecificResponse productsDetails(Integer productid);
+    public ProductSpecificResponse productsDetails(Integer productId);
 
     public Integer getLastInsertId();
 
