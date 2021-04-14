@@ -41,7 +41,7 @@ public class ProductBl {
 
     public List<ProductResponse> productList(Integer idPerson) {
         BranchOffice branchOffice = branchOfficeDao.getBranchByPersonManagerId(idPerson);
-        if (branchOffice.getBranchOfficeId() == null) {
+        if (branchOffice == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find branch");
         }
         List<Product> productResponse = productDao.listProductsByBranch(branchOffice.getBranchOfficeId());
@@ -211,5 +211,9 @@ public class ProductBl {
 
     public void productDelete(Integer productId) {
         productDao.deleteProduct(productId);
+    }
+
+    public List<OfferRequest> productOffers(Integer id) {
+        return offerRegisterDao.getOffersByProduct(id);
     }
 }

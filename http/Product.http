@@ -42,3 +42,8 @@ Accept: application/json
 ### delete product
 DELETE http://localhost:8080/product/10
 Accept: application/json
+
+### get product details
+GET http://localhost:8080/product/offers/3
+Accept: application/json
+
