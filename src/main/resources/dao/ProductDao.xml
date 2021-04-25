@@ -39,7 +39,6 @@
                 ORDER BY e.media_id DESC
                 LIMIT 1)     as firstImage
         FROM product a  where a.status=1 and a.name LIKE #{search}
-
     </select>
     <select id="listProductsByBranchId" resultType="com.bo.xMarket.dto.ProductResponse">
         SELECT a.product_id                                                      as productId,
