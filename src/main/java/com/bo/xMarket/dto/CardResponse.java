@@ -1,7 +1,5 @@
 package com.bo.xMarket.dto;
 
-import com.bo.xMarket.model.Transaction;
-
 import java.sql.Date;
 
 public class CardResponse {

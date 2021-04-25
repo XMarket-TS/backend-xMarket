@@ -4,7 +4,6 @@ import com.bo.xMarket.dao.AdminDao;
 import com.bo.xMarket.dao.PersonDao;
 import com.bo.xMarket.dto.AdminRequest;
 import com.bo.xMarket.dto.LoginRequest;
-import com.bo.xMarket.dto.ManagerRequest;
 import com.bo.xMarket.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +27,7 @@ public class AdminBl {
         }
         Person person = adminDao.findAdminByLogin(loginRequest);
         if (person == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find user");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not available");
         }
         AdminRequest adminRequest = new AdminRequest();
         adminRequest.setPersonId(person.getPersonId());

@@ -2,16 +2,14 @@ package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.ProductBl;
 import com.bo.xMarket.bl.TransactionBl;
-
+import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.dto.ProductRequest;
 import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Product;
-
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -64,6 +62,11 @@ public class ProductApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         productBl.productDelete(productid);
+    }
+
+    @RequestMapping(value = "/product/offers/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<OfferRequest> productOffers(@PathVariable("productid") Integer id) {
+        return productBl.productOffers(id);
     }
 
 }

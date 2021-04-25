@@ -2,11 +2,8 @@ package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.CardBl;
 import com.bo.xMarket.bl.TransactionBl;
-
 import com.bo.xMarket.dto.CardRequest;
 import com.bo.xMarket.dto.CardResponse;
-import com.bo.xMarket.dto.ProductResponse;
-import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Card;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;

@@ -1,5 +1,6 @@
 package com.bo.xMarket.dao;
 
+import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Product;
@@ -18,7 +19,7 @@ public interface ProductDao {
 
     public void addproduct(Product product);
 
-    public ProductSpecificResponse productsDetails(Integer productid);
+    public ProductSpecificResponse productsDetails(Integer productId);
 
     public Integer getLastInsertId();
 
@@ -28,6 +29,6 @@ public interface ProductDao {
     //  Get First Image
     public String getFirstImageByProductId(Integer productId);
 
-    //    Get Stock by ProductId
+    // Get Stock by ProductId
     public Stock getStock(Integer productId);
 }

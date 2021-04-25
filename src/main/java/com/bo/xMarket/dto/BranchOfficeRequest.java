@@ -1,7 +1,5 @@
 package com.bo.xMarket.dto;
 
-import com.bo.xMarket.model.Transaction;
-
 public class BranchOfficeRequest {
     private Integer branchOfficeId;
     private Integer managerId; //nombre del manager no Id *

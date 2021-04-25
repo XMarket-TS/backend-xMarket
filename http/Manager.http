@@ -29,3 +29,6 @@ Content-Type: application/json
 GET http://localhost:8080/manager/login/530
 Accept: application/json
 Content-Type: application/json
+
+### Get list of managers
+GET http://localhost:8080/manager/list

@@ -1,17 +1,27 @@
 package com.bo.xMarket.dto;
 
+import io.swagger.models.auth.In;
+
 import java.util.Date;
 
 public class OfferRequest {
     private Integer percentage;//con el descuento
     private Date startDate;
     private Date endDate;
+    private Integer status;
 //    private String imageUrl;
 
     public OfferRequest() {
     }
 
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Integer getPercentage() {
         return percentage;
@@ -37,11 +47,4 @@ public class OfferRequest {
         this.endDate = endDate;
     }
 
-//    public String getImageUrl() {
-//        return imageUrl;
-//    }
-//
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
 }

@@ -2,16 +2,16 @@ package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.bl.UserBl;
-import com.bo.xMarket.dto.LoginRequest;
-import com.bo.xMarket.dto.ManagerRequest;
 import com.bo.xMarket.dto.UserRequest;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.model.User;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 

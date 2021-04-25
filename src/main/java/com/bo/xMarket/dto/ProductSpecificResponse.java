@@ -1,8 +1,5 @@
 package com.bo.xMarket.dto;
 
-
-import com.bo.xMarket.model.Category;
-
 import java.util.List;
 
 public class ProductSpecificResponse {
@@ -12,11 +9,26 @@ public class ProductSpecificResponse {
     private Integer percentage;
     private String description;
     private Integer unit;
-    private List<MediaRequest> imagesUrl;
+    private List<String> imagesUrl;
     private CategoryRequest category;
     private Integer branchId;
 
     public ProductSpecificResponse() {
+    }
+
+    @Override
+    public String toString() {
+        return "ProductSpecificResponse{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", percentage=" + percentage +
+                ", description='" + description + '\'' +
+                ", unit=" + unit +
+                ", imagesUrl=" + imagesUrl +
+                ", category=" + category +
+                ", branchId=" + branchId +
+                '}';
     }
 
     public Integer getProductId() {
@@ -67,11 +79,11 @@ public class ProductSpecificResponse {
         this.unit = unit;
     }
 
-    public List<MediaRequest> getImagesUrl() {
+    public List<String> getImagesUrl() {
         return imagesUrl;
     }
 
-    public void setImagesUrl(List<MediaRequest> imagesUrl) {
+    public void setImagesUrl(List<String> imagesUrl) {
         this.imagesUrl = imagesUrl;
     }
 

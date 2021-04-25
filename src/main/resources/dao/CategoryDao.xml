@@ -26,5 +26,15 @@
         WHERE id = #{categoryId}
           AND status = 1
     </select>
+    <select id="getCategoryByProductId" resultType="com.bo.xMarket.dto.CategoryRequest">
+        SELECT a.id    as categoryId,
+               a.name  as category,
+               a.image as imageUrl
+        FROM product_category a,
+             product b
+        WHERE a.id = b.product_category_id
+          AND b.product_id = #{productId}
+    </select>
+
 
 </mapper>

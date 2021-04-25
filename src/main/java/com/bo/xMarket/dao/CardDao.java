@@ -2,9 +2,7 @@ package com.bo.xMarket.dao;
 
 import com.bo.xMarket.dto.CardRequest;
 import com.bo.xMarket.dto.CardResponse;
-import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.model.Card;
-import com.bo.xMarket.model.Product;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
