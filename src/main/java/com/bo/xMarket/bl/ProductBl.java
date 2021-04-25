@@ -216,4 +216,8 @@ public class ProductBl {
     public List<OfferRequest> productOffers(Integer id) {
         return offerRegisterDao.getOffersByProduct(id);
     }
+
+    public List<ProductResponse>listproductsearch(String  buscar){
+        return  productDao.productsearch(buscar);
+    }
 }

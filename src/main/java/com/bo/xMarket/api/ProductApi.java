@@ -69,4 +69,10 @@ public class ProductApi {
         return productBl.productOffers(id);
     }
 
+    @RequestMapping(value = "/product/buscar/{buscar}" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> getproductlistsearch(@PathVariable("buscar") String product){
+        String a=product+"%";
+        return productBl.listproductsearch(a);
+    }
+
 }

@@ -47,3 +47,6 @@ Accept: application/json
 GET http://localhost:8080/product/offers/3
 Accept: application/json
 
+### search products
+GET http://localhost:8080/product/buscar/sauce
+Accept: application/json

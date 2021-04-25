@@ -31,4 +31,6 @@ public interface ProductDao {
 
     // Get Stock by ProductId
     public Stock getStock(Integer productId);
+
+    public List<ProductResponse>productsearch(String search);
 }
