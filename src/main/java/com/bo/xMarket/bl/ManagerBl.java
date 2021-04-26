@@ -2,6 +2,7 @@ package com.bo.xMarket.bl;
 
 import com.bo.xMarket.dao.ManagerDao;
 import com.bo.xMarket.dao.PersonDao;
+import com.bo.xMarket.dao.TransactionDao;
 import com.bo.xMarket.dto.LoginRequest;
 import com.bo.xMarket.dto.ManagerRequest;
 import com.bo.xMarket.dto.ManagerResponse;
@@ -21,19 +22,27 @@ import java.util.List;
 public class ManagerBl {
     private ManagerDao managerDao;
     private PersonDao personDao;
+    private TransactionDao transactionDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductBl.class);
+
     @Autowired
-    public ManagerBl(ManagerDao managerDao, PersonDao personDao) {
+    public ManagerBl(ManagerDao managerDao, PersonDao personDao, TransactionDao transactionDao) {
         this.managerDao = managerDao;
         this.personDao = personDao;
+        this.transactionDao = transactionDao;
     }
 
     public ManagerRequest addManager(ManagerRequest managerRequest, Transaction transaction) {
+        LOGGER.warn(managerRequest.toString());
+        transaction.setTxId(transactionDao.getLastInsertId());
         Person person = new Person();
         person.setName(managerRequest.getName());
         person.setSurname(managerRequest.getSurname());
         person.setEmail(managerRequest.getEmail());
+        person.setDescription(managerRequest.getDescription());
+        person.setPhoto(managerRequest.getUserPhoto());
         person.setGender(managerRequest.getGender());
+        person.setCellphone(managerRequest.getCellphone());
         person.setStatus(1);
         person.setTransaction(transaction);
         personDao.addPerson(person);
