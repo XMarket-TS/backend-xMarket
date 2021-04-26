@@ -29,11 +29,12 @@
                RTRIM(LTRIM(
                        CONCAT(a.name, ' ', a.surname
                            ))) as name,
-               a.photo         as userPhoto
+               a.photo         as userPhoto,
+               a.status        as isAvailable
         FROM person a,
              manager m
         WHERE a.person_id = m.person_person_id
-          AND m.status = 1
+
     </select>
 
 </mapper>

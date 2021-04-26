@@ -4,6 +4,7 @@ public class ManagerResponse {
     private Integer managerId;
     private String name;
     private String userPhoto;
+    private Integer isAvailable;
 
     public ManagerResponse() {
     }
@@ -14,7 +15,16 @@ public class ManagerResponse {
                 "managerId=" + managerId +
                 ", name='" + name + '\'' +
                 ", userPhoto='" + userPhoto + '\'' +
+                ", isAvailable=" + isAvailable +
                 '}';
+    }
+
+    public Integer getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(Integer isAvailable) {
+        this.isAvailable = isAvailable;
     }
 
     public Integer getManagerId() {
