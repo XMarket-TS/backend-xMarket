@@ -12,4 +12,7 @@ public interface BranchOfficeDao {
     public List<BranchOffice> listBranchOffice();
 
     public BranchOffice getBranchByPersonManagerId(Integer personId);
+
+    // List of zones with Branch Offices
+    public List<String> getListOfZones();
 }

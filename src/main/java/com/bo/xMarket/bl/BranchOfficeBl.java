@@ -54,4 +54,8 @@ public class BranchOfficeBl {
         return branchOfficeRequests;
 
     }
+
+    public List<String> zonesList() {
+        return branchOfficeDao.getListOfZones();
+    }
 }

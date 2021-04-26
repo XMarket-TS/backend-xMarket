@@ -37,4 +37,8 @@ public class BranchOfficeApi {
         return branchOfficeBl.branchOfficeList();
     }
 
+    @RequestMapping(value = "/zones", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<String> zonesWithBranchOffice() {
+        return branchOfficeBl.zonesList();
+    }
 }
