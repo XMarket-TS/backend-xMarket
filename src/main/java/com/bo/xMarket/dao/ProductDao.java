@@ -1,16 +1,16 @@
 package com.bo.xMarket.dao;
 
-import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Stock;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface ProductDao {
+public interface ProductDao{
     public List<ProductResponse> listProductsByCategory(Integer id, Integer idbranch, Integer idcategory);
 
     public List<Product> listProductsByBranch(Integer idbranch); //(Frontend web)
@@ -33,4 +33,6 @@ public interface ProductDao {
     public Stock getStock(Integer productId);
 
     public List<ProductResponse>productsearch(String search);
+
+    public Page<ProductResponse> listpaginate(Integer idbranch);
 }

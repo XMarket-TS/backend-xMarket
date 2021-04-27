@@ -9,12 +9,17 @@ import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
+import com.github.pagehelper.Page;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -22,7 +27,6 @@ import java.util.List;
 public class ProductApi {
     private ProductBl productBl;
     private TransactionBl transactionBl;
-
     @Autowired
     public ProductApi(ProductBl productBl, TransactionBl transactionBl) {
         this.productBl = productBl;
@@ -74,5 +78,13 @@ public class ProductApi {
         String a=product+"%";
         return productBl.listproductsearch(a);
     }
+
+    @RequestMapping(value = "/product",params = { "page", "size" },method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> findPaginated(@RequestParam("page") Integer page,@RequestParam("size") Integer size) {
+        Page<ProductResponse> resultPage = productBl.findPaginated(page, size);
+
+        return resultPage;
+    }
+
 
 }

@@ -3,9 +3,13 @@ package com.bo.xMarket.bl;
 import com.bo.xMarket.dao.*;
 import com.bo.xMarket.dto.*;
 import com.bo.xMarket.model.*;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 //import io.swagger.models.auth.In;
 //import jdk.nashorn.internal.runtime.options.LoggingOption;
@@ -219,5 +224,11 @@ public class ProductBl {
 
     public List<ProductResponse>listproductsearch(String  buscar){
         return  productDao.productsearch(buscar);
+    }
+
+    public Page<ProductResponse> findPaginated(Integer page, Integer size) {
+        PageHelper.startPage(page, size); //line 1
+        LOGGER.debug("s");
+        return productDao.listpaginate(1); //line 2
     }
 }

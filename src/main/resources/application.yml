@@ -7,11 +7,11 @@ spring:
     url: jdbc:mysql://us-cdbr-east-03.cleardb.com:3306/heroku_3ed503f241cf319?reconnect=true
     username: b719f422f2686b
     password: 8f19507c
-#    name: xMarket_database
-#    platform: mysql
-#    url: jdbc:mysql://localhost:3306/xMarket_database
-#    username: root
-#    password: ABCabc123
+    #    name: xMarket_database
+    #    platform: mysql
+    #    url: jdbc:mysql://localhost:3306/xMarket_database
+    #    username: root
+    #    password: ABCabc123
 
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
@@ -34,4 +34,9 @@ mybatis:
 server:
   error:
     include-message: always
-spring.jackson.default-property-inclusion: NON_NULL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  params: count=countSql
+  supportMethodsArguments: true
