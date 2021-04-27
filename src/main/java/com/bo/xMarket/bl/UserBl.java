@@ -2,6 +2,7 @@ package com.bo.xMarket.bl;
 
 import com.bo.xMarket.dao.PersonDao;
 import com.bo.xMarket.dao.UserDao;
+import com.bo.xMarket.dto.LoginRequest;
 import com.bo.xMarket.dto.UserRequest;
 import com.bo.xMarket.model.Person;
 import com.bo.xMarket.model.Transaction;
@@ -39,6 +40,19 @@ public class UserBl {
         user.setTransaction(transaction);
         userDao.addUser(user);
         return user;
+    }
+
+    public Person login(LoginRequest user){
+        User user1= new User();
+        user1.setUsername(user.getUsername());
+        user1.setPassword(user.getPassword());
+        if (userDao.findUserByNP(user1)!=null){
+            return personDao.getPersonById(userDao.findUserByNP(user1).getPersonId());
+        }else{
+            return null;
+        }
+
+
     }
 
 

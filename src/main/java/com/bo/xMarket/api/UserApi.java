@@ -2,7 +2,9 @@ package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.bl.UserBl;
+import com.bo.xMarket.dto.LoginRequest;
 import com.bo.xMarket.dto.UserRequest;
+import com.bo.xMarket.model.Person;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.model.User;
 import com.bo.xMarket.util.TransactionUtil;
@@ -35,5 +37,10 @@ public class UserApi {
         return userResponse;
     }
 
-
+    @RequestMapping(value = "/login",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Person login(@RequestBody LoginRequest user1, HttpServletRequest request) {
+        Person user = userBl.login(user1);
+        return user;
+    }
 }
