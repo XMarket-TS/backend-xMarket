@@ -5,11 +5,10 @@ import com.bo.xMarket.dto.*;
 import com.bo.xMarket.model.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -44,12 +43,15 @@ public class ProductBl {
         this.branchOfficeDao = branchOfficeDao;
     }
 
-    public List<ProductResponse> productList(Integer idPerson) {
+    public PageInfo<ProductResponse> productList(Integer idPerson,Integer page,Integer size) {
+
         BranchOffice branchOffice = branchOfficeDao.getBranchByPersonManagerId(idPerson);
         if (branchOffice == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find branch");
         }
+        PageHelper.startPage(page, size); //line 1
         List<Product> productResponse = productDao.listProductsByBranch(branchOffice.getBranchOfficeId());
+        PageInfo prelim= new PageInfo(productResponse);
         List<ProductResponse> productResult = new ArrayList<>();
         for (Product response : productResponse) {
             Category category = categoryDao.getCategoryById(response.getProductCategoryId());
@@ -72,10 +74,11 @@ public class ProductBl {
             List<MediaRequest> media = mediaDao.listmedia(response.getProductId());
             resp.setFirstImage(media.size() > 0 ? media.get(0).getPhoto() : null);
             productResult.add(resp);
-
         }
-        LOGGER.error(productResult.toString());
-        return productResult;
+
+//        LOGGER.error(productResult.toString());
+        prelim.setList(productResult);
+        return prelim;
     }
 
     public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch, Integer idcategory) {
@@ -222,13 +225,30 @@ public class ProductBl {
         return offerRegisterDao.getOffersByProduct(id);
     }
 
-    public List<ProductResponse>listproductsearch(String  buscar){
+    public Page<ProductResponse>listproductsearch(String  buscar,Integer page,Integer size){
+        PageHelper.startPage(page, size); //line 1
         return  productDao.productsearch(buscar);
     }
 
-    public Page<ProductResponse> findPaginated(Integer page, Integer size) {
+    public PageInfo<ProductResponse> findPaginated(Integer page, Integer size) {
         PageHelper.startPage(page, size); //line 1
-        LOGGER.debug("s");
-        return productDao.listpaginate(1); //line 2
+//        Page<ProductResponse> productResponses= productDao.listpaginate(1);
+        List<ProductResponse> page1 = productDao.listpaginate(1);
+        return  new PageInfo(page1);
+    }
+
+    public ProductRequest update(ProductRequest productRequest,Integer person,Integer productId) {
+        Product product= new Product();
+        product.setProductId(productId);
+        product.setPrice(productRequest.getPrice());
+        product.setDescription(productRequest.getDescription().trim());
+        product.setName(productRequest.getName().trim());
+
+        if(product.getName().trim().length()==0 || product.getDescription().trim().length()==0) {
+            return null;
+        }else{
+            productDao.updateProduct(product);
+            return  productRequest;
+        }
     }
 }

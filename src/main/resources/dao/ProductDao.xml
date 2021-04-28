@@ -151,5 +151,11 @@
         WHERE b.branch_office_id_branch_office = #{idbranch}
           AND a.status = 1
     </select>
-
+    <update id="updateProduct" parameterType="com.bo.xMarket.model.Product">
+        UPDATE product
+        SET name=#{name},
+            price=#{price},
+            description=#{description}
+        WHERE product_id=#{productId}
+    </update>
 </mapper>

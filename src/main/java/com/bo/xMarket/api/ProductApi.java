@@ -10,6 +10,7 @@ import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +28,19 @@ import java.util.List;
 public class ProductApi {
     private ProductBl productBl;
     private TransactionBl transactionBl;
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductApi.class);
+
     @Autowired
     public ProductApi(ProductBl productBl, TransactionBl transactionBl) {
         this.productBl = productBl;
         this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(value = "/manager/{personId}/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> ListProducts(@PathVariable("personId") Integer id) {
-        return productBl.productList(id);
+    @RequestMapping(value = "/manager/{personId}/products",params ={ "page", "size" } ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PageInfo<ProductResponse> ListProducts(@PathVariable("personId") Integer id,@RequestParam("page") Integer page,@RequestParam("size") Integer size) {
+        PageInfo<ProductResponse> listproducts = productBl.productList(id,page,size);
+
+        return listproducts;
     }
 
     @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/category/{categoryid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -70,21 +75,27 @@ public class ProductApi {
 
     @RequestMapping(value = "/product/offers/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<OfferRequest> productOffers(@PathVariable("productid") Integer id) {
+
         return productBl.productOffers(id);
     }
 
-    @RequestMapping(value = "/product/buscar/{buscar}" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> getproductlistsearch(@PathVariable("buscar") String product){
+    @RequestMapping(value = "/product/buscar/{buscar}" ,params = { "page", "size" },method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> getproductlistsearch(@RequestParam("page") Integer page,@RequestParam("size") Integer size,@PathVariable("buscar") String product){
         String a=product+"%";
-        return productBl.listproductsearch(a);
+        Page<ProductResponse> search = productBl.listproductsearch(a,page,size);
+        return search;
     }
 
     @RequestMapping(value = "/product",params = { "page", "size" },method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> findPaginated(@RequestParam("page") Integer page,@RequestParam("size") Integer size) {
-        Page<ProductResponse> resultPage = productBl.findPaginated(page, size);
-
+    public PageInfo<ProductResponse> findPaginated(@RequestParam("page") Integer page,@RequestParam("size") Integer size) {
+        PageInfo<ProductResponse> resultPage = productBl.findPaginated(page, size);
         return resultPage;
     }
 
+    @RequestMapping(value = "/manager/{personId}/product/{productId}",method = RequestMethod.PUT,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductRequest updateproduct(@RequestBody ProductRequest productRequest,@PathVariable("personId") Integer per, @PathVariable("productId") Integer productId ){
 
+        ProductRequest productupdated= productBl.update(productRequest,per,productId);
+        return productupdated;
+    }
 }

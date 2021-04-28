@@ -5,6 +5,7 @@ import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Stock;
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -32,7 +33,9 @@ public interface ProductDao{
     // Get Stock by ProductId
     public Stock getStock(Integer productId);
 
-    public List<ProductResponse>productsearch(String search);
+    public Page<ProductResponse>productsearch(String search);
 
-    public Page<ProductResponse> listpaginate(Integer idbranch);
+    public List<ProductResponse> listpaginate(Integer idbranch);
+
+    public void updateProduct(Product product);
 }

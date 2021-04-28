@@ -1,5 +1,5 @@
 ### get product list by managerid (Frontend web)
-GET http://localhost:8080/manager/530/products
+GET http://localhost:8080/manager/530/products?page=1&size=10
 Accept: application/json
 
 ### get product list by branchId (Frontend movil)
@@ -36,7 +36,7 @@ Content-Type: application/json
 }
 
 ### get product details
-GET http://localhost:8080/product/102
+GET http://localhost:8080/product/1
 Accept: application/json
 
 ### delete product
@@ -48,9 +48,27 @@ GET http://localhost:8080/product/offers/3
 Accept: application/json
 
 ### search products
-GET http://localhost:8080/product/buscar/Sauce
+GET http://localhost:8080/product/buscar/S?page=2&size=5
 Accept: application/json
 
-### search products
+### pagination
 GET http://localhost:8080/product?page=2&size=2
 Accept: application/json
+
+### update product with manager and branch office id
+PUT http://localhost:8080/manager/3/product/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Piña",
+  "price": "30.00",
+  "description": "Fruta color amarillo",
+  "unit": "10",
+  "category": "Abarrotes",
+  "imagesUrl": [
+    "https://res.cloudinary.com/fulano/image/upload/v1617490236/img_default_ywgnfs.jpg",
+    "https://res.cloudinary.com/fulano/image/upload/v1617490323/img_default1_cuuu1t.jpg",
+    "https://res.cloudinary.com/fulano/image/upload/v1617490329/img_default3_lrczpl.jpg"
+  ]
+}
