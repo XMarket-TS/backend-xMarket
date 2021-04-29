@@ -65,7 +65,7 @@ public class ProductBl {
                 OfferRegister offerRegister = offerRegisterDao.getActualOffer(response.getProductId());
                 resp.setPercentage(offerRegister.getPercentage());
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
 //                LOGGER.warn();
                 resp.setPercentage(0);
             }
@@ -225,9 +225,9 @@ public class ProductBl {
         return offerRegisterDao.getOffersByProduct(id);
     }
 
-    public Page<ProductResponse>listproductsearch(String  buscar,Integer page,Integer size){
+    public Page<ProductResponse>listproductsearch(String  buscar,Integer branchId,Integer page,Integer size){
         PageHelper.startPage(page, size); //line 1
-        return  productDao.productsearch(buscar);
+        return  productDao.productsearch(buscar,branchId);
     }
 
     public PageInfo<ProductResponse> findPaginated(Integer page, Integer size) {

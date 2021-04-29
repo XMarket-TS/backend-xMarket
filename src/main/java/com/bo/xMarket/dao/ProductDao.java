@@ -6,6 +6,7 @@ import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Stock;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public interface ProductDao{
     // Get Stock by ProductId
     public Stock getStock(Integer productId);
 
-    public Page<ProductResponse>productsearch(String search);
+    public Page<ProductResponse>productsearch(String search, Integer branchId);
 
     public List<ProductResponse> listpaginate(Integer idbranch);
 
