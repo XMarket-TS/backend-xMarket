@@ -19,3 +19,7 @@ Accept: application/json
 ### List of zones with branchs
 GET http://localhost:8080/branchOffice/zones/
 Accept: application/json
+
+### get ALL branch office list
+GET http://localhost:8080/branchOffice/list/all
+Accept: application/json

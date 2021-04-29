@@ -97,4 +97,8 @@ public class ManagerBl {
     public List<ManagerResponse> listOfManagers() {
         return managerDao.getListOfManagers();
     }
+
+    public ManagerResponse getInfoManager(Integer managerId) {
+        return managerDao.getInfoManager(managerId);
+    }
 }

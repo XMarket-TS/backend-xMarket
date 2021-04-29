@@ -4,11 +4,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "rdowse9",
-  "password": "L0KnboI10Onk"
+  "username": "hbrown0",
+  "password": "MGw0BOrryF66"
 }
 
 ### Auth (Only testing)
-GET http://localhost:8080/manager/login/118
+GET http://localhost:8080/admin/login/118
 Accept: application/json
 Content-Type: application/json
