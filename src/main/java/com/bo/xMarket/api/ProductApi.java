@@ -79,10 +79,10 @@ public class ProductApi {
         return productBl.productOffers(id);
     }
 
-    @RequestMapping(value = "/product/branchOffice/{branchId}/search/{buscar}" ,params = { "page", "size" },method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> getproductlistsearch(@RequestParam("page") Integer page,@RequestParam("size") Integer size,@PathVariable("buscar") String product,@PathVariable("branchId") Integer branchId){
+    @RequestMapping(value = "/manager/{personId}/products" ,params = { "search","page", "size" },method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PageInfo<ProductResponse> getproductlistsearch(@RequestParam("search") String product,@RequestParam("page") Integer page,@RequestParam("size") Integer size,@PathVariable("personId") Integer personId){
         String a=product+"%";
-        Page<ProductResponse> search = productBl.listproductsearch(a,branchId,page,size);
+        PageInfo<ProductResponse> search = productBl.listproductsearch(a,personId,page,size);
         return search;
     }
 

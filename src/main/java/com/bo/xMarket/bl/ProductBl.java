@@ -225,9 +225,14 @@ public class ProductBl {
         return offerRegisterDao.getOffersByProduct(id);
     }
 
-    public Page<ProductResponse>listproductsearch(String  buscar,Integer branchId,Integer page,Integer size){
+    public PageInfo<ProductResponse>listproductsearch(String  buscar,Integer idPerson,Integer page,Integer size){
+        BranchOffice branchOffice = branchOfficeDao.getBranchByPersonManagerId(idPerson);
+        if (branchOffice == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find branch");
+        }
         PageHelper.startPage(page, size); //line 1
-        return  productDao.productsearch(buscar,branchId);
+        List<ProductResponse>productsearch= productDao.productsearch(buscar,branchOffice.getBranchOfficeId());
+        return  new PageInfo(productsearch);
     }
 
     public PageInfo<ProductResponse> findPaginated(Integer page, Integer size) {

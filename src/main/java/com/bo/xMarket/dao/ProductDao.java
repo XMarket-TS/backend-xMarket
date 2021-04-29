@@ -5,8 +5,7 @@ import com.bo.xMarket.dto.ProductSpecificResponse;
 import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Stock;
 import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
-import io.swagger.models.auth.In;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
