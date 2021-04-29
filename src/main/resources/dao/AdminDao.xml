@@ -26,6 +26,6 @@
         WHERE a.person_id = m.person_person_id
           AND m.username = #{username}
           AND m.password = #{password}
-          AND a.status = 1
+          AND m.status = 1
     </select>
 </mapper>

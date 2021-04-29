@@ -43,7 +43,7 @@ public class ManagerApi {
     }
 
     @RequestMapping(value = "/login/{personId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ManagerRequest getInfoManager(@PathVariable("personId") Integer id) {
+    public ManagerRequest getManager(@PathVariable("personId") Integer id) {
         return managerBl.infoManager(id);
     }
 
@@ -51,4 +51,10 @@ public class ManagerApi {
     public List<ManagerResponse> getManagers() {
         return managerBl.listOfManagers();
     }
+
+    @RequestMapping(value = "/info/{managerId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ManagerResponse getInfoManager(@PathVariable("managerId") Integer managerId) {
+        return managerBl.getInfoManager(managerId);
+    }
+
 }

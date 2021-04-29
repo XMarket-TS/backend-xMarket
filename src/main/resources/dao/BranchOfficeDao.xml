@@ -39,6 +39,14 @@
         FROM branch_office b
         GROUP BY b.zone
     </select>
-
-
+    <select id="listBranchOfficeAll" resultType="com.bo.xMarket.model.BranchOffice">
+        SELECT id_branch_office   as branchOfficeId,
+               manager_manager_id as managerId,
+               name               as name,
+               phone              as phone,
+               zone               as zone,
+               address            as address,
+               image              as image
+        FROM branch_office
+    </select>
 </mapper>

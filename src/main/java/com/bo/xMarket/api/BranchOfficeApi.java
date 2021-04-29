@@ -33,12 +33,17 @@ public class BranchOfficeApi {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BranchOfficeRequest> branchofficelist() {
+    public List<BranchOfficeRequest> branchOfficeList() {
         return branchOfficeBl.branchOfficeList();
     }
 
     @RequestMapping(value = "/zones", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<String> zonesWithBranchOffice() {
         return branchOfficeBl.zonesList();
+    }
+
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<BranchOfficeRequest> branchOfficeListAll() {
+        return branchOfficeBl.branchOfficeListAll();
     }
 }

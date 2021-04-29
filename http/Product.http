@@ -36,14 +36,14 @@ Content-Type: application/json
 }
 
 ### get product details
-GET http://localhost:8080/product/1
+GET http://localhost:8080/product/1008
 Accept: application/json
 
 ### delete product
 DELETE http://localhost:8080/product/10
 Accept: application/json
 
-### get product details
+### get product offers
 GET http://localhost:8080/product/offers/3
 Accept: application/json
 
@@ -52,16 +52,34 @@ GET http://localhost:8080/manager/530/products?search=S&page=1&size=10
 Accept: application/json
 
 ### pagination
-GET http://localhost:8080/product?page=2&size=2
+GET http://localhost:8080/product?page=1&size=10
 Accept: application/json
 
-### update product with manager and branch office id
-PUT http://localhost:8080/manager/3/product/1
+### Update product
+PUT http://localhost:8080/product/update/1008
 Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Piña",
+  "name": "Zanahoria",
+  "price": "30.00",
+  "description": "Fruta color amarillo",
+  "unit": "10",
+  "category": "Abarrotes",
+  "imagesUrl": [
+    "https://res.cloudinary.com/fulano/image/upload/v1617490236/img_default_ywgnfs.jpg",
+    "https://res.cloudinary.com/fulano/image/upload/v1617490323/img_default1_cuuu1t.jpg",
+    "https://res.cloudinary.com/fulano/image/upload/v1617490329/img_default3_lrczpl.jpg"
+  ]
+}
+
+### update product with manager and branch office id
+PUT http://localhost:8080/manager/530/product/162
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Zanahoria",
   "price": "30.00",
   "description": "Fruta color amarillo",
   "unit": "10",

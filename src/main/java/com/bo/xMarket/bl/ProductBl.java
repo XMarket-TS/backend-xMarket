@@ -256,4 +256,10 @@ public class ProductBl {
             return  productRequest;
         }
     }
+
+    public void updateProduct(Integer productId, ProductRequest productRequest, Transaction transaction) {
+//        Product product = productDao.
+
+
+    }
 }

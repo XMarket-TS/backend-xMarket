@@ -22,7 +22,7 @@
         WHERE a.person_id = m.person_person_id
           AND m.username = #{username}
           AND m.password = #{password}
-          AND a.status = 1
+          AND m.status = 1
     </select>
     <select id="getListOfManagers" resultType="com.bo.xMarket.dto.ManagerResponse">
         SELECT m.manager_id    as managerId,
@@ -35,6 +35,15 @@
              manager m
         WHERE a.person_id = m.person_person_id
 
+    </select>
+    <select id="getInfoManager" resultType="com.bo.xMarket.dto.ManagerResponse">
+        SELECT RTRIM(LTRIM(CONCAT(a.name, ' ', a.surname))) as name,
+               a.photo                                      as userPhoto,
+               m.status                                     as isAvailable
+        FROM person a,
+             manager m
+        WHERE a.person_id = m.person_person_id
+            AND m.manager_id = #{managerId}
     </select>
 
 </mapper>

@@ -58,4 +58,21 @@ public class BranchOfficeBl {
     public List<String> zonesList() {
         return branchOfficeDao.getListOfZones();
     }
+
+    public List<BranchOfficeRequest> branchOfficeListAll() {
+        List<BranchOfficeRequest> branchOfficeRequests = new ArrayList<>();
+        List<BranchOffice> branchOffices = branchOfficeDao.listBranchOfficeAll();
+        for (BranchOffice branchOffice : branchOffices) {
+            BranchOfficeRequest result = new BranchOfficeRequest();
+            result.setBranchOfficeId(branchOffice.getBranchOfficeId());
+            result.setManagerId(branchOffice.getManagerId());
+            result.setName(branchOffice.getName());
+            result.setPhone(branchOffice.getPhone());
+            result.setZone(branchOffice.getZone());
+            result.setAddress(branchOffice.getAddress());
+            result.setImage(branchOffice.getImage());
+            branchOfficeRequests.add(result);
+        }
+        return branchOfficeRequests;
+    }
 }
