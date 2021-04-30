@@ -71,8 +71,13 @@ public class BranchOfficeBl {
             result.setZone(branchOffice.getZone());
             result.setAddress(branchOffice.getAddress());
             result.setImage(branchOffice.getImage());
+            result.setStatus(branchOffice.getStatus());
             branchOfficeRequests.add(result);
         }
         return branchOfficeRequests;
+    }
+
+    public void changeBranchStatus(Integer branchId, Integer status) {
+        branchOfficeDao.changeStatus(branchId, status);
     }
 }

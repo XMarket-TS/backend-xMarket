@@ -46,7 +46,13 @@
                phone              as phone,
                zone               as zone,
                address            as address,
-               image              as image
+               image              as image,
+               status             as status
         FROM branch_office
     </select>
+    <update id="changeStatus">
+        UPDATE branch_office
+        SET `status` = #{status}
+        WHERE (`id_branch_office` = #{branchId});
+    </update>
 </mapper>

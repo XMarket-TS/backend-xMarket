@@ -19,4 +19,7 @@ public interface BranchOfficeDao {
 
     // List all branch offices
     List<BranchOffice> listBranchOfficeAll();
+
+    // Enable or disable branch office
+    void changeStatus(Integer branchId, Integer status);
 }
