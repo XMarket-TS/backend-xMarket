@@ -17,4 +17,6 @@ public interface OfferRegisterDao {
 
     // Get offers by product ID
     public List<OfferRequest> getOffersByProduct(Integer productId);
+
+    void updateOffer(OfferRegister offer);
 }
