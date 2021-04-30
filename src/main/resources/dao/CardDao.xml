@@ -52,6 +52,7 @@
         WHERE (card_id = #{idcard})
     </update>
 
+
     <update id="updateCard" parameterType="com.bo.xMarket.model.Card">
         UPDATE card
         SET card_id=#{cardId},user_id=#{userId},
@@ -64,9 +65,11 @@
         card_id = #{cardId} and status=1
     </update>
 
+
     <select id="getLastInsertId" resultType="java.lang.Integer">
         SELECT LAST_INSERT_ID()
     </select>
+
     <resultMap id="cardMap" type="com.bo.xMarket.dto.CardRequest">
         <result column="cardId" property="cardId"/>
         <result column="userId" property="userId"/>
@@ -75,4 +78,5 @@
         <result column="cvc" property="cvc"/>
         <result column="status" property="status"/>
     </resultMap>
+
 </mapper>

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface CardDao {
-    //    public List<ProductResponse> listProductsByCategory(Integer id, Integer idbranch,Integer idcategory);
+
     public Integer addCard(Card card);
 
     public Integer getLastInsertId();
@@ -20,6 +20,5 @@ public interface CardDao {
 
     public CardResponse cardDetails(Integer idcard);
 
-    //Delete the product logically
     public void deleteCard(Integer idcard);
 }
