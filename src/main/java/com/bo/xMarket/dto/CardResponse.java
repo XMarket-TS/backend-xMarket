@@ -92,9 +92,6 @@ public class CardResponse {
         this.status = status;
     }
 
-//    public Card() {
-//    }
-
     @Override
     public String toString() {
         return "Card{" +

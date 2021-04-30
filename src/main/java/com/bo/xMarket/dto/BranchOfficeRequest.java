@@ -6,6 +6,7 @@ public class BranchOfficeRequest {
     private String name;
     private Integer phone;
     private String zone;
+    private Integer status;
     private String address;
     private String image;
 
@@ -33,6 +34,14 @@ public class BranchOfficeRequest {
                 ", address='" + address + '\'' +
                 ", image='" + image + '\'' +
                 '}';
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getBranchOfficeId() {

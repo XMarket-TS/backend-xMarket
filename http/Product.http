@@ -55,24 +55,6 @@ Accept: application/json
 GET http://localhost:8080/product?page=1&size=10
 Accept: application/json
 
-### Update product
-PUT http://localhost:8080/product/update/1008
-Accept: application/json
-Content-Type: application/json
-
-{
-  "name": "Zanahoria",
-  "price": "30.00",
-  "description": "Fruta color amarillo",
-  "unit": "10",
-  "category": "Abarrotes",
-  "imagesUrl": [
-    "https://res.cloudinary.com/fulano/image/upload/v1617490236/img_default_ywgnfs.jpg",
-    "https://res.cloudinary.com/fulano/image/upload/v1617490323/img_default1_cuuu1t.jpg",
-    "https://res.cloudinary.com/fulano/image/upload/v1617490329/img_default3_lrczpl.jpg"
-  ]
-}
-
 ### update product with manager and branch office id
 PUT http://localhost:8080/manager/3/product/1
 Accept: application/json
