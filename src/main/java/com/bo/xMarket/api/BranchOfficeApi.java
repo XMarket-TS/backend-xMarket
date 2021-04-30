@@ -4,9 +4,11 @@ import com.bo.xMarket.bl.BranchOfficeBl;
 import com.bo.xMarket.bl.TransactionBl;
 
 import com.bo.xMarket.dto.BranchOfficeRequest;
+import com.bo.xMarket.dto.ProductRequest;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +47,11 @@ public class BranchOfficeApi {
     @RequestMapping(value = "/list/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<BranchOfficeRequest> branchOfficeListAll() {
         return branchOfficeBl.branchOfficeListAll();
+    }
+
+    @RequestMapping(value = "branch/{branchId}/{status}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void changeStatus(@PathVariable("branchId") Integer branchId, @PathVariable("status") Integer status) {
+        branchOfficeBl.changeBranchStatus(branchId, status);
     }
 }
