@@ -52,13 +52,15 @@ public class CardApi {
     @RequestMapping(value = "/card/{cardid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public CardResponse cardDetails(@PathVariable("cardid") Integer id) {
         return cardBl.cardDetails(id);
-//        return productBl.productInfo(id);
     }
     @RequestMapping(value="/updateCard",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public CardResponse updateCard(@RequestBody CardResponse cardResponse, HttpServletRequest request) {
+
         Transaction transaction = TransactionUtil.createTransaction(request);
+        //LOGGER.error(transaction.getTxId().toString());
         transactionBl.createTransaction(transaction);
         cardBl.updateCard(cardResponse,transaction);
+
         return cardResponse;
     }
 }

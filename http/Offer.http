@@ -1,0 +1,29 @@
+### Create offer
+POST http://localhost:8080/offer
+Accept: application/json
+Content-Type: application/json
+
+{
+  "productId":  519,
+  "name": "offer 2",
+  "percentage": 60,
+  "startDate": "2021-11-02T02:50:12.208Z",
+  "endDate": "2021-11-02T02:50:12.208Z",
+  "imageUrl": "url"
+}
+
+### Update offer
+PUT http://localhost:8080/offer
+Accept: application/json
+Content-Type: application/json
+
+{
+  "offerId": 2,
+  "productId":  519,
+  "name": "offer 1",
+  "percentage": 60,
+  "startDate": "2021-11-02T02:50:12.208Z",
+  "endDate": "2021-11-02T02:50:12.208Z",
+  "status": 1,
+  "imageUrl": "url"
+}

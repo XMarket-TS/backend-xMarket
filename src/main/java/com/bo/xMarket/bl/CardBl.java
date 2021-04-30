@@ -40,7 +40,7 @@ public class CardBl {
         card2.setCvc(card.getCvc());
         card2.setCreationDate(card.getCreationDate());
         card2.setStatus(card.getStatus());
-        LOGGER.info(transaction.toString());
+//        LOGGER.info(transaction.toString());
 //        card2.setTxHost(transaction.getTxHost());
 //        card2.setUserId(transaction.getTxUserId());
 //        card2.setTxDate(transaction.getTxDate());
@@ -54,7 +54,9 @@ public class CardBl {
         return cardResponse;
     }
     public CardResponse updateCard(CardResponse cardResponse,Transaction transaction){
+
         Card card=new Card();
+
         card.setCardId(cardResponse.getCardId());
         card.setUserId(cardResponse.getUserId());
         card.setCardName(cardResponse.getCardName());
@@ -70,6 +72,7 @@ public class CardBl {
         return cardResponse;
     }
     public void cardDelete(Integer cardId) {
+
         cardDao.deleteCard(cardId);
     }
 }

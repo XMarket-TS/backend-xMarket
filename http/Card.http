@@ -30,10 +30,10 @@ Content-Type: application/json
 {
   "cardId": 1,
   "userId": 1,
-  "cardName": "Banco Sol",
+  "cardName": "Banco Nacional",
   "cardNumber": 12345678,
-  "expirationYear": 2024,
-  "expirationMonth": 4,
+  "expirationYear": 2022,
+  "expirationMonth": 6,
   "cvc": 1234,
   "creationDate": "2021-03-07",
   "status": 1
