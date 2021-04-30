@@ -80,7 +80,9 @@ public class ManagerBl {
         managerRequest.setPersonId(id);
         setPerson(managerRequest, person);
         managerRequest.setUsername("Username");
+        LOGGER.warn(person.getName());
         return managerRequest;
+
     }
 
     private void setPerson(ManagerRequest managerRequest, Person person) {
