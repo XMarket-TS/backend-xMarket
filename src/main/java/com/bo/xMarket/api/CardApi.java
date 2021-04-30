@@ -54,4 +54,11 @@ public class CardApi {
         return cardBl.cardDetails(id);
 //        return productBl.productInfo(id);
     }
+    @RequestMapping(value="/updateCard",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public CardResponse updateCard(@RequestBody CardResponse cardResponse, HttpServletRequest request) {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        cardBl.updateCard(cardResponse,transaction);
+        return cardResponse;
+    }
 }

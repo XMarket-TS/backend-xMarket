@@ -52,10 +52,16 @@
         WHERE (card_id = #{idcard})
     </update>
 
-    <update id="updateCard">
+    <update id="updateCard" parameterType="com.bo.xMarket.model.Card">
         UPDATE card
-        SET status=1
-        WHERE (card_id = #{idcard})
+        SET card_id=#{cardId},user_id=#{userId},
+        card_name=#{cardName},card_number=#{cardNumber},
+        expiration_year=#{expirationYear},expiration_month=#{expirationMonth},
+        CVC=#{cvc},creation_date=#{creationDate},status=#{status},
+        tx_host=#{transaction.txHost},
+        tx_user_id=#{transaction.txUserId},tx_date=#{transaction.txDate}
+        WHERE
+        card_id = #{cardId} and status=1
     </update>
 
     <select id="getLastInsertId" resultType="java.lang.Integer">

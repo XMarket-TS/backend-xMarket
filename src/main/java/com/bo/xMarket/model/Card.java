@@ -26,8 +26,8 @@ public class Card {
     }
 
 
-    public Integer getCardId() {
-        return cardId;
+    public Integer getCardId(Integer cardId) {
+        return this.cardId;
     }
 
     public void setCardId(Integer cardId) {

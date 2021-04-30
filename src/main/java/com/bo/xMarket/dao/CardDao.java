@@ -16,6 +16,8 @@ public interface CardDao {
 
     public List<CardRequest> listCardsByUser(Integer iduser);
 
+    public void updateCard(Card card);
+
     public CardResponse cardDetails(Integer idcard);
 
     //Delete the product logically

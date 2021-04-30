@@ -53,6 +53,22 @@ public class CardBl {
         CardResponse cardResponse=cardDao.cardDetails(cardid);
         return cardResponse;
     }
+    public CardResponse updateCard(CardResponse cardResponse,Transaction transaction){
+        Card card=new Card();
+        card.setCardId(cardResponse.getCardId());
+        card.setUserId(cardResponse.getUserId());
+        card.setCardName(cardResponse.getCardName());
+        card.setCardNumber(cardResponse.getCardNumber());
+        card.setExpirationYear(cardResponse.getExpirationYear());
+        card.setExpirationMonth(cardResponse.getExpirationMonth());
+        card.setCvc(cardResponse.getCvc());
+        card.setCreationDate(cardResponse.getCreationDate());
+        card.setStatus(cardResponse.getStatus());
+        card.setTransaction(transaction);
+        cardDao.updateCard(card);
+
+        return cardResponse;
+    }
     public void cardDelete(Integer cardId) {
         cardDao.deleteCard(cardId);
     }

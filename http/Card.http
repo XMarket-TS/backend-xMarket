@@ -22,6 +22,22 @@ Accept: application/json
 GET http://localhost:8080/card/1
 Accept: application/json
 
+### update card
+PUT  http://localhost:8080/updateCard
+Accept: application/json
+Content-Type: application/json
+
+{
+  "cardId": 1,
+  "userId": 1,
+  "cardName": "Banco Sol",
+  "cardNumber": 12345678,
+  "expirationYear": 2024,
+  "expirationMonth": 4,
+  "cvc": 1234,
+  "creationDate": "2021-03-07",
+  "status": 1
+}
 
 
 ### delete card
