@@ -11,7 +11,8 @@
     <select id="getActualOffer" resultType="com.bo.xMarket.model.OfferRegister">
         SELECT start_date as startDate,
                end_date   as endDate,
-               percentage as percentage
+               percentage as percentage,
+               status as status
         FROM offers_register
         WHERE product_product_id = #{productId}
           AND status = 1
@@ -25,4 +26,13 @@
         FROM offers_register
         WHERE product_product_id = #{productId}
     </select>
+    <update id="updateOffer" parameterType="com.bo.xMarket.model.OfferRegister">
+        UPDATE offers_register
+        SET start_date=#{startDate},
+            end_date=#{endDate},
+            percentage=#{percentage},
+            status=#{status}
+        WHERE product_product_id=#{productId} AND id_offers=#{offerId}
+
+    </update>
 </mapper>
