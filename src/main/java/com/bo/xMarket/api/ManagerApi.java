@@ -20,8 +20,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/manager")
 public class ManagerApi {
-    private ManagerBl managerBl;
-    private TransactionBl transactionBl;
+    private final ManagerBl managerBl;
+    private final TransactionBl transactionBl;
 
     @Autowired
     public ManagerApi(ManagerBl managerBl, TransactionBl transactionBl) {

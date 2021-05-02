@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping(value = "/user")
 public class UserApi {
-    private UserBl userBl;
-    private TransactionBl transactionBl;
+    private final UserBl userBl;
+    private final TransactionBl transactionBl;
 
     @Autowired
     public UserApi(UserBl userBl, TransactionBl transactionBl) {
@@ -29,18 +29,18 @@ public class UserApi {
         this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User adduser(@RequestBody UserRequest userRequest, HttpServletRequest request){
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public User adduser(@RequestBody UserRequest userRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        User userResponse=userBl.addUser(userRequest,transaction);
-        return userResponse;
+        return userBl.addUser(userRequest, transaction);
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public Person login(@RequestBody LoginRequest user1, HttpServletRequest request) {
-        Person user = userBl.login(user1);
-        return user;
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        return userBl.login(user1);
     }
 }

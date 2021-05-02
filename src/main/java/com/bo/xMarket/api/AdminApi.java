@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/admin")
 public class AdminApi {
-    private AdminBl adminBl;
+    private final AdminBl adminBl;
 
     @Autowired
     public AdminApi(AdminBl adminBl) {

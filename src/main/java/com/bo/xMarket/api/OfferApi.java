@@ -3,20 +3,22 @@ package com.bo.xMarket.api;
 import com.bo.xMarket.bl.OfferBl;
 import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.dto.OfferRequest;
-import com.bo.xMarket.dto.ProductRequest;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(value = "offer")
 public class OfferApi {
-    private OfferBl offerBl;
-    private TransactionBl transactionBl;
+    private final OfferBl offerBl;
+    private final TransactionBl transactionBl;
 
     @Autowired
     public OfferApi(OfferBl offerBl, TransactionBl transactionBl) {

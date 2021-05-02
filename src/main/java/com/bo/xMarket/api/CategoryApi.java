@@ -1,7 +1,6 @@
 package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.CategoryBl;
-import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.dto.CategoryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,12 +14,10 @@ import java.util.List;
 @RequestMapping(value = "/category")
 public class CategoryApi {
     private final CategoryBl categoryBl;
-    private final TransactionBl transactionBl;
 
     @Autowired
-    public CategoryApi(CategoryBl categoryBl, TransactionBl transactionBl) {
+    public CategoryApi(CategoryBl categoryBl) {
         this.categoryBl = categoryBl;
-        this.transactionBl = transactionBl;
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -18,8 +18,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "")
 public class CardApi {
-    private CardBl cardBl;
-    private TransactionBl transactionBl;
+    private final CardBl cardBl;
+    private final TransactionBl transactionBl;
 
     @Autowired
     public CardApi(CardBl cardBl, TransactionBl transactionBl) {
@@ -28,19 +28,20 @@ public class CardApi {
     }
 
 
-    @RequestMapping(value = "/addcard",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/addcard", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Card createCard(@RequestBody CardResponse card, HttpServletRequest request){
+    public Card createCard(@RequestBody CardResponse card, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //LOGGER.error(transaction.getTxId().toString());
-        Card createcard=cardBl.addCard(card,transaction);
-        return createcard;
+        return cardBl.addCard(card, transaction);
     }
+
     @RequestMapping(value = "/user/{userid}/listCards", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CardRequest> listCardsByUser(@PathVariable("userid") Integer id) {
         return cardBl.listCardsByUser(id);
     }
+
     @RequestMapping(value = "/card/{cardId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public void productDelete(@PathVariable("cardId") Integer cardId, HttpServletRequest request) {
@@ -49,17 +50,19 @@ public class CardApi {
         cardBl.cardDelete(cardId);
 //        productBl.productDelete(productid);
     }
+
     @RequestMapping(value = "/card/{cardid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public CardResponse cardDetails(@PathVariable("cardid") Integer id) {
         return cardBl.cardDetails(id);
     }
-    @RequestMapping(value="/updateCard",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(value = "/updateCard", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public CardResponse updateCard(@RequestBody CardResponse cardResponse, HttpServletRequest request) {
 
         Transaction transaction = TransactionUtil.createTransaction(request);
         //LOGGER.error(transaction.getTxId().toString());
         transactionBl.createTransaction(transaction);
-        cardBl.updateCard(cardResponse,transaction);
+        cardBl.updateCard(cardResponse, transaction);
 
         return cardResponse;
     }

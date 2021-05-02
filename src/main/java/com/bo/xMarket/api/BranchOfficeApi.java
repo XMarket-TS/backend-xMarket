@@ -2,9 +2,7 @@ package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.BranchOfficeBl;
 import com.bo.xMarket.bl.TransactionBl;
-
 import com.bo.xMarket.dto.BranchOfficeRequest;
-import com.bo.xMarket.dto.ProductRequest;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/branchOffice")
 public class BranchOfficeApi {
-    private BranchOfficeBl branchOfficeBl;
-    private TransactionBl transactionBl;
+    private final BranchOfficeBl branchOfficeBl;
+    private final TransactionBl transactionBl;
 
     @Autowired
     public BranchOfficeApi(BranchOfficeBl branchOfficeBl, TransactionBl transactionBl) {

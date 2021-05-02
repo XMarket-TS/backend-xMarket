@@ -383,14 +383,14 @@ CREATE TABLE stock
     CONSTRAINT stock_pk PRIMARY KEY (stock_id)
 );
 
--- Table: transaction
-CREATE TABLE transaction
+-- Table: transactions
+CREATE TABLE transactions
 (
     tx_id      int          NOT NULL AUTO_INCREMENT,
     tx_host    varchar(100) NOT NULL,
-    tx_user_ud int          NOT NULL,
+    tx_user_id int          NOT NULL,
     tx_date    timestamp    NOT NULL,
-    CONSTRAINT transaction_pk PRIMARY KEY (tx_id)
+    CONSTRAINT transactions_pk PRIMARY KEY (tx_id)
 );
 
 -- Table: user
