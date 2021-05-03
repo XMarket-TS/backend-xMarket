@@ -1,29 +1,29 @@
 ### Create offer
-POST http://localhost:8080/offer
+POST http://localhost:8080/offer/new
 Accept: application/json
 Content-Type: application/json
 
 {
-  "productId":  519,
-  "name": "offer 2",
+  "productId": 519,
   "percentage": 60,
-  "startDate": "2021-11-02T02:50:12.208Z",
-  "endDate": "2021-11-02T02:50:12.208Z",
-  "imageUrl": "url"
+  "startDate": "2021-12-02T02:50:12.208Z",
+  "endDate": "2021-12-02T02:50:12.208Z"
 }
 
-### Update offer
-PUT http://localhost:8080/offer
+### Update offer by product id
+PUT http://localhost:8080/offer/update
 Accept: application/json
 Content-Type: application/json
 
 {
-  "offerId": 2,
-  "productId":  519,
-  "name": "offer 1",
-  "percentage": 60,
+  "productId": 519,
+  "offerId": 512,
+  "percentage": 90,
   "startDate": "2021-11-02T02:50:12.208Z",
   "endDate": "2021-11-02T02:50:12.208Z",
-  "status": 1,
-  "imageUrl": "url"
+  "status": 1
 }
+
+
+### Delete offer by offer id
+PUT http://localhost:8080/offer/delete/512

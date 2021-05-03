@@ -3,21 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.OfferRegisterDao">
+
     <insert id="addOfferRegister" parameterType="com.bo.xMarket.model.OfferRegister">
         INSERT INTO offers_register
         VALUES (null, #{productId}, #{startDate}, #{endDate}, #{percentage}, #{status},
                 #{txHost}, #{txUserId}, #{txDate})
     </insert>
+
     <select id="getActualOffer" resultType="com.bo.xMarket.model.OfferRegister">
         SELECT start_date as startDate,
                end_date   as endDate,
                percentage as percentage,
-               status as status
+               status     as status
         FROM offers_register
         WHERE product_product_id = #{productId}
           AND status = 1
         LIMIT 1;
     </select>
+
     <select id="getOffersByProduct" resultType="com.bo.xMarket.dto.OfferRequest">
         SELECT start_date as startDate,
                end_date   as endDate,
@@ -26,13 +29,32 @@
         FROM offers_register
         WHERE product_product_id = #{productId}
     </select>
+
     <update id="updateOffer" parameterType="com.bo.xMarket.model.OfferRegister">
         UPDATE offers_register
         SET start_date=#{startDate},
             end_date=#{endDate},
             percentage=#{percentage},
             status=#{status}
-        WHERE product_product_id=#{productId} AND id_offers=#{offerId}
+        WHERE product_product_id = #{productId}
+          AND id_offers = #{offerId}
+
+    </update>
+
+    <update id="deleteOfferById">
+        UPDATE offers_register
+        SET status=3
+        WHERE id_offers = #{offerId}
+    </update>
+
+    <update id="updateOffers" parameterType="com.bo.xMarket.dto.OfferRequest">
+        UPDATE offers_register
+        SET start_date=#{startDate},
+            end_date=#{endDate},
+            percentage=#{percentage},
+            status=#{status}
+        WHERE product_product_id = #{productId}
+          AND id_offers = #{offerId}
 
     </update>
 </mapper>

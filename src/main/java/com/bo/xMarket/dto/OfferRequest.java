@@ -11,7 +11,6 @@ public class OfferRequest {
     private Date startDate;
     private Date endDate;
     private Integer status;
-//    private String imageUrl;
 
     public OfferRequest() {
     }

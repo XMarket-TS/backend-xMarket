@@ -19,7 +19,7 @@ public class OfferBl {
     }
 
     public OfferRequest update(OfferRequest offerRequest) {
-        OfferRegister offer= new OfferRegister();
+        OfferRegister offer = new OfferRegister();
         offer.setOfferId(offerRequest.getOfferId());
         offer.setPercentage(offerRequest.getPercentage());
         offer.setProductId(offerRequest.getProductId());
@@ -27,11 +27,11 @@ public class OfferBl {
         offer.setEndDate(offerRequest.getEndDate());
         offer.setStatus(offerRequest.getStatus());
         offerRegisterDao.updateOffer(offer);
-        return  offerRequest;
+        return offerRequest;
 
     }
 
-    public OfferRequest create(OfferRequest offerRequest,Transaction transaction) {
+    public OfferRequest create(OfferRequest offerRequest, Transaction transaction) {
         OfferRegister offerRegister = new OfferRegister();
         offerRegister.setEndDate(offerRequest.getEndDate());
         offerRegister.setStartDate(offerRequest.getStartDate());
@@ -41,5 +41,13 @@ public class OfferBl {
         offerRegister.setTransaction(transaction);
         offerRegisterDao.addOfferRegister(offerRegister);
         return offerRequest;
+    }
+
+    public void updateOffer(OfferRequest offerRequest) {
+        offerRegisterDao.updateOffers(offerRequest);
+    }
+
+    public void deleteOffer(Integer offerId) {
+        offerRegisterDao.deleteOfferById(offerId);
     }
 }

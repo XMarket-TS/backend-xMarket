@@ -19,4 +19,8 @@ public interface OfferRegisterDao {
     public List<OfferRequest> getOffersByProduct(Integer productId);
 
     void updateOffer(OfferRegister offer);
+
+    void deleteOfferById(Integer offerId);
+
+    public void updateOffers(OfferRequest offerRequest);
 }
