@@ -9,7 +9,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MediaDao {
+    //
     public List<MediaRequest> listmedia(Integer idproduct);
 
+    //
     public void addMedia(Media media);
 }

@@ -3,7 +3,6 @@ package com.bo.xMarket.bl;
 import com.bo.xMarket.dao.*;
 import com.bo.xMarket.dto.*;
 import com.bo.xMarket.model.*;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -18,18 +17,18 @@ import java.util.Date;
 import java.util.List;
 
 
-//import io.swagger.models.auth.In;
-//import jdk.nashorn.internal.runtime.options.LoggingOption;
+/* import io.swagger.models.auth.In;
+ import jdk.nashorn.internal.runtime.options.LoggingOption;*/
 
 @Service
 public class ProductBl {
-    private ProductDao productDao;
-    private CategoryDao categoryDao;
-    private ProductBranchDao productBranchDao;
-    private MediaDao mediaDao;
-    private StockDao stockDao;
-    private OfferRegisterDao offerRegisterDao;
-    private BranchOfficeDao branchOfficeDao;
+    private final ProductDao productDao;
+    private final CategoryDao categoryDao;
+    private final ProductBranchDao productBranchDao;
+    private final MediaDao mediaDao;
+    private final StockDao stockDao;
+    private final OfferRegisterDao offerRegisterDao;
+    private final BranchOfficeDao branchOfficeDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductBl.class);
 
     @Autowired
@@ -43,7 +42,7 @@ public class ProductBl {
         this.branchOfficeDao = branchOfficeDao;
     }
 
-    public PageInfo<ProductResponse> productList(Integer idPerson,Integer page,Integer size) {
+    public PageInfo<ProductResponse> productList(Integer idPerson, Integer page, Integer size) {
 
         BranchOffice branchOffice = branchOfficeDao.getBranchByPersonManagerId(idPerson);
         if (branchOffice == null) {
@@ -51,7 +50,7 @@ public class ProductBl {
         }
         PageHelper.startPage(page, size); //line 1
         List<Product> productResponse = productDao.listProductsByBranch(branchOffice.getBranchOfficeId());
-        PageInfo prelim= new PageInfo(productResponse);
+        PageInfo prelim = new PageInfo(productResponse);
         List<ProductResponse> productResult = new ArrayList<>();
         for (Product response : productResponse) {
             Category category = categoryDao.getCategoryById(response.getProductCategoryId());
@@ -225,40 +224,36 @@ public class ProductBl {
         return offerRegisterDao.getOffersByProduct(id);
     }
 
-    public PageInfo<ProductResponse>listproductsearch(String  buscar,Integer idPerson,Integer page,Integer size){
+    public PageInfo<ProductResponse> listproductsearch(String buscar, Integer idPerson, Integer page, Integer size) {
         BranchOffice branchOffice = branchOfficeDao.getBranchByPersonManagerId(idPerson);
         if (branchOffice == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find branch");
         }
         PageHelper.startPage(page, size); //line 1
-        List<ProductResponse>productsearch= productDao.productsearch(buscar,branchOffice.getBranchOfficeId());
-        return  new PageInfo(productsearch);
+        List<ProductResponse> productsearch = productDao.productsearch(buscar, branchOffice.getBranchOfficeId());
+        return new PageInfo(productsearch);
     }
 
     public PageInfo<ProductResponse> findPaginated(Integer page, Integer size) {
         PageHelper.startPage(page, size); //line 1
 //        Page<ProductResponse> productResponses= productDao.listpaginate(1);
         List<ProductResponse> page1 = productDao.listpaginate(1);
-        return  new PageInfo(page1);
+        return new PageInfo(page1);
     }
 
-    public ProductRequest update(ProductRequest productRequest,Integer person,Integer productId) {
-        Product product= new Product();
+    public ProductRequest update(ProductRequest productRequest, Integer person, Integer productId) {
+        Product product = new Product();
         product.setProductId(productId);
         product.setPrice(productRequest.getPrice());
         product.setDescription(productRequest.getDescription().trim());
         product.setName(productRequest.getName().trim());
 
-        if(product.getName().trim().length()==0 || product.getDescription().trim().length()==0) {
+        if (product.getName().trim().length() == 0 || product.getDescription().trim().length() == 0) {
             return null;
-        }else{
+        } else {
             productDao.updateProduct(product);
-            return  productRequest;
+            return productRequest;
         }
     }
 
-    public void updateProduct(Integer productId, ProductRequest productRequest, Transaction transaction) {
-//        Product product = productDao.
-
-    }
 }

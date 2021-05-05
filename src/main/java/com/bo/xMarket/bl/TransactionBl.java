@@ -7,15 +7,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TransactionBl {
-    private TransactionDao transactionDao;
+    private final TransactionDao transactionDao;
 
     @Autowired
     public TransactionBl(TransactionDao transactionDao) {
         this.transactionDao = transactionDao;
     }
-    public Transaction createTransaction (Transaction transaction){
+
+    public Transaction createTransaction(Transaction transaction) {
         this.transactionDao.create(transaction);
-        Integer lastPrimaryKey= this.transactionDao.getLastInsertId();
+        Integer lastPrimaryKey = this.transactionDao.getLastInsertId();
         transaction.setTxId(lastPrimaryKey);
         return transaction;
     }

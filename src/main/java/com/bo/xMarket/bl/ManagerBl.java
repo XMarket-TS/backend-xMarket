@@ -20,9 +20,9 @@ import java.util.List;
 
 @Service
 public class ManagerBl {
-    private ManagerDao managerDao;
-    private PersonDao personDao;
-    private TransactionDao transactionDao;
+    private final ManagerDao managerDao;
+    private final PersonDao personDao;
+    private final TransactionDao transactionDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductBl.class);
 
     @Autowired

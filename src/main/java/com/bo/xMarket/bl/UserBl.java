@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserBl {
-    private UserDao userDao;
-    private PersonDao personDao;
+    private final UserDao userDao;
+    private final PersonDao personDao;
 
     @Autowired
     public UserBl(UserDao userDao, PersonDao personDao) {

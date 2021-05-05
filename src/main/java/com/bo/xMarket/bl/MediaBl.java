@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MediaBl {
-    private MediaDao mediaDao;
+    private final MediaDao mediaDao;
 
     @Autowired
     public MediaBl(MediaDao mediaDao) {

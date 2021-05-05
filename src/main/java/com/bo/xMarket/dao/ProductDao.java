@@ -11,17 +11,23 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface ProductDao{
+public interface ProductDao {
+    //
     public List<ProductResponse> listProductsByCategory(Integer id, Integer idbranch, Integer idcategory);
 
+    //
     public List<Product> listProductsByBranch(Integer idbranch); //(Frontend web)
 
+    //
     public List<ProductResponse> listProductsByBranchId(Integer idbranch);//(Frontend movil)
 
+    //
     public void addproduct(Product product);
 
+    //
     public ProductSpecificResponse productsDetails(Integer productId);
 
+    //
     public Integer getLastInsertId();
 
     //Delete the product logically
@@ -33,9 +39,12 @@ public interface ProductDao{
     // Get Stock by ProductId
     public Stock getStock(Integer productId);
 
-    public Page<ProductResponse>productsearch(String search, Integer branchId);
+    //
+    public Page<ProductResponse> productsearch(String search, Integer branchId);
 
+    //
     public List<ProductResponse> listpaginate(Integer idbranch);
 
+    //
     public void updateProduct(Product product);
 }

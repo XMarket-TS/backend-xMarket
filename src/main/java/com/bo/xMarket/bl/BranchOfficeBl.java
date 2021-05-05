@@ -2,7 +2,6 @@ package com.bo.xMarket.bl;
 
 
 import com.bo.xMarket.dao.BranchOfficeDao;
-import com.bo.xMarket.dao.TransactionDao;
 import com.bo.xMarket.dto.BranchOfficeRequest;
 import com.bo.xMarket.model.BranchOffice;
 import com.bo.xMarket.model.Transaction;
@@ -14,13 +13,11 @@ import java.util.List;
 
 @Service
 public class BranchOfficeBl {
-    private BranchOfficeDao branchOfficeDao;
-    private TransactionDao transactionDao;
+    private final BranchOfficeDao branchOfficeDao;
 
     @Autowired
-    public BranchOfficeBl(BranchOfficeDao branchOfficeDao, TransactionDao transactionDao) {
+    public BranchOfficeBl(BranchOfficeDao branchOfficeDao) {
         this.branchOfficeDao = branchOfficeDao;
-        this.transactionDao = transactionDao;
     }
 
     public BranchOfficeRequest addBranchOffice(BranchOfficeRequest branchOfficeRequest, Transaction transaction) {

@@ -15,23 +15,22 @@ import java.util.List;
 
 @Service
 public class CardBl {
-//    private CategoryDao categoryDao;
-    private CardDao cardDao;
+    private final CardDao cardDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(CardBl.class);
-//    private static final Logger LOGGER = LoggerFactory.getLogger(PaymentApi.class);
+
     @Autowired
     public CardBl(CardDao cardDao) {
         this.cardDao = cardDao;
     }
 
-    public List<CardRequest> listCardsByUser(Integer userId){
-        List<CardRequest> cardCollection=cardDao.listCardsByUser(userId);
-//        LOGGER.error(String.valueOf(cardCollection.size()));
+    public List<CardRequest> listCardsByUser(Integer userId) {
+        List<CardRequest> cardCollection = cardDao.listCardsByUser(userId);
+        LOGGER.error(String.valueOf(cardCollection.size()));
         return cardCollection;
     }
 
-    public Card addCard(CardResponse card, Transaction transaction){
-        Card card2=new Card();
+    public Card addCard(CardResponse card, Transaction transaction) {
+        Card card2 = new Card();
         card2.setUserId(card.getUserId());
         card2.setCardName(card.getCardName());
         card2.setCardNumber(card.getCardNumber());
@@ -49,13 +48,14 @@ public class CardBl {
         cardDao.addCard(card2);
         return card2;
     }
-    public CardResponse cardDetails(Integer cardid) {
-        CardResponse cardResponse=cardDao.cardDetails(cardid);
-        return cardResponse;
-    }
-    public CardResponse updateCard(CardResponse cardResponse,Transaction transaction){
 
-        Card card=new Card();
+    public CardResponse cardDetails(Integer cardid) {
+        return cardDao.cardDetails(cardid);
+    }
+
+    public void updateCard(CardResponse cardResponse, Transaction transaction) {
+
+        Card card = new Card();
 
         card.setCardId(cardResponse.getCardId());
         card.setUserId(cardResponse.getUserId());
@@ -69,8 +69,8 @@ public class CardBl {
         card.setTransaction(transaction);
         cardDao.updateCard(card);
 
-        return cardResponse;
     }
+
     public void cardDelete(Integer cardId) {
 
         cardDao.deleteCard(cardId);

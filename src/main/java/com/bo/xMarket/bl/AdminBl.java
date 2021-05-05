@@ -12,8 +12,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AdminBl {
-    private AdminDao adminDao;
-    private PersonDao personDao;
+    private final AdminDao adminDao;
+    private final PersonDao personDao;
 
     @Autowired
     public AdminBl(AdminDao adminDao, PersonDao personDao) {

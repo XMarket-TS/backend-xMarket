@@ -11,6 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface ManagerDao {
+    //
     public void addManager(Manager manager);
 
     // Login Manager
