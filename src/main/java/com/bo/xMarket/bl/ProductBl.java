@@ -220,10 +220,6 @@ public class ProductBl {
         productDao.deleteProduct(productId);
     }
 
-    public List<OfferRequest> productOffers(Integer id) {
-        return offerRegisterDao.getOffersByProduct(id);
-    }
-
     public PageInfo<ProductResponse> listproductsearch(String buscar, Integer idPerson, Integer page, Integer size) {
         BranchOffice branchOffice = branchOfficeDao.getBranchByPersonManagerId(idPerson);
         if (branchOffice == null) {

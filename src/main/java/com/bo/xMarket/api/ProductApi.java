@@ -69,12 +69,6 @@ public class ProductApi {
         productBl.productDelete(productid);
     }
 
-    @RequestMapping(value = "/product/offers/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OfferRequest> productOffers(@PathVariable("productid") Integer id) {
-
-        return productBl.productOffers(id);
-    }
-
     @RequestMapping(value = "/manager/{personId}/products", params = {"search", "page", "size"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public PageInfo<ProductResponse> getproductlistsearch(@RequestParam("search") String product, @RequestParam("page") Integer page, @RequestParam("size") Integer size, @PathVariable("personId") Integer personId) {
         String a = product + "%";

@@ -7,6 +7,8 @@ import com.bo.xMarket.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OfferBl {
     private final OfferRegisterDao offerRegisterDao;
@@ -14,6 +16,10 @@ public class OfferBl {
     @Autowired
     public OfferBl(OfferRegisterDao offerRegisterDao) {
         this.offerRegisterDao = offerRegisterDao;
+    }
+
+    public List<OfferRequest> productOffers(Integer id) {
+        return offerRegisterDao.getOffersByProduct(id);
     }
 
     public OfferRequest update(OfferRequest offerRequest) {

@@ -22,12 +22,15 @@
     </select>
 
     <select id="getOffersByProduct" resultType="com.bo.xMarket.dto.OfferRequest">
-        SELECT start_date as startDate,
-               end_date   as endDate,
-               percentage as percentage,
-               status     as status
+        SELECT id_offers          as offerId,
+               product_product_id as productId,
+               start_date         as startDate,
+               end_date           as endDate,
+               percentage         as percentage,
+               status             as status
         FROM offers_register
         WHERE product_product_id = #{productId}
+          AND status != 3
     </select>
 
     <update id="updateOffer" parameterType="com.bo.xMarket.model.OfferRegister">

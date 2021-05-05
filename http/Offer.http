@@ -1,3 +1,7 @@
+### get product offers
+GET http://localhost:8080/offer/product/162
+Accept: application/json
+
 ### Create offer
 POST http://localhost:8080/offer/new
 Accept: application/json
@@ -26,4 +30,4 @@ Content-Type: application/json
 
 
 ### Delete offer by offer id
-PUT http://localhost:8080/offer/delete/512
+DELETE http://localhost:8080/offer/delete/85

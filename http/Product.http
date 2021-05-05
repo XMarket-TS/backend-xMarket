@@ -43,10 +43,6 @@ Accept: application/json
 DELETE http://localhost:8080/product/10
 Accept: application/json
 
-### get product offers
-GET http://localhost:8080/product/offers/3
-Accept: application/json
-
 ### search products
 GET http://localhost:8080/manager/530/products?search=S&page=1&size=10
 Accept: application/json
