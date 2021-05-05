@@ -41,7 +41,7 @@ public class OfferBl {
         offerRegister.setStartDate(offerRequest.getStartDate());
         offerRegister.setPercentage(offerRequest.getPercentage());
         offerRegister.setProductId(offerRequest.getProductId());
-        offerRegister.setStatus(1);
+        offerRegister.setStatus(offerRequest.getStatus());
         offerRegister.setTransaction(transaction);
         offerRegisterDao.addOfferRegister(offerRegister);
         return offerRequest;

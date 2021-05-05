@@ -11,7 +11,8 @@ Content-Type: application/json
   "productId": 519,
   "percentage": 60,
   "startDate": "2021-12-02T02:50:12.208Z",
-  "endDate": "2021-12-02T02:50:12.208Z"
+  "endDate": "2021-12-02T02:50:12.208Z",
+  "status": 1
 }
 
 ### Update offer by product id
