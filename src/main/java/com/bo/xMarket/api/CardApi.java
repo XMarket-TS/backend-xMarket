@@ -2,8 +2,8 @@ package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.CartBl;
 import com.bo.xMarket.bl.TransactionBl;
-import com.bo.xMarket.dto.CartRequest;
-import com.bo.xMarket.dto.CartResponse;
+import com.bo.xMarket.dto.CardRequest;
+import com.bo.xMarket.dto.CardResponse;
 import com.bo.xMarket.model.Card;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
@@ -17,12 +17,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "") // TODO: change mapping to "cart"
-public class CartApi {
+public class CardApi {
     private final CartBl cartBl;
     private final TransactionBl transactionBl;
 
     @Autowired
-    public CartApi(CartBl cartBl, TransactionBl transactionBl) {
+    public CardApi(CartBl cartBl, TransactionBl transactionBl) {
         this.cartBl = cartBl;
         this.transactionBl = transactionBl;
     }
@@ -30,14 +30,14 @@ public class CartApi {
 
     @RequestMapping(value = "/addcard", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Card createCard(@RequestBody CartResponse card, HttpServletRequest request) {
+    public Card createCard(@RequestBody CardResponse card, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         return cartBl.addCard(card, transaction);
     }
 
     @RequestMapping(value = "/user/{userid}/listCards", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CartRequest> listCardsByUser(@PathVariable("userid") Integer id) {
+    public List<CardRequest> listCardsByUser(@PathVariable("userid") Integer id) {
         return cartBl.listCardsByUser(id);
     }
 
@@ -50,15 +50,15 @@ public class CartApi {
     }
 
     @RequestMapping(value = "/card/{cardid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public CartResponse cardDetails(@PathVariable("cardid") Integer id) {
+    public CardResponse cardDetails(@PathVariable("cardid") Integer id) {
         return cartBl.cardDetails(id);
     }
 
     @RequestMapping(value = "/updateCard", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public CartResponse updateCard(@RequestBody CartResponse cartResponse, HttpServletRequest request) {
+    public CardResponse updateCard(@RequestBody CardResponse cardResponse, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        cartBl.updateCard(cartResponse, transaction);
-        return cartResponse;
+        cartBl.updateCard(cardResponse, transaction);
+        return cardResponse;
     }
 }

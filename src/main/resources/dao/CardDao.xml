@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bo.xMarket.dao.CartDao">
+<mapper namespace="com.bo.xMarket.dao.CardDao">
     <select id="listCardsByUser" resultMap="cardMap">
         SELECT a.card_id     as cardId,
                a.user_id     as userId,
@@ -21,7 +21,7 @@
           AND c.status = 1
 
     </select>
-    <select id="cardDetails" resultType="com.bo.xMarket.dto.CartResponse">
+    <select id="cardDetails" resultType="com.bo.xMarket.dto.CardResponse">
         SELECT a.card_id          as cardId,
                a.user_id          as userId,
                a.card_name        as cardName,
@@ -76,7 +76,7 @@
         SELECT LAST_INSERT_ID()
     </select>
 
-    <resultMap id="cardMap" type="com.bo.xMarket.dto.CartRequest">
+    <resultMap id="cardMap" type="com.bo.xMarket.dto.CardRequest">
         <result column="cardId" property="cardId"/>
         <result column="userId" property="userId"/>
         <result column="cardName" property="cardName"/>

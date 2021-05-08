@@ -1,8 +1,8 @@
 package com.bo.xMarket.bl;
 
-import com.bo.xMarket.dao.CartDao;
-import com.bo.xMarket.dto.CartRequest;
-import com.bo.xMarket.dto.CartResponse;
+import com.bo.xMarket.dao.CardDao;
+import com.bo.xMarket.dto.CardRequest;
+import com.bo.xMarket.dto.CardResponse;
 import com.bo.xMarket.model.Card;
 import com.bo.xMarket.model.Transaction;
 import org.slf4j.Logger;
@@ -15,21 +15,21 @@ import java.util.List;
 
 @Service
 public class CartBl {
-    private final CartDao cartDao;
+    private final CardDao cardDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(CartBl.class);
 
     @Autowired
-    public CartBl(CartDao cartDao) {
-        this.cartDao = cartDao;
+    public CartBl(CardDao cardDao) {
+        this.cardDao = cardDao;
     }
 
-    public List<CartRequest> listCardsByUser(Integer userId) {
-        List<CartRequest> cardCollection = cartDao.listCardsByUser(userId);
+    public List<CardRequest> listCardsByUser(Integer userId) {
+        List<CardRequest> cardCollection = cardDao.listCardsByUser(userId);
         LOGGER.error(String.valueOf(cardCollection.size()));
         return cardCollection;
     }
 
-    public Card addCard(CartResponse card, Transaction transaction) {
+    public Card addCard(CardResponse card, Transaction transaction) {
         Card card2 = new Card();
         card2.setUserId(card.getUserId());
         card2.setCardName(card.getCardName());
@@ -45,34 +45,34 @@ public class CartBl {
 //        card2.setTxDate(transaction.getTxDate());
         card2.setTransaction(transaction);
 //        LOGGER.info(card2.getTxHost());
-        cartDao.addCard(card2);
+        cardDao.addCard(card2);
         return card2;
     }
 
-    public CartResponse cardDetails(Integer cardid) {
-        return cartDao.cardDetails(cardid);
+    public CardResponse cardDetails(Integer cardid) {
+        return cardDao.cardDetails(cardid);
     }
 
-    public void updateCard(CartResponse cartResponse, Transaction transaction) {
+    public void updateCard(CardResponse cardResponse, Transaction transaction) {
 
         Card card = new Card();
 
-        card.setCardId(cartResponse.getCardId());
-        card.setUserId(cartResponse.getUserId());
-        card.setCardName(cartResponse.getCardName());
-        card.setCardNumber(cartResponse.getCardNumber());
-        card.setExpirationYear(cartResponse.getExpirationYear());
-        card.setExpirationMonth(cartResponse.getExpirationMonth());
-        card.setCvc(cartResponse.getCvc());
-        card.setCreationDate(cartResponse.getCreationDate());
-        card.setStatus(cartResponse.getStatus());
+        card.setCardId(cardResponse.getCardId());
+        card.setUserId(cardResponse.getUserId());
+        card.setCardName(cardResponse.getCardName());
+        card.setCardNumber(cardResponse.getCardNumber());
+        card.setExpirationYear(cardResponse.getExpirationYear());
+        card.setExpirationMonth(cardResponse.getExpirationMonth());
+        card.setCvc(cardResponse.getCvc());
+        card.setCreationDate(cardResponse.getCreationDate());
+        card.setStatus(cardResponse.getStatus());
         card.setTransaction(transaction);
-        cartDao.updateCard(card);
+        cardDao.updateCard(card);
 
     }
 
     public void cardDelete(Integer cardId) {
 
-        cartDao.deleteCard(cardId);
+        cardDao.deleteCard(cardId);
     }
 }
