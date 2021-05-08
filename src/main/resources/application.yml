@@ -2,22 +2,11 @@ spring:
   application:
     name: xMarket
   datasource:
-#    name: xMarket_Data
-#    platform: mysql
-#    url: jdbc:mysql://us-cdbr-east-03.cleardb.com:3306/heroku_3ed503f241cf319?reconnect=true
-#    username: b719f422f2686b
-#    password: 8f19507c
-    name: xMarket_database
+    name: xMarket_Data
     platform: mysql
-    url: jdbc:mysql://localhost:3306/xmarket_bd
-    username: root
-    password: ""
-#      name: xmarket_bd
-#      platform: mysql
-#      url: jdbc:mysql://localhost:3306/xmarket_bd
-#      username: root
-#      password: ""
-
+    url: jdbc:mysql://us-cdbr-east-03.cleardb.com:3306/heroku_3ed503f241cf319?reconnect=true
+    username: b719f422f2686b
+    password: 8f19507c
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
       connectionTestQuery: select 1
@@ -39,10 +28,10 @@ mybatis:
 server:
   error:
     include-message: always
-spring.jackson.default-property-inclusion: NON_NULL
 
 pagehelper:
   helperDialect: mysql
   reasonable: false
   params: count=countSql
   supportMethodsArguments: true
+
