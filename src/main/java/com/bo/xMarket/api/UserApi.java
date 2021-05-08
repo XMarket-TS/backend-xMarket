@@ -3,19 +3,19 @@ package com.bo.xMarket.api;
 import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.bl.UserBl;
 import com.bo.xMarket.dto.LoginRequest;
+import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.dto.UserRequest;
+import com.bo.xMarket.dto.UserResponse;
 import com.bo.xMarket.model.Person;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.model.User;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -43,4 +43,10 @@ public class UserApi {
         transactionBl.createTransaction(transaction);
         return userBl.login(user1);
     }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<UserResponse> listOfUsers() {
+        return userBl.getListOfUsers();
+    }
+
 }

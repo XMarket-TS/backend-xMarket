@@ -23,3 +23,7 @@ Content-Type: application/json
   "username": "cewbach0",
   "password": "WzUEgwCE"
 }
+
+### Get list of users
+GET http://localhost:8080/user/list
+Accept: application/json

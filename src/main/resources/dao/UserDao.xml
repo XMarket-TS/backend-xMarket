@@ -17,4 +17,15 @@
           and password = #{password}
           and status = 1
     </select>
+    <select id="getUsers" resultType="com.bo.xMarket.dto.UserResponse">
+        SELECT u.person_user_id as userId,
+               p.name           as name,
+               p.surname        as surname,
+               u.status         as status,
+               p.photo          as photo,
+               p.email          as email
+        FROM person p,
+             user u
+        WHERE p.person_id = u.person_user_id
+    </select>
 </mapper>
