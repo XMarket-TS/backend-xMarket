@@ -4,6 +4,7 @@ import com.bo.xMarket.dao.PersonDao;
 import com.bo.xMarket.dao.UserDao;
 import com.bo.xMarket.dto.LoginRequest;
 import com.bo.xMarket.dto.UserRequest;
+import com.bo.xMarket.dto.UserResponse;
 import com.bo.xMarket.model.Person;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.model.User;
@@ -42,12 +43,25 @@ public class UserBl {
         return user;
     }
 
-    public Person login(LoginRequest user){
+    public UserResponse login(LoginRequest user){
         User user1= new User();
+        UserResponse userInfo=new UserResponse();
         user1.setUsername(user.getUsername());
         user1.setPassword(user.getPassword());
-        if (userDao.findUserByNP(user1)!=null){
-            return personDao.getPersonById(userDao.findUserByNP(user1).getPersonId());
+        User x=userDao.findUserByNP(user1);
+        if (x!=null){
+
+            Person person=personDao.getPersonById(userDao.findUserByNP(user1).getPersonId());
+            userInfo.setUserId(x.getUserId());
+            userInfo.setPersonUserId(person.getPersonId());
+            userInfo.setUserName(x.getUsername());
+            userInfo.setCellphone(person.getCellphone());
+            userInfo.setImageUrl(person.getPhoto());
+            userInfo.setEmail(person.getEmail());
+            userInfo.setName(person.getName());
+            userInfo.setSurname(person.getSurname());
+            return userInfo;
+
         }else{
             return null;
         }
