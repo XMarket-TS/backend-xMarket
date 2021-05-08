@@ -38,7 +38,7 @@ public class UserApi {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person loginUser(@RequestBody LoginRequest user1, HttpServletRequest request) {
+    public UserResponse loginUser(@RequestBody LoginRequest user1, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         return userBl.login(user1);

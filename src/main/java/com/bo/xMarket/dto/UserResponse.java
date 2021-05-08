@@ -2,35 +2,19 @@ package com.bo.xMarket.dto;
 
 public class UserResponse {
     private Integer userId;
+    private Integer personUserId;
     private String name;
     private String surname;
+    private String username;
     private Integer status;
     private String photo;
     private String email;
+    private String cellphone;
 
-    public UserResponse(Integer userId, String name, String surname, Integer status, String photo, String email) {
-        this.userId = userId;
-        this.name = name;
-        this.surname = surname;
-        this.status = status;
-        this.photo = photo;
-        this.email = email;
-    }
 
     public UserResponse() {
     }
 
-    @Override
-    public String toString() {
-        return "UserResponse{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", status=" + status +
-                ", photo='" + photo + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
 
     public Integer getUserId() {
         return userId;
@@ -78,5 +62,29 @@ public class UserResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getPersonUserId() {
+        return personUserId;
+    }
+
+    public void setPersonUserId(Integer personUserId) {
+        this.personUserId = personUserId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getCellphone() {
+        return cellphone;
+    }
+
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 }
