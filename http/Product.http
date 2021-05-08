@@ -1,3 +1,21 @@
+### adding new product with adminid and branch office id
+POST http://localhost:8080/manager/530/product
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Piña",
+  "price": "30.00",
+  "description": "Fruta color amarillo",
+  "unit": "10",
+  "category": "Abarrotes",
+  "imagesUrl": [
+    "https://res.cloudinary.com/fulano/image/upload/v1617490236/img_default_ywgnfs.jpg",
+    "https://res.cloudinary.com/fulano/image/upload/v1617490323/img_default1_cuuu1t.jpg",
+    "https://res.cloudinary.com/fulano/image/upload/v1617490329/img_default3_lrczpl.jpg"
+  ]
+}
+
 ### get product list by managerid (Frontend web)
 GET http://localhost:8080/manager/530/products?page=1&size=10
 Accept: application/json
@@ -9,31 +27,6 @@ Accept: application/json
 ### get product list by userid and branch office id and category id (Frontend movil)
 GET http://localhost:8080/user/1/branchOffice/4/category/3
 Accept: application/json
-
-### adding new product with adminid and branch office id
-POST http://localhost:8080/admin/3/branchOffice/1/product
-Accept: application/json
-Content-Type: application/json
-
-{
-  "name": "Piña",
-  "price": "30.00",
-  "description": "Fruta color amarillo",
-  "unit": "10",
-  "category": "Abarrotes",
-  "offer": {
-    "name": "offer 1",
-    "percentage": 50,
-    "startDate": "2021-11-02T02:50:12.208Z",
-    "endDate": "2021-11-02T02:50:12.208Z",
-    "imageUrl": "url"
-  },
-  "imagesUrl": [
-    "https://res.cloudinary.com/fulano/image/upload/v1617490236/img_default_ywgnfs.jpg",
-    "https://res.cloudinary.com/fulano/image/upload/v1617490323/img_default1_cuuu1t.jpg",
-    "https://res.cloudinary.com/fulano/image/upload/v1617490329/img_default3_lrczpl.jpg"
-  ]
-}
 
 ### get product details
 GET http://localhost:8080/product/3

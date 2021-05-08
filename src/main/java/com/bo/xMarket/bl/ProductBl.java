@@ -128,59 +128,37 @@ public class ProductBl {
         return productResult;
     }
 
-    public Product addProduct(ProductRequest productRequest, Integer idbranch, Transaction transaction) {
+    public Product addProduct(Integer personId, ProductRequest productRequest, Transaction transaction) {
         Product product = new Product();
-        Category category = new Category();
+        Integer categoryId = categoryDao.getCategoryIdByName(productRequest.getCategory());
 
         product.setName(productRequest.getName());
         product.setPrice(productRequest.getPrice());
         product.setDescription(productRequest.getDescription());
-//        product.setWeight(productRequest.getWeight());
+        product.setWeight(0.0);
         product.setStatus(1);
         product.setTransaction(transaction);
-        category.setName(productRequest.getCategory());
-        category.setStatus(1);
-        category.setTransaction(transaction);
-        categoryDao.addcategory(category);
-        Integer lastIdCategory = categoryDao.getLastInsertId();
-        product.setProductCategoryId(lastIdCategory);
+        product.setProductCategoryId(categoryId != null ? categoryId : 0);
         productDao.addproduct(product);
+
         Integer lastProductId = productDao.getLastInsertId();
+
         Stock stock = new Stock();
         stock.setInStock(productRequest.getUnit());
         stock.setProductId(lastProductId);
         stock.setLastUpdate(new Date());
         stockDao.addStock(stock);
-        if (productRequest.getOffer() != null) {
-            addOffer(productRequest.getOffer(), transaction, lastProductId);
-        }
         if (productRequest.getImagesUrl().size() > 0) {
-
             addMedia(productRequest.getImagesUrl(), lastProductId, transaction);
         }
-        addProductBranch(lastProductId, idbranch);
 
-        return product;
-    }
-
-    public void addProductBranch(Integer lastProductId, Integer idbranch) {
+        BranchOffice branchOffice = branchOfficeDao.getBranchByPersonManagerId(personId);
         ProductBranch productBranch = new ProductBranch();
         productBranch.setProductId(lastProductId);
-        productBranch.setBranchOfficeId(idbranch);
+        productBranch.setBranchOfficeId(branchOffice.getBranchOfficeId());
         productBranchDao.addProductBranch(productBranch);
-    }
 
-    public void addOffer(OfferRequest offerRequest, Transaction transaction, Integer productId) {
-        OfferRegister offerRegister = new OfferRegister();
-        offerRegister.setEndDate(offerRequest.getEndDate());
-        offerRegister.setStartDate(offerRequest.getStartDate());
-        offerRegister.setPercentage(offerRequest.getPercentage());
-        offerRegister.setProductId(productId);
-        Date date = new Date();
-        LOGGER.info(String.valueOf(date));
-        offerRegister.setStatus(1);
-        offerRegister.setTransaction(transaction);
-        offerRegisterDao.addOfferRegister(offerRegister);
+        return product;
     }
 
     public void addMedia(List<String> listMedia, Integer productId, Transaction transaction) {
@@ -237,13 +215,13 @@ public class ProductBl {
         return new PageInfo(page1);
     }
 
-    public ProductRequest update(ProductRequest productRequest, Integer person, Integer productId) {
+    public ProductRequest update(ProductRequest productRequest, Integer personId, Integer productId) {
         Product product = new Product();
         product.setProductId(productId);
         product.setPrice(productRequest.getPrice());
         product.setDescription(productRequest.getDescription().trim());
         product.setName(productRequest.getName().trim());
-
+        product.setTxUserId(personId);
         if (product.getName().trim().length() == 0 || product.getDescription().trim().length() == 0) {
             return null;
         } else {

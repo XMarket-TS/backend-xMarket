@@ -36,5 +36,10 @@
           AND b.product_id = #{productId}
     </select>
 
+    <select id="getCategoryIdByName" resultType="java.lang.Integer">
+        SELECT p.id
+        FROM product_category p
+        WHERE p.name = #{category}
+    </select>
 
 </mapper>
