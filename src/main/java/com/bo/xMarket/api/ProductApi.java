@@ -2,7 +2,6 @@ package com.bo.xMarket.api;
 
 import com.bo.xMarket.bl.ProductBl;
 import com.bo.xMarket.bl.TransactionBl;
-import com.bo.xMarket.dto.OfferRequest;
 import com.bo.xMarket.dto.ProductRequest;
 import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.dto.ProductSpecificResponse;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "")
+@RequestMapping(value = "") // TODO: change mapping to "products"
 public class ProductApi {
     private final ProductBl productBl;
     private final TransactionBl transactionBl;
@@ -36,17 +35,17 @@ public class ProductApi {
     @RequestMapping(value = "/manager/{personId}/products", params = {"page", "size"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public PageInfo<ProductResponse> ListProducts(@PathVariable("personId") Integer id, @RequestParam("page") Integer page, @RequestParam("size") Integer size) {
         return productBl.productList(id, page, size);
-    }
+    } // TODO: Move to ManagerApi
 
     @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/category/{categoryid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @PathVariable("categoryid") Integer idcategory) {
         return productBl.productListbyCategory(id, idbranch, idcategory);
-    }
+    } // TODO: Move to UserApi :c
 
     @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch) {
         return productBl.productListbyBranchId(id, idbranch);
-    }
+    } // TODO: Change method name
 
     @RequestMapping(value = "/admin/{userid}/branchOffice/{branchoffice}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Product addProduct(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @RequestBody ProductRequest productRequest, HttpServletRequest request) {
@@ -54,7 +53,7 @@ public class ProductApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         return productBl.addProduct(productRequest, idbranch, transaction);
-    }
+    } // TODO: Move to AdminApi and DON'T CREATE NEW CATEGORY!!
 
     @RequestMapping(value = "/product/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductSpecificResponse productInfo(@PathVariable("productid") Integer id) {
@@ -73,7 +72,7 @@ public class ProductApi {
     public PageInfo<ProductResponse> getproductlistsearch(@RequestParam("search") String product, @RequestParam("page") Integer page, @RequestParam("size") Integer size, @PathVariable("personId") Integer personId) {
         String a = product + "%";
         return productBl.listproductsearch(a, personId, page, size);
-    }
+    } // TODO: Move to ManagerApi
 
     @RequestMapping(value = "/product", params = {"page", "size"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public PageInfo<ProductResponse> findPaginated(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
@@ -82,7 +81,6 @@ public class ProductApi {
 
     @RequestMapping(value = "/manager/{personId}/product/{productId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ProductRequest updateproduct(@RequestBody ProductRequest productRequest, @PathVariable("personId") Integer per, @PathVariable("productId") Integer productId) {
-
         return productBl.update(productRequest, per, productId);
-    }
+    } // TODO: Move to ManagerApi
 }

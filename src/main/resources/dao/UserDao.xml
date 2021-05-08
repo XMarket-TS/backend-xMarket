@@ -9,13 +9,12 @@
         VALUES (#{personId}, #{username}, #{password}, #{status}, #{txHost}, #{txUserId}, #{txDate})
     </insert>
     <select id="findUserByNP" resultType="com.bo.xMarket.model.User">
-        SELECT
-            user_id as userId,
-            person_user_id as personId,
-            username as username
-        FROM
-            user
-        WHERE
-            username=#{username} and password=#{password} and status = 1
+        SELECT user_id        as userId,
+               person_user_id as personId,
+               username       as username
+        FROM user
+        WHERE username = #{username}
+          and password = #{password}
+          and status = 1
     </select>
 </mapper>

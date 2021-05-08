@@ -43,7 +43,7 @@
         FROM person a,
              manager m
         WHERE a.person_id = m.person_person_id
-            AND m.manager_id = #{managerId}
+          AND m.manager_id = #{managerId}
     </select>
 
 </mapper>

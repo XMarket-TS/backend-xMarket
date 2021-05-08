@@ -23,7 +23,7 @@ public class MediaApi {
     }
 
     @RequestMapping(value = "/product/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<MediaRequest> medialist(@PathVariable("productid") Integer idproduct) {
+    public List<MediaRequest> mediaList(@PathVariable("productid") Integer idproduct) {
         return mediaBl.mediaList(idproduct);
     }
 

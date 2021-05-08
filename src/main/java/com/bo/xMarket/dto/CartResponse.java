@@ -2,7 +2,7 @@ package com.bo.xMarket.dto;
 
 import java.sql.Date;
 
-public class CardResponse {
+public class CartResponse {
     private Integer cardId;
     private Integer userId;
     private String cardName;
@@ -12,13 +12,6 @@ public class CardResponse {
     private Integer cvc;
     private Date creationDate;
     private Integer status;
-
-//    public Card(Integer cardId,Integer userId,String cardName,Integer cardNumber, Integer expirationYear,Integer expirationMonth,
-//                Integer cvc,Date creationDate,Integer status) {
-//        this.idCategory = idCategory;
-//        this.name = name;
-//        this.status = status;
-//    }
 
     public Integer getCardId() {
         return cardId;
@@ -95,18 +88,17 @@ public class CardResponse {
     @Override
     public String toString() {
         return "Card{" +
-                "cardId=" + cardId +'\'' +
-                ", userId=" + userId +'\'' +
+                "cardId=" + cardId + '\'' +
+                ", userId=" + userId + '\'' +
                 ", cardName='" + cardName + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
                 ", expirationYear='" + expirationYear + '\'' +
                 ", expirationMonth='" + expirationMonth + '\'' +
                 ", cvc='" + cvc + '\'' +
-                ", creationDate=" + creationDate +'\'' +
+                ", creationDate=" + creationDate + '\'' +
                 ", status=" + status +
                 '}';
     }
-
 
 
 }

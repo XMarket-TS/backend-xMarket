@@ -1,6 +1,6 @@
 package com.bo.xMarket.dto;
 
-public class CardRequest {
+public class CartRequest {
     private Integer cardId;
     private Integer userId;
     private String cardName;
@@ -64,10 +64,10 @@ public class CardRequest {
     public String toString() {
         return "CardRequest{" +
                 "cardId='" + cardId + '\'' +
-                ", userId=" + userId +'\'' +
-                ", cardName=" + cardName +'\'' +
+                ", userId=" + userId + '\'' +
+                ", cardName=" + cardName + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
-                ", cvc=" + cvc +'\'' +
+                ", cvc=" + cvc + '\'' +
                 ", status=" + status +
                 '}';
     }

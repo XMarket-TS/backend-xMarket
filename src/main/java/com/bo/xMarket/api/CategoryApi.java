@@ -21,7 +21,7 @@ public class CategoryApi {
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CategoryRequest> categorylist() {
+    public List<CategoryRequest> categoryList() {
         return categoryBl.categoryList();
     }
 }

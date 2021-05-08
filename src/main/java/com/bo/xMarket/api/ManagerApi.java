@@ -38,14 +38,14 @@ public class ManagerApi {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public ManagerRequest userSignUp(@RequestBody LoginRequest LoginRequest) {
+    public ManagerRequest loginManager(@RequestBody LoginRequest LoginRequest) {
         return managerBl.managerLogin(LoginRequest);
     }
 
     @RequestMapping(value = "/login/{personId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ManagerRequest getManager(@PathVariable("personId") Integer id) {
         return managerBl.infoManager(id);
-    }
+    } // TODO: Change to OAuth with Auth0
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ManagerResponse> getManagers() {
