@@ -62,6 +62,7 @@ public class UserBl {
             userInfo.setEmail(person.getEmail());
             userInfo.setName(person.getName());
             userInfo.setSurname(person.getSurname());
+            userInfo.setStatus(x.getStatus());
             return userInfo;
 
         }else{
