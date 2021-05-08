@@ -10,17 +10,20 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CategoryDao {
     //
-    public void addcategory(Category category);
+    void addcategory(Category category);
 
     //
-    public Integer getLastInsertId();
+    Integer getLastInsertId();
 
     //
-    public List<CategoryRequest> listcategory();
+    List<CategoryRequest> listcategory();
 
     //
-    public Category getCategoryById(Integer categoryId);
+    Category getCategoryById(Integer categoryId);
 
     //
     CategoryRequest getCategoryByProductId(Integer productId);
+
+    // Find id category by name
+    Integer getCategoryIdByName(String category);
 }

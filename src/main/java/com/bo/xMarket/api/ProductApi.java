@@ -47,13 +47,12 @@ public class ProductApi {
         return productBl.productListbyBranchId(id, idbranch);
     } // TODO: Change method name
 
-    @RequestMapping(value = "/admin/{userid}/branchOffice/{branchoffice}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Product addProduct(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @RequestBody ProductRequest productRequest, HttpServletRequest request) {
-        LOGGER.warn(id.toString());
+    @RequestMapping(value = "/manager/{personId}/product", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Product addProduct(@PathVariable("personId") Integer managerId, @RequestBody ProductRequest productRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        return productBl.addProduct(productRequest, idbranch, transaction);
-    } // TODO: Move to AdminApi and DON'T CREATE NEW CATEGORY!!
+        return productBl.addProduct(managerId, productRequest, transaction);
+    }
 
     @RequestMapping(value = "/product/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductSpecificResponse productInfo(@PathVariable("productid") Integer id) {
@@ -80,7 +79,7 @@ public class ProductApi {
     }
 
     @RequestMapping(value = "/manager/{personId}/product/{productId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ProductRequest updateproduct(@RequestBody ProductRequest productRequest, @PathVariable("personId") Integer per, @PathVariable("productId") Integer productId) {
-        return productBl.update(productRequest, per, productId);
+    public ProductRequest updateproduct(@RequestBody ProductRequest productRequest, @PathVariable("personId") Integer personId, @PathVariable("productId") Integer productId) {
+        return productBl.update(productRequest, personId, productId);
     } // TODO: Move to ManagerApi
 }
