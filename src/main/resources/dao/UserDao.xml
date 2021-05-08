@@ -11,7 +11,8 @@
     <select id="findUserByNP" resultType="com.bo.xMarket.model.User">
         SELECT user_id        as userId,
                person_user_id as personId,
-               username       as username
+               username       as username,
+               status         as status
         FROM user
         WHERE username = #{username}
           and password = #{password}
