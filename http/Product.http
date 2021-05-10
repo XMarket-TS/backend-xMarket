@@ -21,11 +21,11 @@ GET http://localhost:8080/manager/530/products?page=1&size=10
 Accept: application/json
 
 ### get product list by branchId (Frontend movil)
-GET http://localhost:8080/user/1/branchOffice/1
+GET http://localhost:8080/user/1/branchOffice/2
 Accept: application/json
 
 ### get product list by userid and branch office id and category id (Frontend movil)
-GET http://localhost:8080/user/1/branchOffice/4/category/3
+GET http://localhost:8080/user/1/branchOffice/3/category/1
 Accept: application/json
 
 ### get product details

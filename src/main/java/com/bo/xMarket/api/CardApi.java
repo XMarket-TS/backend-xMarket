@@ -7,6 +7,7 @@ import com.bo.xMarket.dto.CardResponse;
 import com.bo.xMarket.model.Card;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

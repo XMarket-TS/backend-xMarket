@@ -2,11 +2,16 @@ spring:
   application:
     name: xMarket
   datasource:
-    name: xMarket_Data
+#    name: xMarket_Data
+#    platform: mysql
+#    url: jdbc:mysql://us-cdbr-east-03.cleardb.com:3306/heroku_3ed503f241cf319?reconnect=true
+#    username: b719f422f2686b
+#    password: 8f19507c
+    name: xmarket_bd
     platform: mysql
-    url: jdbc:mysql://us-cdbr-east-03.cleardb.com:3306/heroku_3ed503f241cf319?reconnect=true
-    username: b719f422f2686b
-    password: 8f19507c
+    url: jdbc:mysql://localhost:3306/xmarket_bd
+    username: root
+    password: ""
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
       connectionTestQuery: select 1
