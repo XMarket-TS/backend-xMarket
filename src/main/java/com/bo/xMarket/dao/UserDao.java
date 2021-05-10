@@ -16,4 +16,7 @@ public interface UserDao {
 
     // Get list of all users
     List<UserResponse> getUsers();
+
+    //Get a specific user by user id
+    UserResponse getUserById(Integer userId);
 }

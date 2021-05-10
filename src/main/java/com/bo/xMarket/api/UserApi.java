@@ -49,4 +49,8 @@ public class UserApi {
         return userBl.getListOfUsers();
     }
 
+    @RequestMapping(value = "/{userid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserResponse listOfUsers(@PathVariable("userid") Integer userId) {
+        return userBl.getuserbyid(userId);
+    }
 }

@@ -13,6 +13,9 @@ Content-Type: application/json
   "password": "12345678"
 }
 
+### Get list of users
+GET http://localhost:8080/user/list
+Accept: application/json
 
 ### user login
 POST http://localhost:8080/user/login
@@ -24,26 +27,7 @@ Content-Type: application/json
   "password": "WzUEgwCE"
 }
 
-### Get list of users
-GET http://localhost:8080/user/list
+### Get user by id
+GET http://localhost:8080/user/1
 Accept: application/json
 
-### user login
-POST http://localhost:8080/user/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "username": "scogzell4",
-  "password": "VddfvjtGmD"
-}
-
-### user login
-POST http://localhost:8080/user/login
-Accept: application/json
-Content-Type: application/json
-
-{
-  "username": "person",
-  "password": "prueba"
-}

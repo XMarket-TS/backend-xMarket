@@ -76,4 +76,8 @@ public class UserBl {
     public List<UserResponse> getListOfUsers() {
         return userDao.getUsers();
     }
+
+    public UserResponse getuserbyid(Integer userId){
+        return userDao.getUserById(userId);
+    }
 }

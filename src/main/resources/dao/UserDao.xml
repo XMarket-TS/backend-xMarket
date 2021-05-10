@@ -27,6 +27,19 @@
                p.email          as email
         FROM person p,
              user u
-        WHERE p.person_id = u.person_user_id
+        WHERE p.person_id = u.person_user_id AND u.status = 1
+    </select>
+    <select id="getUserById" resultType="com.bo.xMarket.dto.UserResponse">
+        SELECT a.username as username,
+               a.user_id as userId,
+               a.person_user_id as personUserId,
+               b.name as name,
+               b.surname as surname,
+               b.email as email,
+               b.photo as photo,
+               a.status as status,
+               b.cellphone as cellphone
+        FROM user a, person b
+        WHERE a.person_user_id = b.person_id AND a.user_id=#{userId} AND a.status = 1
     </select>
 </mapper>
