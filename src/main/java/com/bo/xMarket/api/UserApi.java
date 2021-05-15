@@ -53,4 +53,9 @@ public class UserApi {
     public UserResponse listOfUsers(@PathVariable("userid") Integer userId) {
         return userBl.getuserbyid(userId);
     }
+
+    @RequestMapping(value = "/status/{userid}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserResponse changeStatusUser(@PathVariable("userid") Integer userId) {
+        return userBl.changeStatusUser(userId);
+    }
 }

@@ -67,6 +67,9 @@ public class ManagerBl {
         if (person == null) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not available");
         }
+        if (person.getStatus() != 1) {
+            throw new ResponseStatusException(HttpStatus.LOCKED, "This user cannot access");
+        }
         ManagerRequest managerRequest = new ManagerRequest();
         setPerson(managerRequest, person);
         managerRequest.setUsername(loginRequest.getUsername());

@@ -8,6 +8,8 @@ import com.bo.xMarket.dto.UserResponse;
 import com.bo.xMarket.model.Person;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ import java.util.List;
 public class UserBl {
     private final UserDao userDao;
     private final PersonDao personDao;
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserBl.class);
     @Autowired
     public UserBl(UserDao userDao, PersonDao personDao) {
         this.userDao = userDao;
@@ -45,15 +47,15 @@ public class UserBl {
         return user;
     }
 
-    public UserResponse login(LoginRequest user){
-        User user1= new User();
-        UserResponse userInfo=new UserResponse();
+    public UserResponse login(LoginRequest user) {
+        User user1 = new User();
+        UserResponse userInfo = new UserResponse();
         user1.setUsername(user.getUsername());
         user1.setPassword(user.getPassword());
-        User x=userDao.findUserByNP(user1);
-        if (x!=null){
+        User x = userDao.findUserByNP(user1);
+        if (x != null) {
 
-            Person person=personDao.getPersonById(userDao.findUserByNP(user1).getPersonId());
+            Person person = personDao.getPersonById(userDao.findUserByNP(user1).getPersonId());
             userInfo.setUserId(x.getUserId());
             userInfo.setPersonUserId(person.getPersonId());
             userInfo.setUsername(x.getUsername());
@@ -65,7 +67,7 @@ public class UserBl {
             userInfo.setStatus(x.getStatus());
             return userInfo;
 
-        }else{
+        } else {
             return null;
         }
 
@@ -77,7 +79,19 @@ public class UserBl {
         return userDao.getUsers();
     }
 
-    public UserResponse getuserbyid(Integer userId){
+    public UserResponse getuserbyid(Integer userId) {
         return userDao.getUserById(userId);
+    }
+
+    public UserResponse changeStatusUser(Integer userId) {
+        UserResponse user = userDao.getUserById(userId);
+        LOGGER.warn(user.toString());
+        if (user.getStatus() == 1) {
+            userDao.changeStatusUser(0, userId);
+        } else {
+            userDao.changeStatusUser(1, userId);
+        }
+        user = userDao.getUserById(userId);
+        return user;
     }
 }

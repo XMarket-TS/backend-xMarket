@@ -19,4 +19,7 @@ public interface UserDao {
 
     //Get a specific user by user id
     UserResponse getUserById(Integer userId);
+
+    // Change status user by user id
+    void changeStatusUser(Integer status, Integer userId);
 }

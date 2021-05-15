@@ -16,13 +16,13 @@
                a.description as description,
                a.gender      as gender,
                a.photo       as photo,
-               a.cellphone   as cellphone
+               a.cellphone   as cellphone,
+               a.status      as status
         FROM person a,
              manager m
         WHERE a.person_id = m.person_person_id
           AND m.username = #{username}
           AND m.password = #{password}
-          AND m.status = 1
     </select>
     <select id="getListOfManagers" resultType="com.bo.xMarket.dto.ManagerResponse">
         SELECT m.manager_id    as managerId,
