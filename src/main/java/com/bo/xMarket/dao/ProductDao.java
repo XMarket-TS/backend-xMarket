@@ -47,4 +47,7 @@ public interface ProductDao {
 
     //
     public void updateProduct(Product product);
+
+    // Search product by name (Movil)
+    public List<ProductResponse> movilSearch(String product, Integer categoryId, Integer branchId);
 }

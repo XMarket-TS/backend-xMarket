@@ -230,4 +230,9 @@ public class ProductBl {
         }
     }
 
+    public PageInfo<ProductResponse> searchmovil(String product, Integer categoryId, Integer branchId, Integer page, Integer size) {
+        PageHelper.startPage(page, size);
+        List<ProductResponse> pagex = productDao.movilSearch(product,categoryId,branchId);
+        return new PageInfo(pagex);
+    }
 }

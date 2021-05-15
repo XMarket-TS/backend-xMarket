@@ -37,7 +37,7 @@ DELETE http://localhost:8080/product/10
 Accept: application/json
 
 ### search products
-GET http://localhost:8080/manager/530/products?search=S&page=1&size=10
+GET http://localhost:8080/manager/530/products?search=Sauce&page=1&size=10
 Accept: application/json
 
 ### pagination
@@ -61,3 +61,7 @@ Content-Type: application/json
     "https://res.cloudinary.com/fulano/image/upload/v1617490329/img_default3_lrczpl.jpg"
   ]
 }
+
+### search products (Movil)
+GET http://localhost:8080/product/category/12/sucursal/4?search=A&page=1&size=10
+Accept: application/json
