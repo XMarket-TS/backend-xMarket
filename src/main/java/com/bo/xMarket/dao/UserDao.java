@@ -17,6 +17,9 @@ public interface UserDao {
     // Get list of all users
     List<UserResponse> getUsers();
 
+    //Get last user id added
+    public Integer getLastUserId();
+
     //Get a specific user by user id
     UserResponse getUserById(Integer userId);
 

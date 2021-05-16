@@ -30,7 +30,7 @@ public class UserApi {
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User addUser(@RequestBody UserRequest userRequest, HttpServletRequest request) {
+    public UserResponse addUser(@RequestBody UserRequest userRequest, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         return userBl.addUser(userRequest, transaction);

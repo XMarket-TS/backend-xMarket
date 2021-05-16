@@ -26,7 +26,7 @@ public class UserBl {
         this.personDao = personDao;
     }
 
-    public User addUser(UserRequest userRequest, Transaction transaction) {
+    public UserResponse addUser(UserRequest userRequest, Transaction transaction) {
         Person person = new Person();
         person.setName(userRequest.getName());
         person.setSurname(userRequest.getSurname());
@@ -44,7 +44,9 @@ public class UserBl {
         user.setStatus(1);
         user.setTransaction(transaction);
         userDao.addUser(user);
-        return user;
+        Integer lastUserId= userDao.getLastUserId();
+        UserResponse userResponse= userDao.getUserById(lastUserId);
+        return userResponse;
     }
 
     public UserResponse login(LoginRequest user) {

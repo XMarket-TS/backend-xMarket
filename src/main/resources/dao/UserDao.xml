@@ -51,4 +51,7 @@
         SET status=#{status}
         WHERE (user_id = #{userId})
     </update>
+    <select id="getLastUserId" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    </select>
 </mapper>
