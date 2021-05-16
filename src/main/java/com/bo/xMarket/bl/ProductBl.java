@@ -80,7 +80,8 @@ public class ProductBl {
         return prelim;
     }
 
-    public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch, Integer idcategory) {
+    public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch, Integer idcategory,Integer page,Integer size) {
+        PageHelper.startPage(page, size); //line 1
         List<ProductResponse> productList = productDao.listProductsByCategory(id, idbranch, idcategory);
         List<ProductResponse> productResult = new ArrayList<>();
         Category category = categoryDao.getCategoryById(idcategory);
@@ -230,9 +231,9 @@ public class ProductBl {
         }
     }
 
-    public PageInfo<ProductResponse> searchmovil(String product, Integer categoryId, Integer branchId, Integer page, Integer size) {
+    public List<ProductResponse> searchmovil(String product, Integer categoryId, Integer branchId, Integer page, Integer size) {
         PageHelper.startPage(page, size);
         List<ProductResponse> pagex = productDao.movilSearch(product,categoryId,branchId);
-        return new PageInfo(pagex);
+        return pagex;
     }
 }

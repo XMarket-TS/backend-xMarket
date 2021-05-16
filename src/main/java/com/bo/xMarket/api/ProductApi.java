@@ -37,9 +37,9 @@ public class ProductApi {
         return productBl.productList(id, page, size);
     } // TODO: Move to ManagerApi
 
-    @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/category/{categoryid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @PathVariable("categoryid") Integer idcategory) {
-        return productBl.productListbyCategory(id, idbranch, idcategory);
+    @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/category/{categoryid}", params = {"page", "size"} ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @PathVariable("categoryid") Integer idcategory,@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+        return productBl.productListbyCategory(id, idbranch, idcategory,page,size);
     } // TODO: Move to UserApi :c
 
     @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -84,7 +84,7 @@ public class ProductApi {
     } // TODO: Move to ManagerApi
 
     @RequestMapping(value = "/product/branchOffice/{idbranch}/category/{idcategory}",params = {"search", "page", "size"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PageInfo<ProductResponse> searchformovil(@RequestParam("search") String product, @RequestParam("page") Integer page, @RequestParam("size") Integer size, @PathVariable("idcategory") Integer categoryId, @PathVariable("idbranch") Integer branchId) {
+    public List<ProductResponse> searchformovil(@RequestParam("search") String product, @RequestParam("page") Integer page, @RequestParam("size") Integer size, @PathVariable("idcategory") Integer categoryId, @PathVariable("idbranch") Integer branchId) {
         String a = product + "%";
         return productBl.searchmovil(a, categoryId, branchId,page,size);
     }
