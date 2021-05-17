@@ -5,8 +5,8 @@ import java.util.Date;
 public class OfferRegister extends Transaction {
     private Integer offerId;
     private Integer productId;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private Integer percentage;
     private Integer status;
 
@@ -45,19 +45,19 @@ public class OfferRegister extends Transaction {
         this.productId = productId;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

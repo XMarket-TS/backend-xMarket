@@ -39,8 +39,8 @@ public class OfferApi {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public void updateOffer(@RequestBody OfferRequest offerRequest) {
-        offerBl.updateOffer(offerRequest);
+    public OfferRequest updateOffer(@RequestBody OfferRequest offerRequest) {
+         return offerBl.updateOffer(offerRequest);
     }
 
     @RequestMapping(value = "/delete/{offerId}", method = RequestMethod.DELETE)

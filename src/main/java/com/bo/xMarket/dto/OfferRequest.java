@@ -1,15 +1,13 @@
 package com.bo.xMarket.dto;
 
 
-import java.util.Date;
-
 public class OfferRequest {
 
     private Integer offerId;
     private Integer productId;
     private Integer percentage;//con el descuento
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private Integer status;
 
     public OfferRequest() {
@@ -47,19 +45,19 @@ public class OfferRequest {
         this.percentage = percentage;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

@@ -8,10 +8,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "productId": 519,
+  "productId": 162,
   "percentage": 60,
-  "startDate": "2021-12-02T02:50:12.208Z",
-  "endDate": "2021-12-02T02:50:12.208Z",
+  "startDate": "2021-12-02",
+  "endDate": "2021-12-02",
   "status": 1
 }
 
@@ -21,11 +21,11 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "productId": 519,
-  "offerId": 512,
+  "productId": 162,
+  "offerId": 532,
   "percentage": 90,
-  "startDate": "2021-11-02T02:50:12.208Z",
-  "endDate": "2021-11-02T02:50:12.208Z",
+  "startDate": "2021-11-10",
+  "endDate": "2021-11-10",
   "status": 1
 }
 

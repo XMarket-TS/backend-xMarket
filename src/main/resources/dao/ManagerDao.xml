@@ -17,7 +17,7 @@
                a.gender      as gender,
                a.photo       as photo,
                a.cellphone   as cellphone,
-               a.status      as status
+               m.status      as status
         FROM person a,
              manager m
         WHERE a.person_id = m.person_person_id

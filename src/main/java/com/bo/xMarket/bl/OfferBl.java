@@ -47,8 +47,9 @@ public class OfferBl {
         return offerRequest;
     }
 
-    public void updateOffer(OfferRequest offerRequest) {
+    public OfferRequest updateOffer(OfferRequest offerRequest) {
         offerRegisterDao.updateOffers(offerRequest);
+        return offerRequest;
     }
 
     public void deleteOffer(Integer offerId) {
