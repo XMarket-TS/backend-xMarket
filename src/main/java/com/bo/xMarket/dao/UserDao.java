@@ -15,7 +15,7 @@ public interface UserDao {
     User findUserByNP(User user1);
 
     // Get list of all users
-    List<UserResponse> getUsers();
+    List<UserResponse> getUsers(String search);
 
     //Get last user id added
     public Integer getLastUserId();

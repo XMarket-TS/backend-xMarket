@@ -29,6 +29,7 @@
              user u
         WHERE p.person_id = u.person_user_id
           AND u.status != 3
+          AND p.name LIKE #{search}
     </select>
     <select id="getUserById" resultType="com.bo.xMarket.dto.UserResponse">
         SELECT a.username       as username,

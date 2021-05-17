@@ -10,6 +10,9 @@ import com.bo.xMarket.model.Person;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.model.User;
 import com.bo.xMarket.util.TransactionUtil;
+import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +25,7 @@ import java.util.List;
 public class UserApi {
     private final UserBl userBl;
     private final TransactionBl transactionBl;
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserApi.class);
     @Autowired
     public UserApi(UserBl userBl, TransactionBl transactionBl) {
         this.userBl = userBl;
@@ -44,9 +47,10 @@ public class UserApi {
         return userBl.login(user1);
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<UserResponse> listOfUsers() {
-        return userBl.getListOfUsers();
+    @RequestMapping(value = "/list", params = {"search", "page", "size"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PageInfo<UserResponse> listOfUsers(@RequestParam("page") Integer page, @RequestParam("size") Integer size, @RequestParam("search") String user) {
+        String search = user + "%";
+        return userBl.getListOfUsers(page, size, search);
     }
 
     @RequestMapping(value = "/{userid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
