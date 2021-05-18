@@ -10,10 +10,7 @@ public class Product extends Transaction {
     private String description;
     private Double weight;
     private Integer status;
-
-    public Product(Integer txId, String txHost, Integer txUserId, Date txDate) {
-        super(txId, txHost, txUserId, txDate);
-    }
+    private String qrHash;
 
     public Product() {
     }
@@ -28,7 +25,16 @@ public class Product extends Transaction {
                 ", description='" + description + '\'' +
                 ", weight=" + weight +
                 ", status=" + status +
+                ", qrHash='" + qrHash + '\'' +
                 '}';
+    }
+
+    public String getQrHash() {
+        return qrHash;
+    }
+
+    public void setQrHash(String qrHash) {
+        this.qrHash = qrHash;
     }
 
     public Integer getProductId() {

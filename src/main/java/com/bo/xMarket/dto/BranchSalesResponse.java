@@ -1,5 +1,7 @@
 package com.bo.xMarket.dto;
 
+import com.bo.xMarket.model.Point;
+
 import java.util.List;
 
 public class BranchSalesResponse {

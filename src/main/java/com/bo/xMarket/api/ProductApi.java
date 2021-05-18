@@ -37,9 +37,9 @@ public class ProductApi {
         return productBl.productList(id, page, size);
     } // TODO: Move to ManagerApi
 
-    @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/category/{categoryid}", params = {"page", "size"} ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @PathVariable("categoryid") Integer idcategory,@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
-        return productBl.productListbyCategory(id, idbranch, idcategory,page,size);
+    @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}/category/{categoryid}", params = {"page", "size"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductResponse> productsbycategory(@PathVariable("userid") Integer id, @PathVariable("branchoffice") Integer idbranch, @PathVariable("categoryid") Integer idcategory, @RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+        return productBl.productListbyCategory(id, idbranch, idcategory, page, size);
     } // TODO: Move to UserApi :c
 
     @RequestMapping(value = "/user/{userid}/branchOffice/{branchoffice}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -59,7 +59,7 @@ public class ProductApi {
         return productBl.productInfo(id);
     }
 
-    @RequestMapping(value = "/product/{productid}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/product/{productid}/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public void productDelete(@PathVariable("productid") Integer productid, HttpServletRequest request) {
         Transaction transaction = TransactionUtil.createTransaction(request);
@@ -83,9 +83,9 @@ public class ProductApi {
         return productBl.update(productRequest, personId, productId);
     } // TODO: Move to ManagerApi
 
-    @RequestMapping(value = "/product/branchOffice/{idbranch}/category/{idcategory}",params = {"search", "page", "size"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/product/branchOffice/{idbranch}/category/{idcategory}", params = {"search", "page", "size"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductResponse> searchformovil(@RequestParam("search") String product, @RequestParam("page") Integer page, @RequestParam("size") Integer size, @PathVariable("idcategory") Integer categoryId, @PathVariable("idbranch") Integer branchId) {
         String a = product + "%";
-        return productBl.searchmovil(a, categoryId, branchId,page,size);
+        return productBl.searchmovil(a, categoryId, branchId, page, size);
     }
 }

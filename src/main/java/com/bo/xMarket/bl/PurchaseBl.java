@@ -4,6 +4,7 @@ import com.bo.xMarket.dao.BranchOfficeDao;
 import com.bo.xMarket.dao.PurchaseDao;
 import com.bo.xMarket.dto.BranchSalesResponse;
 import com.bo.xMarket.dto.MonthlySaleBranchResponse;
+import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.dto.SalesResponse;
 import com.bo.xMarket.model.BranchOffice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,13 @@ public class PurchaseBl {
         salesResponse2.setPoints(purchaseDao.salesDailyByBranchId(branchOffices.get(5).getBranchOfficeId()));
         branchSalesResponses.add(salesResponse2);
         return branchSalesResponses;
+    }
+
+    public List<ProductResponse> mostSelledProducts() {
+        return purchaseDao.mostSelledProducts();
+    }
+
+    public List<ProductResponse> lessSoldProducts() {
+        return purchaseDao.lessSoldProducts();
     }
 }

@@ -14,3 +14,10 @@ Accept: application/json
 GET http://localhost:8080/sales/total/products
 Accept: application/json
 
+###
+GET http://localhost:8080/sales/less/products
+Accept: application/json
+
+###
+GET http://localhost:8080/sales/most/products
+Accept: application/json

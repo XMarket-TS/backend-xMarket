@@ -19,7 +19,7 @@
         ORDER BY p.buy_date;
     </select>
 
-    <select id="salesDailyByBranchId" resultType="com.bo.xMarket.dto.Point">
+    <select id="salesDailyByBranchId" resultType="com.bo.xMarket.model.Point">
         SELECT (i.amount) AS y,
                p.buy_date               as x
         FROM purchase p,
@@ -65,4 +65,43 @@
           AND p.status = 1
         GROUP BY b.id_branch_office
     </select>
+
+    <select id="mostSelledProducts" resultType="com.bo.xMarket.dto.ProductResponse">
+        SELECT p.product_id AS productId,
+               p.name,
+               p.price,
+               p.description,
+               c.name AS category,
+               (SELECT m.photo FROM media_product m WHERE m.product_product_id = p.product_id LIMIT 1) AS firstImage,
+               SUM(i.amount) AS unit
+        FROM product p,
+             items i,
+             product_category c
+        WHERE p.product_id = i.product_id
+          AND p.product_category_id = c.id
+          AND exists(SELECT * FROM purchase p2 WHERE p2.bill_id = i.purchase_bill_id AND p2.status = 1)
+        GROUP BY p.product_id
+        ORDER BY unit DESC
+        LIMIT 5;
+    </select>
+
+    <select id="lessSoldProducts" resultType="com.bo.xMarket.dto.ProductResponse">
+        SELECT p.product_id AS productId,
+               p.name,
+               p.price,
+               p.description,
+               c.name AS category,
+               (SELECT m.photo FROM media_product m WHERE m.product_product_id = p.product_id LIMIT 1) AS firstImage,
+               SUM(i.amount) AS unit
+        FROM product p,
+             items i,
+             product_category c
+        WHERE p.product_id = i.product_id
+          AND p.product_category_id = c.id
+          AND exists(SELECT * FROM purchase p2 WHERE p2.bill_id = i.purchase_bill_id AND p2.status = 1)
+        GROUP BY p.product_id
+        ORDER BY unit ASC
+        LIMIT 5;
+    </select>
+
 </mapper>

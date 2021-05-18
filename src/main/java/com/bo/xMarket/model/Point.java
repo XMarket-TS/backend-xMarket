@@ -1,4 +1,4 @@
-package com.bo.xMarket.dto;
+package com.bo.xMarket.model;
 
 public class Point {
     private String x;

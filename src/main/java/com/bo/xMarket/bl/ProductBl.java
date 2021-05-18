@@ -3,6 +3,7 @@ package com.bo.xMarket.bl;
 import com.bo.xMarket.dao.*;
 import com.bo.xMarket.dto.*;
 import com.bo.xMarket.model.*;
+import com.bo.xMarket.util.MD5Util;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -80,7 +81,7 @@ public class ProductBl {
         return prelim;
     }
 
-    public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch, Integer idcategory,Integer page,Integer size) {
+    public List<ProductResponse> productListbyCategory(Integer id, Integer idbranch, Integer idcategory, Integer page, Integer size) {
         PageHelper.startPage(page, size); //line 1
         List<ProductResponse> productList = productDao.listProductsByCategory(id, idbranch, idcategory);
         List<ProductResponse> productResult = new ArrayList<>();
@@ -132,7 +133,7 @@ public class ProductBl {
     public Product addProduct(Integer personId, ProductRequest productRequest, Transaction transaction) {
         Product product = new Product();
         Integer categoryId = categoryDao.getCategoryIdByName(productRequest.getCategory());
-
+        String qr = MD5Util.string2MD5(productRequest.toString());
         product.setName(productRequest.getName());
         product.setPrice(productRequest.getPrice());
         product.setDescription(productRequest.getDescription());
@@ -140,6 +141,7 @@ public class ProductBl {
         product.setStatus(1);
         product.setTransaction(transaction);
         product.setProductCategoryId(categoryId != null ? categoryId : 0);
+        product.setQrHash(qr);
         productDao.addproduct(product);
 
         Integer lastProductId = productDao.getLastInsertId();
@@ -233,7 +235,7 @@ public class ProductBl {
 
     public List<ProductResponse> searchmovil(String product, Integer categoryId, Integer branchId, Integer page, Integer size) {
         PageHelper.startPage(page, size);
-        List<ProductResponse> pagex = productDao.movilSearch(product,categoryId,branchId);
+        List<ProductResponse> pagex = productDao.movilSearch(product, categoryId, branchId);
         return pagex;
     }
 }

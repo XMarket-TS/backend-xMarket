@@ -12,6 +12,7 @@ public class ProductSpecificResponse {
     private List<String> imagesUrl;
     private CategoryRequest category;
     private Integer branchId;
+    private String qrHash;
 
     public ProductSpecificResponse() {
     }
@@ -28,7 +29,16 @@ public class ProductSpecificResponse {
                 ", imagesUrl=" + imagesUrl +
                 ", category=" + category +
                 ", branchId=" + branchId +
+                ", qrHash='" + qrHash + '\'' +
                 '}';
+    }
+
+    public String getQrHash() {
+        return qrHash;
+    }
+
+    public void setQrHash(String qrHash) {
+        this.qrHash = qrHash;
     }
 
     public Integer getProductId() {

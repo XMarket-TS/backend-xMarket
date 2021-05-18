@@ -1,4 +1,4 @@
-### adding new product with adminid and branch office id
+### adding new product with manager id and branch office id
 POST http://localhost:8080/manager/530/product
 Accept: application/json
 Content-Type: application/json
@@ -33,7 +33,7 @@ GET http://localhost:8080/product/3
 Accept: application/json
 
 ### delete product
-DELETE http://localhost:8080/product/10
+DELETE http://localhost:8080/product/10/delete
 Accept: application/json
 
 ### search products
