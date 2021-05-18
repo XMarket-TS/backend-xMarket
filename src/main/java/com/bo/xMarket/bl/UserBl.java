@@ -39,6 +39,7 @@ public class UserBl {
         person.setPhoto(userRequest.getUserPhoto());
         person.setStatus(1);
         person.setTransaction(transaction);
+        person.setCellphone(userRequest.getCellphone());
         personDao.addPerson(person);
         Integer lastPersonId = personDao.getLastPersonId();
         User user = new User();
