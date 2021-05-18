@@ -67,6 +67,6 @@ GET http://localhost:8080/product/branchOffice/4/category/12?search=A&page=1&siz
 Accept: application/json
 
 ###
-GET http://localhost:8080/product/qr/hash?hash=26c99e08f5c287725ff88db38160608902b6304f21863ae26af1e5daba71cbe3
+GET http://localhost:8080/product/qr/hash?hash=7e66754f253d5cbd0c15c4ef77131470b8c3c862d0eb4c06ba299524b06eb05e
 Accept: application/json
 

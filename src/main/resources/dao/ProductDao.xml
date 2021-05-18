@@ -198,19 +198,15 @@
         SELECT a.product_id  as productId,
                a.name        as name,
                a.price       as price,
-               (SELECT c.percentage
-                FROM offers_register c
-                WHERE a.product_id = c.product_product_id
-                  AND c.status = 1
-                ORDER BY c.id_offers DESC
-                LIMIT 1)     as percentage,
+               0             as percentage,
                a.description as description,
                c.name        as category,
                (SELECT e.photo
                 FROM media_product e
                 WHERE a.product_id = e.product_product_id
                 ORDER BY e.media_id DESC
-                LIMIT 1)     as firstImage
+                LIMIT 1)     as firstImage,
+               0             AS unit
         FROM product_category c,
              product a
                  join product_branch_office b on a.product_id = b.product_product_id
