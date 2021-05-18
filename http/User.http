@@ -4,13 +4,14 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Joselito",
-  "surname": "Vaca",
+  "name": "Kevin",
+  "surname": "Prueba",
   "username": "prueba",
   "gender": "Male",
   "userPhoto": "https://res.cloudinary.com/fulano/image/upload/v1617116017/profileimage_kptkl6.jpg",
-  "email": "josevaca@gmail.com",
-  "password": "12345678"
+  "email": "kevinvaca@gmail.com",
+  "password": "12345678",
+  "cellphone": "75858574"
 }
 
 ### Get list of users

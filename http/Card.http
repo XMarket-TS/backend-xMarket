@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### get card list by user
-GET http://localhost:8080/user/1/listCards
+GET http://localhost:8080/user/2/listCards
 Accept: application/json
 
 ### get card list by user
