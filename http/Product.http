@@ -65,3 +65,8 @@ Content-Type: application/json
 ### search products (Movil)
 GET http://localhost:8080/product/branchOffice/4/category/12?search=A&page=1&size=10
 Accept: application/json
+
+###
+GET http://localhost:8080/product/qr/hash?hash=26c99e08f5c287725ff88db38160608902b6304f21863ae26af1e5daba71cbe3
+Accept: application/json
+

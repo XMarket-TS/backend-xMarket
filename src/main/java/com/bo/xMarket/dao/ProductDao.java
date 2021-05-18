@@ -6,6 +6,7 @@ import com.bo.xMarket.model.Product;
 import com.bo.xMarket.model.Stock;
 import com.github.pagehelper.Page;
 
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -50,4 +51,7 @@ public interface ProductDao {
 
     // Search product by name (Movil)
     public List<ProductResponse> movilSearch(String product, Integer categoryId, Integer branchId);
+
+    // Get product details by hash
+    ProductResponse getProductByHash(String hash);
 }

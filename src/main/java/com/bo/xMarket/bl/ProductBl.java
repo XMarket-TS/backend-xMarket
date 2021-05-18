@@ -238,4 +238,8 @@ public class ProductBl {
         List<ProductResponse> pagex = productDao.movilSearch(product, categoryId, branchId);
         return pagex;
     }
+
+    public ProductResponse findProductByHash(String hash) {
+        return productDao.getProductByHash(hash);
+    }
 }

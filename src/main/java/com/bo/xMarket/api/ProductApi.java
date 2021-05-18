@@ -88,4 +88,9 @@ public class ProductApi {
         String a = product + "%";
         return productBl.searchmovil(a, categoryId, branchId, page, size);
     }
+
+    @RequestMapping(value = "/product/qr/hash", params = {"hash"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductResponse findProductByHash(@RequestParam("hash") String hash) {
+        return productBl.findProductByHash(hash);
+    }
 }
