@@ -198,12 +198,10 @@
         SELECT a.product_id  as productId,
                a.name        as name,
                a.price       as price,
-               (SELECT c.percentage
-                FROM offers_register c
-                WHERE a.product_id = c.product_product_id
-                  AND c.status = 1
-                ORDER BY c.id_offers DESC
-                LIMIT 1)     as percentage,
+               case when o.percentage is null
+               then 0
+               else  o.percentage
+               end as percentage,
                a.description as description,
                c.name        as category,
                (SELECT e.photo
@@ -211,10 +209,16 @@
                 WHERE a.product_id = e.product_product_id
                 ORDER BY e.media_id DESC
                 LIMIT 1)     as firstImage,
-               0             AS unit
+                (SELECT f.in_stock
+                FROM stock f
+                WHERE a.product_id=f.product_product_id
+                ORDER BY f.stock_id DESC
+                LIMIT 1) as unit
         FROM product_category c,
              product a
                  join product_branch_office b on a.product_id = b.product_product_id
+                 left join offers_register o
+                 on o.product_product_id=a.product_id
         WHERE a.qr_hash = #{hash}
           AND c.id = a.product_category_id
           AND a.status = 1

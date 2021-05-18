@@ -12,7 +12,7 @@ spring:
     url: jdbc:mysql://localhost:3306/xmarket_bd
     username: root
     password: ""
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connectionTestQuery: select 1
       maximum-pool-size: 2
