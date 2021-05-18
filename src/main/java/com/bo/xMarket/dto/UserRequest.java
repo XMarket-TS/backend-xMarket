@@ -21,6 +21,8 @@ public class UserRequest {
     @Size(min = 8, max = 20, message
             = "About Me must be between 8 and 20 characters")
     private String password;
+    @NotBlank(message = "Cellphone is mandatory")
+    private String cellphone;
 
     public UserRequest() {
     }
@@ -35,6 +37,7 @@ public class UserRequest {
                 ", gender='" + gender + '\'' +
                 ", userPhoto='" + userPhoto + '\'' +
                 ", password='" + password + '\'' +
+                ", cellphone='" + cellphone + '\'' +
                 '}';
     }
 
@@ -92,5 +95,13 @@ public class UserRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCellphone() {
+        return cellphone;
+    }
+
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 }
