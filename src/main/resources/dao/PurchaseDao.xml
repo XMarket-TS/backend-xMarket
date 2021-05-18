@@ -3,18 +3,66 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bo.xMarket.dao.PurchaseDao">
-    <select id="getLastInsertId" resultType="java.lang.Integer">
+
+    <!--    &gt; for greater than >     -->
+    <!--    &lt; for less than    <     -->
+    <!--    #           AND p.buy_date &gt;= #{startDate} &#45;&#45; '2020-05-10'-->
+    <!--    #           AND p.buy_date &lt;= #{endDate}   &#45;&#45; '2020-05-15'-->
+    <select id="salesDaily" resultType="com.bo.xMarket.dto.SalesResponse">
         SELECT SUM(i.amount) AS amount,
                p.buy_date    as buyDate
         FROM purchase p,
              items i
         WHERE p.bill_id = i.purchase_bill_id
           AND p.status = 1
-          AND p.buy_date &gt;= #{startDate} -- '2020-05-10'
-          AND p.buy_date &lt;= #{endDate}   -- '2020-05-15'
         GROUP BY p.buy_date
         ORDER BY p.buy_date;
     </select>
-    <!--    &gt; for greater than >     -->
-    <!--    &lt; for less than    <     -->
+
+    <select id="salesDailyByBranchId" resultType="com.bo.xMarket.dto.Point">
+        SELECT (i.amount) AS y,
+               p.buy_date               as x
+        FROM purchase p,
+             items i,
+             product p2,
+             product_branch_office p3
+        WHERE p.bill_id = i.purchase_bill_id
+          AND p.status = 1
+          AND i.product_id = p2.product_id
+          AND p2.product_id = p3.product_product_id
+          AND p3.branch_office_id_branch_office = #{branchId}
+        GROUP BY p.buy_date;
+    </select>
+
+    <select id="getTotalSaleByBranch" resultType="com.bo.xMarket.dto.MonthlySaleBranchResponse">
+        # Total de ventas por sucursal
+        SELECT b.name AS branchName, p.buy_date AS date, SUM(i.amount * pro.price) AS sale
+        FROM purchase p,
+             items i,
+             product pro,
+             product_branch_office pbo,
+             branch_office b
+        WHERE p.bill_id = i.purchase_bill_id
+          AND i.product_id = pro.product_id
+          AND pro.product_id = pbo.product_product_id
+          AND pbo.branch_office_id_branch_office = b.id_branch_office
+          AND p.status = 1
+        GROUP BY b.id_branch_office
+    </select>
+
+    <select id="getTotalProductsSold" resultType="com.bo.xMarket.dto.MonthlySaleBranchResponse">
+        # Total de productos comprados por sucursal
+        SELECT b.name AS branchName, p.buy_date AS date, SUM(i.amount) AS sale
+        FROM purchase p,
+             items i,
+             product pro,
+             product_branch_office pbo,
+             branch_office b
+        WHERE p.bill_id = i.purchase_bill_id
+          AND i.product_id = pro.product_id
+          AND pro.product_id = pbo.product_product_id
+          AND pbo.branch_office_id_branch_office = b.id_branch_office
+          AND p.status = 1
+        GROUP BY b.id_branch_office
+    </select>
 </mapper>

@@ -1,0 +1,16 @@
+###
+GET http://localhost:8080/sales/total/branch
+Accept: application/json
+
+###
+GET http://localhost:8080/sales/total/branch/products
+Accept: application/json
+
+###
+GET http://localhost:8080/sales/daily/products
+Accept: application/json
+
+###
+GET http://localhost:8080/sales/total/products
+Accept: application/json
+
