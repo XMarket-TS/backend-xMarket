@@ -52,7 +52,7 @@
         WHERE a.product_product_id = #{branchId}
         AND a.product_product_id=b.product_id
         AND a.product_product_id= p.product_product_id
-          AND a.status != 3
+          AND a.status !=3
     </select>
 
     <update id="updateOffer" parameterType="com.bo.xMarket.model.OfferRegister">
