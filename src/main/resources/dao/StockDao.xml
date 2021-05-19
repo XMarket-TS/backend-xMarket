@@ -14,4 +14,9 @@
         INSERT INTO stock
         VALUES (null, #{productId}, #{inStock}, #{lastUpdate})
     </insert>
+    <update id="updateStock">
+        UPDATE stock
+        SET in_stock= in_stock-#{unit}
+        WHERE product_product_id=#{productId}
+    </update>
 </mapper>

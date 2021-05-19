@@ -1,23 +1,17 @@
-###
-GET http://localhost:8080/sales/total/branch
+### Purchase event
+POST http://localhost:8080/purchase/user/1
 Accept: application/json
+Content-Type: application/json
 
-###
-GET http://localhost:8080/sales/total/branch/products
-Accept: application/json
-
-###
-GET http://localhost:8080/sales/daily/products
-Accept: application/json
-
-###
-GET http://localhost:8080/sales/total/products
-Accept: application/json
-
-###
-GET http://localhost:8080/sales/less/products
-Accept: application/json
-
-###
-GET http://localhost:8080/sales/most/products
-Accept: application/json
+{
+  "productPurchases": [
+    {
+      "productId": 1,
+      "price": 50,
+      "unit": 2
+    }
+  ],
+  "billingAddress": "xxxxxx",
+  "city": "Bolivia",
+  "cardId": 1
+}

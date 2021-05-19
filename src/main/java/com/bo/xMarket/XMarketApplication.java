@@ -11,5 +11,4 @@ public class XMarketApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(XMarketApplication.class, args);
 	}
-
 }

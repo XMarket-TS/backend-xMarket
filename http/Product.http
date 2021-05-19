@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### get product list by managerid (Frontend web)
-GET http://localhost:8080/manager/530/products?page=1&size=10
+GET http://localhost:8080/manager/530/products?page=3&size=10
 Accept: application/json
 
 ### get product list by branchId (Frontend movil)
