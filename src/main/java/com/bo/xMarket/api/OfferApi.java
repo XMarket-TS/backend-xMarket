@@ -3,6 +3,7 @@ package com.bo.xMarket.api;
 import com.bo.xMarket.bl.OfferBl;
 import com.bo.xMarket.bl.TransactionBl;
 import com.bo.xMarket.dto.OfferRequest;
+import com.bo.xMarket.dto.OfferResponse;
 import com.bo.xMarket.model.Transaction;
 import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class OfferApi {
     @RequestMapping(value = "/product/{productid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<OfferRequest> productOffers(@PathVariable("productid") Integer id) {
         return offerBl.productOffers(id);
+    }
+
+    @RequestMapping(value = "/product/branch/{branchid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<OfferResponse> productOffersBranch(@PathVariable("branchid") Integer id) {
+        return offerBl.productOffersBranch(id);
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

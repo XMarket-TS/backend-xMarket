@@ -33,6 +33,28 @@
           AND status != 3
     </select>
 
+    <select id="getOffersByBranchId" resultType="com.bo.xMarket.dto.OfferResponse">
+        SELECT a.id_offers          as offerId,
+               a.product_product_id as productId,
+               b.name               as name,
+               b.price              as price,
+               a.start_date         as startDate,
+               a.end_date           as endDate,
+               (SELECT d.photo
+                FROM media_product d
+                WHERE a.product_product_id = d.product_product_id
+                ORDER BY d.media_id DESC
+                LIMIT 1) as imageUrl,
+               a.percentage         as percentage,
+               b.product_category_id as categoryId,
+               p.branch_office_id_branch_office as branchId
+        FROM offers_register a,product b,product_branch_office p
+        WHERE a.product_product_id = #{branchId}
+        AND a.product_product_id=b.product_id
+        AND a.product_product_id= p.product_product_id
+          AND a.status != 3
+    </select>
+
     <update id="updateOffer" parameterType="com.bo.xMarket.model.OfferRegister">
         UPDATE offers_register
         SET start_date=#{startDate},

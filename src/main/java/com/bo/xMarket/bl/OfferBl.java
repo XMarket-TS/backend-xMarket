@@ -2,6 +2,7 @@ package com.bo.xMarket.bl;
 
 import com.bo.xMarket.dao.OfferRegisterDao;
 import com.bo.xMarket.dto.OfferRequest;
+import com.bo.xMarket.dto.OfferResponse;
 import com.bo.xMarket.model.OfferRegister;
 import com.bo.xMarket.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class OfferBl {
 
     public List<OfferRequest> productOffers(Integer id) {
         return offerRegisterDao.getOffersByProduct(id);
+    }
+
+    public List<OfferResponse> productOffersBranch(Integer id) {
+        return offerRegisterDao.getOffersByBranchId(id);
     }
 
     public OfferRequest update(OfferRequest offerRequest) {
