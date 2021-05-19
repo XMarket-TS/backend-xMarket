@@ -103,5 +103,12 @@
         ORDER BY unit ASC
         LIMIT 5;
     </select>
-
+    <insert id="createPurchase" parameterType="com.bo.xMarket.model.Purchase">
+        INSERT INTO purchase
+        VALUES (null,#{cardId},#{userId},#{buyDate},#{billingAddress},#{city},
+                1,#{txHost},#{txUserId},#{txDate})
+    </insert>
+    <select id="getLastIdPurchase" resultType="java.lang.Integer">
+        SELECT LAST_INSERT_ID()
+    </select>
 </mapper>

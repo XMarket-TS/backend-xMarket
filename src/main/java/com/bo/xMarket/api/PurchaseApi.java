@@ -1,61 +1,34 @@
 package com.bo.xMarket.api;
 
-
 import com.bo.xMarket.bl.PurchaseBl;
-import com.bo.xMarket.dto.*;
+import com.bo.xMarket.bl.TransactionBl;
+import com.bo.xMarket.dto.ProductRequest;
+import com.bo.xMarket.dto.PurchaseRequest;
+import com.bo.xMarket.model.Product;
+import com.bo.xMarket.model.Transaction;
+import com.bo.xMarket.util.TransactionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
 @RestController
-@RequestMapping(value = "/sales")
+@RequestMapping(value = "/purchase")
 public class PurchaseApi {
-    private final PurchaseBl purchaseBl;
+    private PurchaseBl purchaseBl;
+    private TransactionBl transactionBl;
 
     @Autowired
-    public PurchaseApi(PurchaseBl purchaseBl) {
+    public PurchaseApi(PurchaseBl purchaseBl, TransactionBl transactionBl) {
         this.purchaseBl = purchaseBl;
+        this.transactionBl = transactionBl;
     }
 
-    @RequestMapping(value = "/total/branch", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<MonthlySaleBranchResponse> totalSaleBranchList() {
-        return purchaseBl.totalSalesBranch();
+    @RequestMapping(value = "user/{userId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public PurchaseRequest buyProduct(@PathVariable("userId") Integer userId, @RequestBody PurchaseRequest purchaseRequestList, HttpServletRequest request) {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        return purchaseBl.buyProducts(userId, purchaseRequestList, transaction);
     }
-
-    @RequestMapping(value = "/total/branch/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<MonthlySaleBranchResponse> totalProductsBranchList() {
-        return purchaseBl.productsSold();
-    }
-
-    @RequestMapping(value = "/daily/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<SalesResponse> dailySales() {
-        return purchaseBl.dailySales();
-    }
-
-    @RequestMapping(value = "/total/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BranchSalesResponse> dailySalesAllBranchs() {
-        return purchaseBl.dailySalesAllBranchs();
-    }
-
-    @RequestMapping(value = "/most/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> mostSelledProducts() {
-        return purchaseBl.mostSelledProducts();
-    }
-
-    @RequestMapping(value = "/less/products", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProductResponse> lessSoldProducts() {
-        return purchaseBl.lessSoldProducts();
-    }
-
-//    @RequestMapping(value = "/{userid}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public UserResponse listOfUsers(@PathVariable("userid") Integer userId) {
-//        return userBl.getuserbyid(userId);
-//    }
-
-
 }

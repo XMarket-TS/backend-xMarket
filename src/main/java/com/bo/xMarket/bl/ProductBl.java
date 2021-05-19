@@ -96,13 +96,13 @@ public class ProductBl {
             result.setDescription(response.getDescription());
             result.setCategory(category.getName());
             result.setFirstImage(response.getFirstImage());
-            result.setUnit(stock.getInStock());
-
+            result.setUnit(stock != null ? stock.getInStock() : 0);
             OfferRegister offerRegister = offerRegisterDao.getActualOffer(response.getProductId());
             result.setPercentage(offerRegister != null ? offerRegister.getPercentage() : 0);
 
             productResult.add(result);
         }
+        LOGGER.info(productResult.toString());
         return productResult;
     }
 

@@ -1,73 +1,48 @@
 package com.bo.xMarket.bl;
 
-import com.bo.xMarket.dao.BranchOfficeDao;
+import com.bo.xMarket.dao.ItemsDao;
 import com.bo.xMarket.dao.PurchaseDao;
-import com.bo.xMarket.dto.BranchSalesResponse;
-import com.bo.xMarket.dto.MonthlySaleBranchResponse;
-import com.bo.xMarket.dto.ProductResponse;
-import com.bo.xMarket.dto.SalesResponse;
-import com.bo.xMarket.model.BranchOffice;
+import com.bo.xMarket.dao.StockDao;
+import com.bo.xMarket.dto.PurchaseRequest;
+import com.bo.xMarket.model.Items;
+import com.bo.xMarket.model.Purchase;
+import com.bo.xMarket.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Service
 public class PurchaseBl {
-    private final PurchaseDao purchaseDao;
-    private final BranchOfficeDao branchOfficeDao;
+    private PurchaseDao purchaseDao;
+    private StockDao stockDao;
+    private ItemsDao itemsDao;
 
     @Autowired
-    public PurchaseBl(PurchaseDao purchaseDao, BranchOfficeDao branchOfficeDao) {
+    public PurchaseBl(PurchaseDao purchaseDao, StockDao stockDao, ItemsDao itemsDao) {
         this.purchaseDao = purchaseDao;
-        this.branchOfficeDao = branchOfficeDao;
+        this.stockDao = stockDao;
+        this.itemsDao = itemsDao;
     }
 
-    public List<MonthlySaleBranchResponse> generalMonthly() {
-        return purchaseDao.getTotalSaleByBranch();
-    }
-
-    public List<MonthlySaleBranchResponse> totalSalesBranch() {
-        return purchaseDao.getTotalSaleByBranch();
-    }
-
-    public List<MonthlySaleBranchResponse> productsSold() {
-        return purchaseDao.getTotalProductsSold();
-    }
-
-    public List<SalesResponse> dailySales() {
-        return purchaseDao.salesDaily();
-    }
-
-    public List<BranchSalesResponse> dailySalesAllBranchs() {
-        List<BranchOffice> branchOffices = branchOfficeDao.listBranchOfficeAll();
-        List<BranchSalesResponse> branchSalesResponses = new ArrayList<>();
-
-//        branchOffices.forEach(branchOffice -> {
-        BranchSalesResponse salesResponse = new BranchSalesResponse();
-        salesResponse.setName(branchOffices.get(0).getName());
-        salesResponse.setPoints(purchaseDao.salesDailyByBranchId(branchOffices.get(0).getBranchOfficeId()));
-        branchSalesResponses.add(salesResponse);
-//        });
-
-        BranchSalesResponse salesResponse1 = new BranchSalesResponse();
-        salesResponse1.setName(branchOffices.get(3).getName());
-        salesResponse1.setPoints(purchaseDao.salesDailyByBranchId(branchOffices.get(3).getBranchOfficeId()));
-        branchSalesResponses.add(salesResponse1);
-
-        BranchSalesResponse salesResponse2 = new BranchSalesResponse();
-        salesResponse2.setName(branchOffices.get(5).getName());
-        salesResponse2.setPoints(purchaseDao.salesDailyByBranchId(branchOffices.get(5).getBranchOfficeId()));
-        branchSalesResponses.add(salesResponse2);
-        return branchSalesResponses;
-    }
-
-    public List<ProductResponse> mostSelledProducts() {
-        return purchaseDao.mostSelledProducts();
-    }
-
-    public List<ProductResponse> lessSoldProducts() {
-        return purchaseDao.lessSoldProducts();
+    public PurchaseRequest buyProducts(Integer userId, PurchaseRequest purchaseRequestList, Transaction transaction){
+        Purchase purchase= new Purchase();
+        purchase.setBuyDate(new Date());
+        purchase.setBillingAddress(purchaseRequestList.getBillingAddress());
+        purchase.setCity(purchaseRequestList.getCity());
+        purchase.setCardId(purchaseRequestList.getCardId());
+        purchase.setUserId(userId);
+        purchase.setTransaction(transaction);
+        purchaseDao.createPurchase(purchase);
+        Integer purchaseId= purchaseDao.getLastIdPurchase();
+        purchaseRequestList.getProductPurchases().forEach(productPurchase -> {
+            Items item= new Items();
+            item.setPurchaseId(purchaseId);
+            item.setAmount(productPurchase.getUnit());
+            item.setProductId(productPurchase.getProductId());
+            itemsDao.addItemToPurchase(item);
+            stockDao.updateStock(productPurchase.getUnit(),productPurchase.getProductId());
+        });
+        return purchaseRequestList;
     }
 }

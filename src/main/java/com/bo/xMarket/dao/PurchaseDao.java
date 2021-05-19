@@ -4,6 +4,7 @@ import com.bo.xMarket.dto.MonthlySaleBranchResponse;
 import com.bo.xMarket.dto.ProductResponse;
 import com.bo.xMarket.model.Point;
 import com.bo.xMarket.dto.SalesResponse;
+import com.bo.xMarket.model.Purchase;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -27,4 +28,10 @@ public interface PurchaseDao {
 
     // Less sold products
     List<ProductResponse> lessSoldProducts();
+
+    // create a purchase completed
+    void createPurchase(Purchase purchase);
+
+    // get last insert
+    Integer getLastIdPurchase();
 }
