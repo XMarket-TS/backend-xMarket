@@ -12,6 +12,6 @@ Content-Type: application/json
     }
   ],
   "billingAddress": "xxxxxx",
-  "city": "Bolivia",
+  "city": "La Paz",
   "cardId": 1
 }

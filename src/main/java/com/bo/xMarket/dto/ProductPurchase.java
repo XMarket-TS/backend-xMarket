@@ -2,7 +2,7 @@ package com.bo.xMarket.dto;
 
 public class ProductPurchase {
     private Integer productId;
-    private String productName;
+//    private String productName;
     private Double price;
     private Integer unit;
 
@@ -17,13 +17,13 @@ public class ProductPurchase {
         this.productId = productId;
     }
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+//    public String getProductName() {
+//        return productName;
+//    }
+//
+//    public void setProductName(String productName) {
+//        this.productName = productName;
+//    }
 
     public Double getPrice() {
         return price;
